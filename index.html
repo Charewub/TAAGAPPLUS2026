@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAP+ Learning Plan</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --aa-red: #E32526;
+            --aa-dark-red: #C81E1E;
+            --aa-black: #111111;
+            --aa-light-gray: #F4F5F7;
+            --aa-border: #E2E8F0;
+            --gap-blue: #0284C7;
+            --gap-light-blue: #F0F9FF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Sarabun', sans-serif; }
+        body { background-color: var(--aa-light-gray); color: #333; }
+        .hidden { display: none !important; }
+
+        /* ==================== 1. Login Section ==================== */
+        #login-section { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .login-card { 
+            background: white; 
+            padding: 3.5rem 2rem; 
+            border-radius: 12px; 
+            width: 100%; 
+            max-width: 450px; 
+            border-top: 6px solid var(--aa-red); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            text-align: center; 
+        }
+        .login-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
+        .login-header img { margin-bottom: 20px; }
+        .login-card h2 { color: var(--aa-black); font-size: 1.5rem; margin-bottom: 5px; }
+        .login-card p { color: #64748B; font-size: 1rem; margin-bottom: 25px; }
+        
+        .login-card label { font-weight: 600; font-size: 1rem; margin-bottom: 10px; display: block; }
+        .form-control { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid #CBD5E1; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            font-size: 1.1rem; 
+            outline: none; 
+            transition: 0.2s; 
+        }
+        .form-control:focus { border-color: var(--aa-red); box-shadow: 0 0 0 4px rgba(227,37,38,0.1); }
+        .form-control:disabled { background-color: #F8FAFC; color: #475569; cursor: not-allowed; }
+        
+        .btn { 
+            background: var(--aa-red); 
+            color: white; 
+            border: none; 
+            padding: 14px 24px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            transition: 0.2s; 
+        }
+        .btn:hover { background: var(--aa-dark-red); box-shadow: 0 4px 12px rgba(227, 37, 38, 0.2); }
+
+        /* ==================== 2. Main App Section ==================== */
+        #main-app-section { padding: 2rem 1.5rem; max-width: 1000px; margin: 0 auto; }
+        .app-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            border-bottom: 2px solid var(--aa-red); 
+            padding-bottom: 15px; 
+            margin-bottom: 25px; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+        }
+        .app-header h2 { font-size: 1.7rem; color: var(--aa-black); font-weight: 700; }
+        .user-profile { text-align: right; }
+        .user-profile b { font-size: 1.3rem; color: var(--aa-black); }
+        .user-profile span { color: #64748B; font-size: 1rem; }
+        
+        /* Boxes & Cards */
+        .intro-box { 
+            background: var(--gap-light-blue); 
+            border-left: 4px solid var(--gap-blue); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 30px; 
+        }
+        .intro-box p { font-size: 1rem; line-height: 1.6; color: #334155; }
+
+        .corp-card { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            margin-bottom: 1.5rem; 
+            border: 1px solid var(--aa-border); 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
+        }
+        .corp-card h3 { 
+            margin-bottom: 18px; 
+            color: var(--aa-black); 
+            font-size: 1.3rem; 
+            border-bottom: 1px solid #E2E8F0; 
+            padding-bottom: 12px; 
+            font-weight: 700; 
+        }
+        
+        /* Grid Display */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 20px; }
+        .comp-card { 
+            border: 2px solid var(--aa-border); 
+            padding: 1.5rem; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            background: #F8FAFC; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 12px; 
+            text-align: left; 
+            transition: 0.2s;
+        }
+        .comp-card:hover { border-color: #CBD5E1; }
+        .comp-card.active { border-color: var(--aa-red); background: #FEF2F2; }
+        .comp-card input[type="radio"] { margin-top: 5px; accent-color: var(--aa-red); width: 20px; height: 20px; flex-shrink: 0; }
+        
+        .comp-title { font-weight: 700; color: var(--aa-black); display: block; margin-bottom: 6px; font-size: 1.1rem; }
+        .comp-desc { font-size: 0.95rem; color: #475569; line-height: 1.5; display: block; }
+        
+        .mandatory-box { 
+            background: #F8FAFC; 
+            padding: 1.5rem; 
+            border-radius: 10px; 
+            border: 1px solid var(--aa-border); 
+            border-left: 6px solid var(--aa-red); 
+        }
+
+        .form-group { margin-bottom: 20px; text-align: left; position: relative; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #334155; }
+        
+        /* Performance Auto-Gen Styling */
+        .auto-gen-box { 
+            background: #F8FAFC; 
+            padding: 20px; 
+            border-radius: 10px; 
+            border: 1px dashed #CBD5E1; 
+            line-height: 2.2; 
+            font-size: 1.05rem; 
+            color: #334155; 
+        }
+        .inline-select { 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            border: 1px solid #CBD5E1; 
+            font-size: 1rem; 
+            color: var(--aa-red); 
+            font-weight: 600; 
+            outline: none; 
+            background: white;
+        }
+        .inline-input { 
+            width: 100%; 
+            padding: 10px 15px; 
+            border-radius: 8px; 
+            border: 1px solid #CBD5E1; 
+            font-size: 1.05rem; 
+            margin-top: 10px; 
+            outline: none; 
+        }
+        .inline-input:focus { border-color: var(--aa-red); }
+
+        /* Manager Section */
+        .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .readonly-input { background-color: #F1F5F9; color: #475569; border-color: #CBD5E1; font-weight: 600; }
+        .add-manager-btn { 
+            position: absolute; right: 0; top: 0; 
+            background: #FEF2F2; color: var(--aa-red); 
+            border: 1px solid #FCA5A5; border-radius: 4px; 
+            padding: 3px 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; 
+        }
+
+        .confirmation-box { 
+            background-color: #FEF2F2; border: 1px solid #FCA5A5; 
+            padding: 1.5rem; border-radius: 8px; 
+            display: flex; align-items: flex-start; gap: 15px; margin-top: 20px; 
+        }
+        .confirmation-box input { width: 22px; height: 22px; accent-color: var(--aa-red); flex-shrink: 0; }
+
+        @media (max-width: 768px) {
+            .app-header { flex-direction: column-reverse; align-items: flex-start; }
+            .manager-grid { grid-template-columns: 1fr; }
+            .add-manager-btn { position: relative; display: inline-block; margin-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-section">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/250px-AirAsia_New_Logo.svg.png" width="160">
+                <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง</h2>
+                <p>Learning Plan Development 2026</p>
+            </div>
+            <form onsubmit="processLogin(event)">
+                <label>ระบุรหัสพนักงาน (Employee ID)</label>
+                <input type="text" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ระบุเลขรหัสพนักงาน" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <button type="submit" class="btn">เข้าสู่ระบบ / ดึงชุดวิชา</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="main-app-section" class="hidden">
+        <div class="app-header">
+            <h2>GAP+ : Learning Plan Setup</h2>
+            <div class="user-profile">
+                <b id="display-name">Name</b><br>
+                <span id="display-job">ID | Position</span>
+            </div>
+        </div>
+
+        <div class="intro-box">
+            <p>
+                <b>GAP+</b> คือระบบการวางแผนพัฒนาตนเองประจำปี 2026 
+                ขอให้ท่านพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน โดยแบ่งเป้าหมายออกเป็น 2 ส่วน ดังนี้:
+            </p>
+        </div>
+
+        <div class="corp-card">
+            <h3>🎯 Goal 01 - Elective (เลือก 1 อย่าง)</h3>
+            <div class="cards-grid" id="render-electives"></div>
+            
+            <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
+                <div class="form-group">
+                    <label>⏳ Timeline (ระยะเวลาเรียนรู้)</label>
+                    <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
+                </div>
+                <div class="form-group">
+                    <label>📚 A-Activity (วิธีการเรียนรู้)</label>
+                    <select class="form-control" id="activity-elective" onchange="toggleOtherInput('elective')">
+                        <option value="">-- โปรดเลือกวิธีการ --</option>
+                        <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
+                        <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
+                        <option value="Other">อื่นๆ (โปรดระบุ)</option>
+                    </select>
+                    <input type="text" class="form-control hidden" id="activity-elective-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                </div>
+                <div class="form-group">
+                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    <div class="auto-gen-box">
+                        นำความรู้ <b id="perf-comp-elective" style="color: var(--aa-red);">[...]</b> มา 
+                        <select id="verb-elective" class="inline-select">
+                            <option value="">-- ระดับ --</option>
+                            <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
+                            <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
+                            <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
+                            <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
+                        </select>
+                        ให้เกิดผลลัพธ์
+                        <input type="text" id="result-elective" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
+                        <div style="text-align: right; color: #64748B; font-weight: 600; margin-top: -30px; margin-right: 15px;">ในงาน</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="corp-card">
+            <h3>🎯 Goal 02 - Plus One (สมรรถนะบังคับ)</h3>
+            <div id="render-mandatory"></div>
+            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
+                <div class="form-group">
+                    <label>⏳ Timeline (ระยะเวลาเรียนรู้)</label>
+                    <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
+                </div>
+                <div class="form-group">
+                    <label>📚 A-Activity (วิธีการเรียนรู้)</label>
+                    <select class="form-control" id="activity-mandatory" onchange="toggleOtherInput('mandatory')">
+                        <option value="">-- โปรดเลือกวิธีการ --</option>
+                        <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
+                        <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
+                        <option value="Other">อื่นๆ (โปรดระบุ)</option>
+                    </select>
+                    <input type="text" class="form-control hidden" id="activity-mandatory-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                </div>
+                <div class="form-group">
+                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    <div class="auto-gen-box">
+                        นำความรู้ <b id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</b> มา 
+                        <select id="verb-mandatory" class="inline-select">
+                            <option value="">-- ระดับ --</option>
+                            <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
+                            <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
+                            <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
+                            <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
+                        </select>
+                        ให้เกิดผลลัพธ์
+                        <input type="text" id="result-mandatory" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
+                        <div style="text-align: right; color: #64748B; font-weight: 600; margin-top: -30px; margin-right: 15px;">ในงาน</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="corp-card" style="background:#FAFAFA;">
+            <h3>👤 Manager Information</h3>
+            <div class="manager-grid">
+                <div class="form-group">
+                    <label>Manager ID</label>
+                    <input type="text" class="form-control" id="submit-manager-id" placeholder="รหัสพนักงาน 7 หลัก" onblur="fetchManagerData(this.value)">
+                </div>
+                <div class="form-group">
+                    <label>Manager Name <button id="manual-add-btn" class="add-manager-btn hidden" onclick="enableManualManager()">➕ เพิ่มเอง</button></label>
+                    <input type="text" class="form-control readonly-input" id="submit-manager-name" placeholder="ค้นหาชื่ออัตโนมัติ" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Manager Email</label>
+                    <input type="email" class="form-control readonly-input" id="submit-manager-email" placeholder="อีเมลหัวหน้างาน" readonly>
+                </div>
+            </div>
+            <div class="confirmation-box">
+                <input type="checkbox" id="confirm-cb">
+                <label for="confirm-cb" style="font-weight:600; color:var(--aa-red); cursor:pointer;">รับรองว่าข้อมูลตามแผนข้างต้นได้ร่วมปรึกษาและตกลงร่วมกันกับหัวหน้างานแล้ว</label>
+            </div>
+        </div>
+
+        <button class="btn" style="margin-bottom:60px; padding: 20px;" onclick="submitIDP()">💾 บันทึกและยืนยันการส่งข้อมูล (Submit)</button>
+    </div>
+
+    <script>
+        // 🚨 นำ Web App URL ของคุณมาวางที่นี่
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwpPDJ45Ovnb19GjcsqIvzgSvJonKIzBFQQ8tyWsktDyt6XyZ_S_WWH_Iz0SX7eEdKPJA/exec'; 
+
+        let currentEmployee = null;
+        let currentPackage = null;
+
+        async function processLogin(event) {
+            event.preventDefault();
+            const id = document.getElementById('login-id').value;
+            Swal.fire({ title: 'กำลังดึงข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+            try {
+                const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getProfile', empId: id }) });
+                const r = await res.json();
+                if (r.status === 'success') {
+                    currentEmployee = r.employee; currentPackage = r.package;
+                    renderUI(); Swal.close();
+                    document.getElementById('login-section').classList.add('hidden');
+                    document.getElementById('main-app-section').classList.remove('hidden');
+                    window.scrollTo(0,0);
+                } else {
+                    Swal.fire({
+                        title: 'ไม่พบข้อมูลของคุณ',
+                        html: `ไม่พบรายชื่อหรือชุดวิชาในระบบ<br><br><b>กรุณาติดต่อ TMC:</b><br><a href="mailto:taa_learning@airasia.com">taa_learning@airasia.com</a>`,
+                        icon: 'error'
+                    });
+                }
+            } catch (e) { Swal.fire('Error', 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error'); }
+        }
+
+        function renderUI() {
+            document.getElementById('display-name').innerText = currentEmployee.name;
+            document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`;
+            const elContainer = document.getElementById('render-electives');
+            elContainer.innerHTML = '';
+            currentPackage.electives.forEach((c, idx) => {
+                if(c.title.trim() !== '') {
+                    elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${c.title}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
+                }
+            });
+            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc">${currentPackage.mandatory.desc}</span></div>`;
+            document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
+        }
+
+        function selectElective(idx, title) {
+            document.querySelectorAll('.comp-card').forEach(c => c.classList.remove('active'));
+            document.getElementById(`card-${idx}`).classList.add('active');
+            document.getElementById(`radio-${idx}`).checked = true;
+            document.getElementById('elective-form').classList.remove('hidden');
+            document.getElementById('perf-comp-elective').innerText = title;
+        }
+
+        async function fetchManagerData(val) {
+            const nameInp = document.getElementById('submit-manager-name');
+            const mailInp = document.getElementById('submit-manager-email');
+            const manualBtn = document.getElementById('manual-add-btn');
+            if (!val || val.length < 5) return;
+            nameInp.value = 'กำลังค้นหา...'; mailInp.value = 'กำลังค้นหา...';
+            try {
+                const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getManagerData', managerId: val }) });
+                const r = await res.json();
+                if(r.status === 'success') {
+                    nameInp.value = r.name; mailInp.value = r.email; manualBtn.classList.add('hidden');
+                } else {
+                    nameInp.value = '❌ ไม่พบข้อมูล'; mailInp.value = ''; manualBtn.classList.remove('hidden');
+                }
+            } catch (e) { nameInp.value = 'เกิดข้อผิดพลาด'; }
+        }
+
+        function enableManualManager() {
+            const n = document.getElementById('submit-manager-name');
+            const m = document.getElementById('submit-manager-email');
+            n.readOnly = false; m.readOnly = false;
+            n.classList.remove('readonly-input'); m.classList.remove('readonly-input');
+            n.value = ''; m.value = ''; n.focus();
+            document.getElementById('manual-add-btn').classList.add('hidden');
+        }
+
+        function toggleOtherInput(type) {
+            const v = document.getElementById(`activity-${type}`).value;
+            document.getElementById(`activity-${type}-other`).classList.toggle('hidden', v !== 'Other');
+        }
+
+        function getActivity(type) {
+            const v = document.getElementById(`activity-${type}`).value;
+            return v === 'Other' ? document.getElementById(`activity-${type}-other`).value : v;
+        }
+
+        function getPerf(type) {
+            const comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
+            const verb = document.getElementById(`verb-${type}`).value;
+            const res = document.getElementById(`result-${type}`).value;
+            return (!verb || !res) ? null : `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
+        }
+
+        async function submitIDP() {
+            const elective = document.querySelector('input[name="elective"]:checked');
+            const p1 = getPerf('elective'); const p2 = getPerf('mandatory');
+            const mId = document.getElementById('submit-manager-id').value;
+            const mName = document.getElementById('submit-manager-name').value;
+            const mEmail = document.getElementById('submit-manager-email').value;
+
+            if (!elective || !getActivity('elective') || !p1 || !p2 || !mId || !mName || !document.getElementById('confirm-cb').checked) {
+                return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลให้ครบถ้วนทุกช่อง และกดยืนยันด้านล่าง', 'warning');
+            }
+
+            Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            const payload = {
+                action: 'submitIDP',
+                data: {
+                    empId: currentEmployee.empId, managerId: mId, managerName: mName, managerEmail: mEmail,
+                    elective: { competency: elective.value, activity: getActivity('elective'), performance: p1 },
+                    mandatory: { competency: currentPackage.mandatory.title, activity: getActivity('mandatory'), performance: p2 }
+                }
+            };
+
+            try {
+                const response = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify(payload) });
+                if ((await response.json()).status === 'success') {
+                    Swal.fire('สำเร็จ!', 'บันทึกแผนงานเรียบร้อยแล้ว', 'success').then(() => window.location.reload());
+                } else { Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error'); }
+            } catch (e) { Swal.fire('Error', 'ไม่สามารถบันทึกข้อมูลได้', 'error'); }
+        }
+    </script>
+</body>
+</html>
