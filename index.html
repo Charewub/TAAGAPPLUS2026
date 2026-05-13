@@ -163,17 +163,35 @@
             font-weight: 600; 
             outline: none; 
             background: white;
+            max-width: 100%;
         }
-        .inline-input { 
+
+        /* --- วิธีแก้ปัญหาคำว่า "ในงาน" ทับกล่องข้อความ --- */
+        .input-with-suffix {
+            position: relative;
+            width: 100%;
+            margin-top: 8px;
+        }
+        .input-with-suffix .inline-input { 
             width: 100%; 
-            padding: 10px 15px; 
+            padding: 10px 65px 10px 15px; /* เผื่อพื้นที่ด้านขวา 65px ให้คำว่า "ในงาน" */
             border-radius: 8px; 
             border: 1px solid #CBD5E1; 
+            font-family: 'Sarabun', sans-serif;
             font-size: 1.05rem; 
-            margin-top: 10px; 
             outline: none; 
+            box-sizing: border-box;
         }
-        .inline-input:focus { border-color: var(--aa-red); }
+        .input-with-suffix .inline-input:focus { border-color: var(--aa-red); }
+        .input-with-suffix .suffix {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748B;
+            font-weight: 600;
+            pointer-events: none; /* ป้องกันไม่ให้คลิกโดนแล้วพิมพ์ไม่ได้ */
+        }
 
         /* Manager Section */
         .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 10px; }
@@ -204,14 +222,14 @@
     <div id="login-section">
         <div class="login-card">
             <div class="login-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/250px-AirAsia_New_Logo.svg.png" width="160">
+                <img src="https://img2.pic.in.th/Learning-GAPLogo.png" width="160">
                 <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง</h2>
                 <p>Learning Plan Development 2026</p>
             </div>
             <form onsubmit="processLogin(event)">
-                <label>ระบุรหัสพนักงาน (Employee ID)</label>
+                <label>กรุณากรอกรหัสพนักงาน 7 หลัก (Employee ID)</label>
                 <input type="text" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ระบุเลขรหัสพนักงาน" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                <button type="submit" class="btn">เข้าสู่ระบบ / ดึงชุดวิชา</button>
+                <button type="submit" class="btn">เข้าสู่ระบบ</button>
             </form>
         </div>
     </div>
@@ -263,8 +281,10 @@
                             <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
                         </select>
                         ให้เกิดผลลัพธ์
-                        <input type="text" id="result-elective" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
-                        <div style="text-align: right; color: #64748B; font-weight: 600; margin-top: -30px; margin-right: 15px;">ในงาน</div>
+                        <div class="input-with-suffix">
+                            <input type="text" id="result-elective" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
+                            <span class="suffix">ในงาน</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -300,8 +320,10 @@
                             <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
                         </select>
                         ให้เกิดผลลัพธ์
-                        <input type="text" id="result-mandatory" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
-                        <div style="text-align: right; color: #64748B; font-weight: 600; margin-top: -30px; margin-right: 15px;">ในงาน</div>
+                        <div class="input-with-suffix">
+                            <input type="text" id="result-mandatory" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
+                            <span class="suffix">ในงาน</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -342,7 +364,7 @@
         async function processLogin(event) {
             event.preventDefault();
             const id = document.getElementById('login-id').value;
-            Swal.fire({ title: 'กำลังดึงข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            Swal.fire({ title: 'กำลังสร้าง Training Plan ของท่าน...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getProfile', empId: id }) });
@@ -365,7 +387,7 @@
 
         function renderUI() {
             document.getElementById('display-name').innerText = currentEmployee.name;
-            document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`;
+            document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; // ถอด Track ออก
             const elContainer = document.getElementById('render-electives');
             elContainer.innerHTML = '';
             currentPackage.electives.forEach((c, idx) => {
