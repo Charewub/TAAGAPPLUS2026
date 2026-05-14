@@ -44,15 +44,19 @@
 
         /* Main App Section */
         #main-app-section { padding: 2rem 1.5rem; max-width: 1000px; margin: 0 auto; }
-        .app-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--aa-red); padding-bottom: 15px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
-        .app-header h2 { font-size: 1.7rem; color: var(--aa-black); font-weight: 700; }
-        .user-profile { text-align: right; }
+        .app-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--aa-red); padding-bottom: 15px; margin-bottom: 25px; gap: 15px; }
+        .header-left { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+        .title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .app-header h2 { font-size: 1.7rem; color: var(--aa-black); font-weight: 700; margin: 0; }
+        .user-profile { text-align: left; }
         .user-profile b { font-size: 1.3rem; color: var(--aa-black); }
-        .user-profile span { color: #64748B; font-size: 1rem; }
-        
+        .user-profile span { color: #64748B; font-size: 1rem; margin-left: 8px; padding-left: 8px; border-left: 2px solid #CBD5E1; }
+        .header-logo { flex-shrink: 0; }
+        .header-logo img { width: 130px; display: block; }
+
         .intro-box { background: var(--gap-light-blue); border-left: 4px solid var(--gap-blue); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
         .intro-box p { font-size: 1rem; line-height: 1.6; color: #334155; }
-        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; margin-left: 10px; vertical-align: middle; }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; vertical-align: middle; }
         .badge-draft { background: #FEF08A; color: #0F172A; border: 1px solid #FDE047; }
         .badge-confirm { background: #DCFCE7; color: #14532D; border: 1px solid #BBF7D0; }
 
@@ -77,10 +81,61 @@
         .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 2.2; font-size: 1.05rem; color: #334155; }
         .inline-select { padding: 8px 12px; border-radius: 8px; border: 1px solid #CBD5E1; font-size: 1rem; color: var(--aa-red); font-weight: 600; outline: none; background: white; max-width: 100%; cursor: pointer; }
 
+        .dynamic-desc-box {
+            background: #F0FDF4; 
+            border-left: 4px solid #16A34A; 
+            padding: 15px; 
+            margin-top: 15px; 
+            margin-bottom: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #166534;
+        }
+
         .input-with-suffix { position: relative; width: 100%; margin-top: 8px; }
-        .input-with-suffix .inline-input { width: 100%; padding: 10px 70px 10px 15px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: 'Sarabun', sans-serif; font-size: 1.05rem; outline: none; box-sizing: border-box; }
+        .input-with-suffix .inline-input { 
+            width: 100%; 
+            padding: 12px 15px 35px 15px; 
+            border-radius: 8px; 
+            border: 1px solid #CBD5E1; 
+            font-family: 'Sarabun', sans-serif; 
+            font-size: 1.05rem; 
+            outline: none; 
+            box-sizing: border-box;
+            resize: vertical; 
+            min-height: 90px; 
+            line-height: 1.5;
+        }
         .input-with-suffix .inline-input:focus { border-color: var(--aa-red); }
-        .input-with-suffix .suffix { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #64748B; font-weight: 600; pointer-events: none; }
+        .input-with-suffix .suffix { position: absolute; right: 15px; bottom: 12px; color: #64748B; font-weight: 600; pointer-events: none; }
+
+        .statement-wrapper {
+            background: #F0F9FF; 
+            border: 1px solid #BAE6FD; 
+            border-left: 4px solid var(--gap-blue); 
+            padding: 20px; 
+            margin-top: 20px; 
+            border-radius: 8px; 
+            color: #0369A1;
+            transition: 0.3s;
+        }
+        .statement-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gap-blue);
+        }
+        .statement-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-style: italic;
+            color: #334155;
+        }
+        .highlight-text { font-weight: 700; color: var(--aa-red); }
 
         .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 10px; }
         .readonly-input { background-color: #F1F5F9; color: #475569; border-color: #CBD5E1; font-weight: 600; }
@@ -95,62 +150,35 @@
 
         @media (max-width: 768px) {
             .app-header { flex-direction: column-reverse; align-items: flex-start; }
+            .header-logo { align-self: flex-start; margin-bottom: 15px; }
             .manager-grid { grid-template-columns: 1fr; gap: 10px; }
             .add-manager-btn { position: relative; display: inline-block; margin-top: 8px; }
             .action-bar { justify-content: center; }
             .action-bar .btn { width: 100%; }
         }
 
-        /* ==================== 🔴 CSS สำหรับการพิมพ์ (Print) แก้หน้าขาว ==================== */
+        /* ==================== CSS สำหรับการพิมพ์ ==================== */
         @media print {
             @page { size: A4; margin: 1cm; }
-            html, body {
-                background-color: white !important;
-                color: black !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                margin: 0 !important;
-                padding: 0 !important;
-                height: auto !important;
-                overflow: visible !important;
-            }
-            #login-section, .action-bar, .intro-box, .add-manager-btn, .btn, .guideline-box {
-                display: none !important;
-            }
-            #main-app-section {
-                display: block !important;
-                padding: 0 !important;
-                margin: 0 auto !important;
-                max-width: 100% !important;
-            }
-            .corp-card {
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-                padding: 20px !important;
-                margin-bottom: 20px !important;
-                background-color: white !important;
-                page-break-inside: avoid;
-            }
+            *, *:before, *:after, html, body { overflow: visible !important; height: auto !important; max-height: none !important; }
+            html, body { background-color: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0 !important; padding: 0 !important; }
+            body.swal2-shown, body.swal2-height-auto { overflow: visible !important; height: auto !important; }
+            #login-section, .action-bar, .intro-box, .add-manager-btn, .btn, .guideline-box { display: none !important; }
+            #main-app-section { display: block !important; padding: 0 !important; margin: 0 auto !important; max-width: 100% !important; width: 100% !important; }
+            .cards-grid { display: block !important; }
+            .corp-card { display: block !important; border: 1px solid #ccc !important; box-shadow: none !important; padding: 20px !important; margin-bottom: 20px !important; background-color: white !important; page-break-inside: avoid; }
             .comp-card:not(.active) { display: none !important; }
-            .comp-card.active {
-                display: flex !important;
-                border: 1px solid #ccc !important;
-                background-color: #F8FAFC !important;
-                padding: 12px !important;
-            }
-            .form-control, .inline-select, .inline-input {
-                border: none !important;
-                border-bottom: 1px dashed #94a3b8 !important;
-                border-radius: 0 !important;
-                background: transparent !important;
-                padding: 4px 0 !important;
-                color: black !important;
-                -webkit-appearance: none;
-                appearance: none;
-            }
-            .auto-gen-box { border: none !important; padding: 0 !important; background: transparent !important; line-height: 1.8; }
-            .mandatory-box { background: #F8FAFC !important; border: 1px solid #ccc !important; border-left: 4px solid var(--aa-red) !important; }
-            .confirmation-box { background: white !important; border: none !important; padding: 10px 0 !important; }
+            .comp-card.active { display: flex !important; border: 1px solid #ccc !important; background-color: #F8FAFC !important; padding: 12px !important; margin-bottom: 15px !important; }
+            .mandatory-box { background: #F8FAFC !important; border: 1px solid #ccc !important; border-left: 4px solid var(--aa-red) !important; display: block !important;}
+            .confirmation-box { background: white !important; border: none !important; padding: 10px 0 !important; display: block !important;}
+            .auto-gen-box { border: none !important; padding: 0 !important; background: transparent !important; display: block !important; }
+            
+            .has-statement .performance-input-section { display: none !important; }
+            
+            .statement-wrapper { display: block !important; background: transparent !important; border: none !important; border-left: 4px solid var(--gap-blue) !important; padding: 10px 15px !important; margin-top: 0 !important; }
+            .statement-content { font-style: normal !important; color: black !important; font-size: 11pt !important; }
+            .statement-title { color: black !important; }
+            .highlight-text { color: black !important; font-weight: bold !important; text-decoration: underline !important; }
         }
     </style>
 </head>
@@ -159,13 +187,13 @@
     <div id="login-section">
         <div class="login-card">
             <div class="login-header">
-                <img src="https://img2.pic.in.th/Learning-GAPLogo.png" width="180">
-                <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง ประจำปี 2568</h2>
+                <img src="https://img2.pic.in.th/Learning-GAPLogo-1.png" width="180">
+                <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง ประจำปี 2569</h2>
                 <p>Learning Plan Development 2026</p>
             </div>
             <form onsubmit="processLogin(event)">
                 <label>กรุณากรอกรหัสพนักงาน 7 หลัก (Employee ID)</label>
-                <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ตัวอย่าง '999999" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ตัวอย่าง '1000000'" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <button type="submit" class="btn">เข้าสู่ระบบ</button>
             </form>
         </div>
@@ -173,13 +201,18 @@
 
     <div id="main-app-section" class="hidden">
         <div class="app-header">
-            <div>
-                <h2 style="display:inline-block;">GAP+ : Learning Plan Development</h2>
-                <span id="form-status-badge"></span>
+            <div class="header-left">
+                <div class="title-row">
+                    <h2>GAP+ : Learning Plan Development</h2>
+                    <span id="form-status-badge"></span>
+                </div>
+                <div class="user-profile">
+                    <b id="display-name">Name</b>
+                    <span id="display-job">ID | Position</span>
+                </div>
             </div>
-            <div class="user-profile">
-                <b id="display-name">Name</b><br>
-                <span id="display-job">ID | Position</span>
+            <div class="header-logo">
+                <img src="https://img2.pic.in.th/Learning-GAPLogo-1.png" alt="GAP Logo">
             </div>
         </div>
 
@@ -206,7 +239,7 @@
                         <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
                         
                     </select>
-                    
+                    <input type="text" class="form-control hidden" id="activity-elective-other" placeholder="โปรดระบุชื่อกิจกรรม...">
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (โปรดระบุพฤติกรรมที่ท่านคาดว่าจะมีการเปลี่ยนแปลงหลังจากที่ได้เรียนรู้และพัฒนาทักษะของท่านแล้ว - ข้อมูลจะเป็นคำมั่นสัญญาของท่านและจะถูกนำมาเป็นส่วนหนึ่งของการประเมินผลงานปลายปี โปรดเลือกด้วยความตั้งใจนะคะ)</label>
@@ -217,19 +250,34 @@
                         • <b>ประเมินผล (Evaluate):</b> นำไปตรวจสอบ ประเมิน หรือช่วยตัดสินใจ<br>
                         • <b>สร้างสรรค์ (Create):</b> นำไปสร้างระบบ แนวทาง หรือนวัตกรรมใหม่
                     </div>
-                    <div class="auto-gen-box">
-                        นำความรู้ <b id="perf-comp-elective" style="color: var(--aa-red);">[...]</b> มา 
-                        <select id="verb-elective" class="inline-select">
-                            <option value="">-- ระดับ --</option>
-                            <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
-                            <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
-                            <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
-                            <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
-                        </select>
-                        ให้เกิดผลลัพธ์
-                        <div class="input-with-suffix">
-                            <input type="text" id="result-elective" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
-                            <span class="suffix">ในงาน</span>
+                    
+                    <div class="auto-gen-box" id="autogen-elective">
+                        <div class="performance-input-section">
+                            นำความรู้ <b id="perf-comp-elective" style="color: var(--aa-red);">[...]</b> มา 
+                            <select id="verb-elective" class="inline-select" onchange="updateDynamicText('elective')">
+                                <option value="">-- ระดับ --</option>
+                                <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
+                                <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
+                                <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
+                                <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
+                            </select>
+                            
+                            <div id="desc-box-elective" class="dynamic-desc-box hidden">
+                                <span id="desc-text-elective"></span>
+                            </div>
+
+                            <div style="margin-top: 10px;">
+                                ให้เกิดผลลัพธ์
+                                <div class="input-with-suffix">
+                                    <textarea id="result-elective" class="inline-input" rows="3" placeholder="โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว" oninput="updateDynamicText('elective')"></textarea>
+                                    <span class="suffix">ในงาน</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="statement-wrapper-elective" class="statement-wrapper hidden">
+                            <div class="statement-title"><i class="fa-solid fa-quote-left"></i> GOAL 01 Summary</div>
+                            <div class="statement-content" id="commitment-text-elective"></div>
                         </div>
                     </div>
                 </div>
@@ -252,7 +300,7 @@
                         <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
                         
                     </select>
-                    
+                    <input type="text" class="form-control hidden" id="activity-mandatory-other" placeholder="โปรดระบุชื่อกิจกรรม...">
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (โปรดระบุพฤติกรรมที่ท่านคาดว่าจะมีการเปลี่ยนแปลงหลังจากที่ได้เรียนรู้และพัฒนาทักษะของท่านแล้ว - ข้อมูลจะเป็นคำมั่นสัญญาของท่านและจะถูกนำมาเป็นส่วนหนึ่งของการประเมินผลงานปลายปี โปรดเลือกด้วยความตั้งใจนะคะ)</label>
@@ -263,19 +311,34 @@
                         • <b>ประเมินผล (Evaluate):</b> นำไปตรวจสอบ ประเมิน หรือช่วยตัดสินใจ<br>
                         • <b>สร้างสรรค์ (Create):</b> นำไปสร้างระบบ แนวทาง หรือนวัตกรรมใหม่
                     </div>
-                    <div class="auto-gen-box">
-                        นำความรู้ <b id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</b> มา 
-                        <select id="verb-mandatory" class="inline-select">
-                            <option value="">-- ระดับ --</option>
-                            <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
-                            <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
-                            <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
-                            <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
-                        </select>
-                        ให้เกิดผลลัพธ์
-                        <div class="input-with-suffix">
-                            <input type="text" id="result-mandatory" class="inline-input" placeholder="พิมพ์ผลลัพธ์ที่คุณต้องการเห็น...">
-                            <span class="suffix">ในงาน</span>
+                    
+                    <div class="auto-gen-box" id="autogen-mandatory">
+                        <div class="performance-input-section">
+                            นำความรู้ <b id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</b> มา 
+                            <select id="verb-mandatory" class="inline-select" onchange="updateDynamicText('mandatory')">
+                                <option value="">-- ระดับ --</option>
+                                <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
+                                <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
+                                <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
+                                <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
+                            </select>
+
+                            <div id="desc-box-mandatory" class="dynamic-desc-box hidden">
+                                <span id="desc-text-mandatory"></span>
+                            </div>
+
+                            <div style="margin-top: 10px;">
+                                ให้เกิดผลลัพธ์
+                                <div class="input-with-suffix">
+                                    <textarea id="result-mandatory" class="inline-input" rows="3" placeholder="โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว" oninput="updateDynamicText('mandatory')"></textarea>
+                                    <span class="suffix">ในงาน</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="statement-wrapper-mandatory" class="statement-wrapper hidden">
+                            <div class="statement-title"><i class="fa-solid fa-quote-left"></i> GOAL 02 Summary</div>
+                            <div class="statement-content" id="commitment-text-mandatory"></div>
                         </div>
                     </div>
                 </div>
@@ -300,7 +363,7 @@
             </div>
             <div class="confirmation-box">
                 <input type="checkbox" id="confirm-cb">
-                <label for="confirm-cb" style="font-weight:600; color:var(--aa-red); cursor:pointer;">รับรองว่าข้อมูลตามแผนข้างต้นได้ร่วมปรึกษาและตกลงร่วมกันกับหัวหน้างานแล้ว (รบกวนพรี่เต๋าช่วยดูหน่อยฮะ❤️)</label>
+                <label for="confirm-cb" style="font-weight:600; color:var(--aa-red); cursor:pointer;">รับรองว่าข้อมูลตามแผนข้างต้นได้ร่วมปรึกษาและตกลงร่วมกันกับหัวหน้างานแล้ว</label>
             </div>
         </div>
 
@@ -309,7 +372,7 @@
                 <i class="fa-solid fa-floppy-disk" style="margin-right:8px;"></i> บันทึกร่าง (Save Draft)
             </button>
             <button class="btn btn-draft" style="background-color: #0284C7; color: white;" onclick="window.print()">
-                <i class="fa-solid fa-file-pdf" style="margin-right:8px;"></i> พิมพ์แผน / Save PDF
+                <i class="fa-solid fa-file-pdf" style="margin-right:8px;"></i> บันทึกไฟล์เป็น PDF (Save as PDF)
             </button>
             <button class="btn" onclick="submitIDP('Confirm')">
                 <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> ยืนยันส่งข้อมูล (Submit)
@@ -324,6 +387,49 @@
         let currentEmployee = null;
         let currentPackage = null;
         let currentSavedData = null;
+        let guidelineDatabase = {};
+
+        function updateDynamicText(type) {
+            let comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
+            
+            const verb = document.getElementById(`verb-${type}`).value;
+            const descBox = document.getElementById(`desc-box-${type}`);
+            const descText = document.getElementById(`desc-text-${type}`);
+            const inputResult = document.getElementById(`result-${type}`);
+            
+            const statementWrapper = document.getElementById(`statement-wrapper-${type}`);
+            const commitmentText = document.getElementById(`commitment-text-${type}`);
+            const autoGenBox = document.getElementById(`autogen-${type}`);
+
+            let currentDesc = "";
+
+            if (comp && comp !== '[...]' && verb) {
+                if (guidelineDatabase[comp] && guidelineDatabase[comp][verb]) {
+                    const data = guidelineDatabase[comp][verb];
+                    currentDesc = data.description;
+                    descText.innerText = currentDesc;
+                    descBox.classList.remove('hidden');
+                    if (!inputResult.value) inputResult.placeholder = data.examplePlaceholder;
+                } else {
+                    currentDesc = `จะนำทักษะ ${comp} มา${verb}`;
+                    descBox.classList.add('hidden');
+                    if (!inputResult.value) inputResult.placeholder = "โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว";
+                }
+            } else {
+                if(descBox) descBox.classList.add('hidden');
+                if(!inputResult.value && inputResult) inputResult.placeholder = "โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว";
+            }
+
+            if (currentDesc && inputResult.value.trim() !== '') {
+                commitmentText.innerHTML = `<b><span style="color: var(--aa-red);">${comp}</span></b><br><br>"${currentDesc} <br><br><b>เพื่อให้เกิดผลลัพธ์ในงาน คือ:</b> <br><span class='highlight-text'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
+                
+                statementWrapper.classList.remove('hidden');
+                autoGenBox.classList.add('has-statement'); 
+            } else {
+                statementWrapper.classList.add('hidden');
+                autoGenBox.classList.remove('has-statement');
+            }
+        }
 
         async function processLogin(event) {
             event.preventDefault();
@@ -337,6 +443,8 @@
                     currentEmployee = r.employee; 
                     currentPackage = r.package;
                     currentSavedData = r.savedData;
+                    guidelineDatabase = r.guidelineMap || {};
+
                     renderUI(); 
                     Swal.close();
                     document.getElementById('login-section').classList.add('hidden');
@@ -366,6 +474,8 @@
             });
             document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
+            
+            updateDynamicText('mandatory');
         }
 
         function selectElective(idx, title) {
@@ -374,6 +484,8 @@
             document.getElementById(`radio-${idx}`).checked = true;
             document.getElementById('elective-form').classList.remove('hidden');
             document.getElementById('perf-comp-elective').innerText = title;
+            
+            updateDynamicText('elective');
         }
 
         function autoFillData() {
@@ -409,7 +521,11 @@
             }
             if (dataObj.performance) {
                 let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?) ในงาน$/);
-                if (match) { document.getElementById(`verb-${type}`).value = match[1]; document.getElementById(`result-${type}`).value = match[2]; }
+                if (match) { 
+                    document.getElementById(`verb-${type}`).value = match[1]; 
+                    document.getElementById(`result-${type}`).value = match[2]; 
+                    updateDynamicText(type);
+                }
             }
         }
 
@@ -507,11 +623,10 @@
                         icon: 'success',
                         showCancelButton: true,
                         confirmButtonText: 'ตกลง / ปิด',
-                        cancelButtonText: 'พิมพ์แผน / Save PDF',
+                        cancelButtonText: 'บันทึกไฟล์เป็น PDF (Save as PDF)',
                         confirmButtonColor: '#E32526',
                         cancelButtonColor: '#0284C7'
                     }).then((result) => {
-                        // 🔴 แก้ไข: หน่วงเวลา 0.5 วิ ให้ Popup ปิดสนิทก่อนเรียกคำสั่งพิมพ์ เพื่อป้องกันหน้าขาว
                         if (result.isDismissed) {
                             setTimeout(() => { window.print(); }, 500);
                         } else {
