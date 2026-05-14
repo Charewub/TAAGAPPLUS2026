@@ -17,203 +17,88 @@
             --aa-border: #E2E8F0;
             --gap-blue: #0284C7;
             --gap-light-blue: #F0F9FF;
+            --aa-draft: #64748B;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Sarabun', sans-serif; }
         body { background-color: var(--aa-light-gray); color: #333; }
         .hidden { display: none !important; }
 
-        /* ==================== 1. Login Section ==================== */
+        /* Login Section */
         #login-section { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .login-card { 
-            background: white; 
-            padding: 3.5rem 2rem; 
-            border-radius: 12px; 
-            width: 100%; 
-            max-width: 450px; 
-            border-top: 6px solid var(--aa-red); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            text-align: center; 
-        }
+        .login-card { background: white; padding: 3.5rem 2rem; border-radius: 12px; width: 100%; max-width: 450px; border-top: 6px solid var(--aa-red); box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; }
         .login-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
         .login-header img { margin-bottom: 20px; }
         .login-card h2 { color: var(--aa-black); font-size: 1.5rem; margin-bottom: 5px; }
         .login-card p { color: #64748B; font-size: 1rem; margin-bottom: 25px; }
         
         .login-card label { font-weight: 600; font-size: 1rem; margin-bottom: 10px; display: block; }
-        .form-control { 
-            width: 100%; 
-            padding: 14px; 
-            border: 1px solid #CBD5E1; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            font-size: 1.1rem; 
-            outline: none; 
-            transition: 0.2s; 
-        }
+        .form-control { width: 100%; padding: 14px; border: 1px solid #CBD5E1; border-radius: 8px; margin-bottom: 20px; font-size: 1.1rem; outline: none; transition: 0.2s; }
         .form-control:focus { border-color: var(--aa-red); box-shadow: 0 0 0 4px rgba(227,37,38,0.1); }
         .form-control:disabled { background-color: #F8FAFC; color: #475569; cursor: not-allowed; }
         
-        .btn { 
-            background: var(--aa-red); 
-            color: white; 
-            border: none; 
-            padding: 14px 24px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            transition: 0.2s; 
-        }
+        .btn { background: var(--aa-red); color: white; border: none; padding: 14px 24px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 700; font-size: 1.1rem; transition: 0.2s; }
         .btn:hover { background: var(--aa-dark-red); box-shadow: 0 4px 12px rgba(227, 37, 38, 0.2); }
+        .btn-draft { background: var(--aa-draft); }
+        .btn-draft:hover { background: #475569; box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2); }
 
-        /* ==================== 2. Main App Section ==================== */
+        /* Main App Section */
         #main-app-section { padding: 2rem 1.5rem; max-width: 1000px; margin: 0 auto; }
-        .app-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-end; 
-            border-bottom: 2px solid var(--aa-red); 
-            padding-bottom: 15px; 
-            margin-bottom: 25px; 
-            flex-wrap: wrap; 
-            gap: 15px; 
-        }
+        .app-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--aa-red); padding-bottom: 15px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
         .app-header h2 { font-size: 1.7rem; color: var(--aa-black); font-weight: 700; }
         .user-profile { text-align: right; }
         .user-profile b { font-size: 1.3rem; color: var(--aa-black); }
         .user-profile span { color: #64748B; font-size: 1rem; }
         
-        /* Boxes & Cards */
-        .intro-box { 
-            background: var(--gap-light-blue); 
-            border-left: 4px solid var(--gap-blue); 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-bottom: 30px; 
-        }
+        .intro-box { background: var(--gap-light-blue); border-left: 4px solid var(--gap-blue); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
         .intro-box p { font-size: 1rem; line-height: 1.6; color: #334155; }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; margin-left: 10px; vertical-align: middle; }
+        .badge-draft { background: #FEF08A; color: #0F172A; border: 1px solid #FDE047; }
+        .badge-confirm { background: #DCFCE7; color: #14532D; border: 1px solid #BBF7D0; }
 
-        .corp-card { 
-            background: white; 
-            padding: 2.5rem; 
-            border-radius: 12px; 
-            margin-bottom: 1.5rem; 
-            border: 1px solid var(--aa-border); 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
-        }
-        .corp-card h3 { 
-            margin-bottom: 18px; 
-            color: var(--aa-black); 
-            font-size: 1.3rem; 
-            border-bottom: 1px solid #E2E8F0; 
-            padding-bottom: 12px; 
-            font-weight: 700; 
-        }
+        .corp-card { background: white; padding: 2.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--aa-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .corp-card h3 { margin-bottom: 18px; color: var(--aa-black); font-size: 1.3rem; border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; font-weight: 700; }
         
-        /* Grid Display */
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 20px; }
-        .comp-card { 
-            border: 2px solid var(--aa-border); 
-            padding: 1.5rem; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            background: #F8FAFC; 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 12px; 
-            text-align: left; 
-            transition: 0.2s;
-        }
+        .comp-card { border: 2px solid var(--aa-border); padding: 1.5rem; border-radius: 10px; cursor: pointer; background: #F8FAFC; display: flex; align-items: flex-start; gap: 12px; text-align: left; transition: 0.2s; }
         .comp-card:hover { border-color: #CBD5E1; }
         .comp-card.active { border-color: var(--aa-red); background: #FEF2F2; }
         .comp-card input[type="radio"] { margin-top: 5px; accent-color: var(--aa-red); width: 20px; height: 20px; flex-shrink: 0; }
-        
         .comp-title { font-weight: 700; color: var(--aa-black); display: block; margin-bottom: 6px; font-size: 1.1rem; }
         .comp-desc { font-size: 0.95rem; color: #475569; line-height: 1.5; display: block; }
         
-        .mandatory-box { 
-            background: #F8FAFC; 
-            padding: 1.5rem; 
-            border-radius: 10px; 
-            border: 1px solid var(--aa-border); 
-            border-left: 6px solid var(--aa-red); 
-        }
+        .mandatory-box { background: #F8FAFC; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--aa-border); border-left: 6px solid var(--aa-red); }
 
         .form-group { margin-bottom: 20px; text-align: left; position: relative; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #334155; }
         
-        /* Performance Auto-Gen Styling */
-        .auto-gen-box { 
-            background: #F8FAFC; 
-            padding: 20px; 
-            border-radius: 10px; 
-            border: 1px dashed #CBD5E1; 
-            line-height: 2.2; 
-            font-size: 1.05rem; 
-            color: #334155; 
-        }
-        .inline-select { 
-            padding: 8px 12px; 
-            border-radius: 8px; 
-            border: 1px solid #CBD5E1; 
-            font-size: 1rem; 
-            color: var(--aa-red); 
-            font-weight: 600; 
-            outline: none; 
-            background: white;
-            max-width: 100%;
-        }
+        .guideline-box { background: #F1F5F9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--gap-blue); font-size: 0.9rem; color: #475569; line-height: 1.6; }
+        
+        .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 2.2; font-size: 1.05rem; color: #334155; }
+        .inline-select { padding: 8px 12px; border-radius: 8px; border: 1px solid #CBD5E1; font-size: 1rem; color: var(--aa-red); font-weight: 600; outline: none; background: white; max-width: 100%; cursor: pointer; }
 
-        /* --- วิธีแก้ปัญหาคำว่า "ในงาน" ทับกล่องข้อความ --- */
-        .input-with-suffix {
-            position: relative;
-            width: 100%;
-            margin-top: 8px;
-        }
-        .input-with-suffix .inline-input { 
-            width: 100%; 
-            padding: 10px 65px 10px 15px; /* เผื่อพื้นที่ด้านขวา 65px ให้คำว่า "ในงาน" */
-            border-radius: 8px; 
-            border: 1px solid #CBD5E1; 
-            font-family: 'Sarabun', sans-serif;
-            font-size: 1.05rem; 
-            outline: none; 
-            box-sizing: border-box;
-        }
+        .input-with-suffix { position: relative; width: 100%; margin-top: 8px; }
+        .input-with-suffix .inline-input { width: 100%; padding: 10px 70px 10px 15px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: 'Sarabun', sans-serif; font-size: 1.05rem; outline: none; box-sizing: border-box; }
         .input-with-suffix .inline-input:focus { border-color: var(--aa-red); }
-        .input-with-suffix .suffix {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #64748B;
-            font-weight: 600;
-            pointer-events: none; /* ป้องกันไม่ให้คลิกโดนแล้วพิมพ์ไม่ได้ */
-        }
+        .input-with-suffix .suffix { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #64748B; font-weight: 600; pointer-events: none; }
 
-        /* Manager Section */
         .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 10px; }
         .readonly-input { background-color: #F1F5F9; color: #475569; border-color: #CBD5E1; font-weight: 600; }
-        .add-manager-btn { 
-            position: absolute; right: 0; top: 0; 
-            background: #FEF2F2; color: var(--aa-red); 
-            border: 1px solid #FCA5A5; border-radius: 4px; 
-            padding: 3px 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; 
-        }
+        .add-manager-btn { position: absolute; right: 0; top: 0; background: #FEF2F2; color: var(--aa-red); border: 1px solid #FCA5A5; border-radius: 4px; padding: 3px 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .add-manager-btn:hover { background: var(--aa-red); color: white; }
 
-        .confirmation-box { 
-            background-color: #FEF2F2; border: 1px solid #FCA5A5; 
-            padding: 1.5rem; border-radius: 8px; 
-            display: flex; align-items: flex-start; gap: 15px; margin-top: 20px; 
-        }
-        .confirmation-box input { width: 22px; height: 22px; accent-color: var(--aa-red); flex-shrink: 0; }
+        .confirmation-box { background-color: #FEF2F2; border: 1px solid #FCA5A5; padding: 1.5rem; border-radius: 8px; display: flex; align-items: flex-start; gap: 15px; margin-top: 20px; }
+        .confirmation-box input { width: 22px; height: 22px; accent-color: var(--aa-red); flex-shrink: 0; cursor: pointer; }
+
+        .action-bar { display: flex; justify-content: flex-end; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
+        .action-bar .btn { width: auto; padding: 15px 30px; }
 
         @media (max-width: 768px) {
             .app-header { flex-direction: column-reverse; align-items: flex-start; }
-            .manager-grid { grid-template-columns: 1fr; }
+            .manager-grid { grid-template-columns: 1fr; gap: 10px; }
             .add-manager-btn { position: relative; display: inline-block; margin-top: 8px; }
+            .action-bar { justify-content: center; }
+            .action-bar .btn { width: 100%; }
         }
     </style>
 </head>
@@ -236,7 +121,10 @@
 
     <div id="main-app-section" class="hidden">
         <div class="app-header">
-            <h2>GAP+ : Learning Plan Setup</h2>
+            <div>
+                <h2 style="display:inline-block;">GAP+ : Learning Plan Setup</h2>
+                <span id="form-status-badge"></span>
+            </div>
             <div class="user-profile">
                 <b id="display-name">Name</b><br>
                 <span id="display-job">ID | Position</span>
@@ -246,7 +134,7 @@
         <div class="intro-box">
             <p>
                 <b>GAP+</b> คือระบบการวางแผนพัฒนาตนเองประจำปี 2026 
-                ขอให้ท่านพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน โดยแบ่งเป้าหมายออกเป็น 2 ส่วน ดังนี้:
+                ขอให้ท่านพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน โดยแบ่งเป้าหมายออกเป็น 2 ส่วน ดังนี้: (รบกวนพรี่เต๋าช่วยดูหน่อยฮะ)
             </p>
         </div>
 
@@ -271,6 +159,13 @@
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    <div class="guideline-box">
+                        <b>💡 คำแนะนำระดับการนำไปใช้:(รบกวนพรี่เต๋าช่วยดูหน่อยฮะ❤️)</b><br>
+                        • <b>ประยุกต์ใช้ (Apply):</b> นำความรู้ไปลงมือทำจริงให้สำเร็จ<br>
+                        • <b>วิเคราะห์ (Analyze):</b> นำไปเจาะลึก แยกแยะ หรือหาสาเหตุ<br>
+                        • <b>ประเมินผล (Evaluate):</b> นำไปตรวจสอบ ประเมิน หรือช่วยตัดสินใจ<br>
+                        • <b>สร้างสรรค์ (Create):</b> นำไปสร้างระบบ แนวทาง หรือนวัตกรรมใหม่
+                    </div>
                     <div class="auto-gen-box">
                         นำความรู้ <b id="perf-comp-elective" style="color: var(--aa-red);">[...]</b> มา 
                         <select id="verb-elective" class="inline-select">
@@ -310,6 +205,13 @@
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    <div class="guideline-box">
+                        <b>💡 คำแนะนำระดับการนำไปใช้:</b><br>
+                        • <b>ประยุกต์ใช้ (Apply):</b> นำความรู้ไปลงมือทำจริงให้สำเร็จ<br>
+                        • <b>วิเคราะห์ (Analyze):</b> นำไปเจาะลึก แยกแยะ หรือหาสาเหตุ<br>
+                        • <b>ประเมินผล (Evaluate):</b> นำไปตรวจสอบ ประเมิน หรือช่วยตัดสินใจ<br>
+                        • <b>สร้างสรรค์ (Create):</b> นำไปสร้างระบบ แนวทาง หรือนวัตกรรมใหม่
+                    </div>
                     <div class="auto-gen-box">
                         นำความรู้ <b id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</b> มา 
                         <select id="verb-mandatory" class="inline-select">
@@ -347,11 +249,18 @@
             </div>
             <div class="confirmation-box">
                 <input type="checkbox" id="confirm-cb">
-                <label for="confirm-cb" style="font-weight:600; color:var(--aa-red); cursor:pointer;">รับรองว่าข้อมูลตามแผนข้างต้นได้ร่วมปรึกษาและตกลงร่วมกันกับหัวหน้างานแล้ว</label>
+                <label for="confirm-cb" style="font-weight:600; color:var(--aa-red); cursor:pointer;">รับรองว่าข้อมูลตามแผนข้างต้นได้ร่วมปรึกษาและตกลงร่วมกันกับหัวหน้างานแล้ว (รบกวนพรี่เต๋าช่วยดูหน่อยฮะ❤️)</label>
             </div>
         </div>
 
-        <button class="btn" style="margin-bottom:60px; padding: 20px;" onclick="submitIDP()">💾 บันทึกและยืนยันการส่งข้อมูล (Submit)</button>
+        <div class="action-bar">
+            <button class="btn btn-draft" onclick="submitIDP('Draft')">
+                <i class="fa-solid fa-floppy-disk" style="margin-right:8px;"></i> บันทึกร่าง (Save Draft)
+            </button>
+            <button class="btn" onclick="submitIDP('Confirm')">
+                <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> ยืนยันส่งข้อมูล (Submit)
+            </button>
+        </div>
     </div>
 
     <script>
@@ -360,26 +269,38 @@
 
         let currentEmployee = null;
         let currentPackage = null;
+        let currentSavedData = null; // เก็บข้อมูลที่ถูกดึงมาจากระบบ
 
         async function processLogin(event) {
             event.preventDefault();
             const id = document.getElementById('login-id').value;
-            Swal.fire({ title: 'กำลังสร้าง Training Plan ของท่าน...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            Swal.fire({ title: 'กำลังดึงข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getProfile', empId: id }) });
                 const r = await res.json();
                 if (r.status === 'success') {
-                    currentEmployee = r.employee; currentPackage = r.package;
-                    renderUI(); Swal.close();
+                    currentEmployee = r.employee; 
+                    currentPackage = r.package;
+                    currentSavedData = r.savedData; // เก็บข้อมูล Draft/Confirm
+
+                    renderUI(); 
+                    Swal.close();
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('main-app-section').classList.remove('hidden');
                     window.scrollTo(0,0);
+
+                    // ถ้าระบบพบว่ามีข้อมูลเดิมบันทึกไว้ ให้สั่งยิงฟังก์ชัน Auto-fill ทันที
+                    if(currentSavedData) {
+                        autoFillData();
+                    }
+
                 } else {
                     Swal.fire({
                         title: 'ไม่พบข้อมูลของคุณ',
-                        html: `ไม่พบรายชื่อหรือชุดวิชาในระบบ<br><br><b>กรุณาติดต่อ TMC:</b><br><a href="mailto:taa_learning@airasia.com">taa_learning@airasia.com</a>`,
-                        icon: 'error'
+                        html: `ไม่พบรายชื่อหรือชุดวิชาในระบบ<br><br><b>กรุณาติดต่อ TMC:</b><br><a href="mailto:taa_learning@airasia.com" style="color:var(--aa-red); font-weight:bold;">taa_learning@airasia.com</a>`,
+                        icon: 'error',
+                        confirmButtonColor: '#E32526'
                     });
                 }
             } catch (e) { Swal.fire('Error', 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error'); }
@@ -387,7 +308,8 @@
 
         function renderUI() {
             document.getElementById('display-name').innerText = currentEmployee.name;
-            document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; // ถอด Track ออก
+            document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; 
+            
             const elContainer = document.getElementById('render-electives');
             elContainer.innerHTML = '';
             currentPackage.electives.forEach((c, idx) => {
@@ -395,7 +317,8 @@
                     elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${c.title}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
                 }
             });
-            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc">${currentPackage.mandatory.desc}</span></div>`;
+            
+            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
         }
 
@@ -407,21 +330,90 @@
             document.getElementById('perf-comp-elective').innerText = title;
         }
 
+        // ==================== ระบบนำข้อมูลเดิมกลับมากรอกอัตโนมัติ (Auto-fill) ====================
+        function autoFillData() {
+            const statusBadge = document.getElementById('form-status-badge');
+            
+            // 1. จัดการโชว์ป้าย Status ด้านบน
+            if(currentSavedData.status === 'Confirm') {
+                statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
+                Swal.fire('รับทราบข้อมูล', 'คุณเคยส่งข้อมูลแผนการเรียนรู้นี้ไปแล้ว<br>หากต้องการแก้ไข สามารถแก้และกดส่งซ้ำได้ครับ', 'info');
+            } else {
+                statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
+                Swal.fire({ title: 'พบข้อมูลที่บันทึกร่างไว้', text: 'ระบบได้ดึงข้อมูลร่างล่าสุดของคุณมาให้แล้ว', icon: 'info', timer: 2500, showConfirmButton: false });
+            }
+
+            // 2. เติมข้อมูล Manager
+            document.getElementById('submit-manager-id').value = currentSavedData.managerId || '';
+            document.getElementById('submit-manager-name').value = currentSavedData.managerName || '';
+            document.getElementById('submit-manager-email').value = currentSavedData.managerEmail || '';
+
+            // 3. เติมข้อมูล Elective (ถ้ามี)
+            if (currentSavedData.elective && currentSavedData.elective.competency) {
+                // หาระบุปุ่ม Radio ที่ตรงกับวิชาที่เคยเลือก
+                let idx = currentPackage.electives.findIndex(c => c.title === currentSavedData.elective.competency);
+                if (idx !== -1) selectElective(idx, currentSavedData.elective.competency);
+                
+                fillActivityAndPerf('elective', currentSavedData.elective);
+            }
+
+            // 4. เติมข้อมูล Mandatory (ถ้ามี)
+            if (currentSavedData.mandatory && currentSavedData.mandatory.competency) {
+                fillActivityAndPerf('mandatory', currentSavedData.mandatory);
+            }
+            
+            // 5. ติ๊ก Checkbox ให้ด้วยถ้าเคย Confirm แล้ว
+            if(currentSavedData.status === 'Confirm') {
+                document.getElementById('confirm-cb').checked = true;
+            }
+        }
+
+        function fillActivityAndPerf(type, dataObj) {
+            // เซ็ต Dropdown Activity
+            if (dataObj.activity) {
+                let actSelect = document.getElementById(`activity-${type}`);
+                let actOther = document.getElementById(`activity-${type}-other`);
+                let isStandardOption = Array.from(actSelect.options).map(o => o.value).includes(dataObj.activity);
+                
+                if (isStandardOption) {
+                    actSelect.value = dataObj.activity;
+                } else {
+                    actSelect.value = 'Other';
+                    actOther.classList.remove('hidden');
+                    actOther.value = dataObj.activity;
+                }
+            }
+
+            // ตัดคำประโยค Performance กลับมาเป็น Verb กับ Result
+            if (dataObj.performance) {
+                let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?) ในงาน$/);
+                if (match) {
+                    document.getElementById(`verb-${type}`).value = match[1];
+                    document.getElementById(`result-${type}`).value = match[2];
+                }
+            }
+        }
+        // ===================================================================================
+
         async function fetchManagerData(val) {
             const nameInp = document.getElementById('submit-manager-name');
             const mailInp = document.getElementById('submit-manager-email');
             const manualBtn = document.getElementById('manual-add-btn');
             if (!val || val.length < 5) return;
+            
+            lockManagerInputs();
+            manualBtn.classList.add('hidden');
             nameInp.value = 'กำลังค้นหา...'; mailInp.value = 'กำลังค้นหา...';
+            
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getManagerData', managerId: val }) });
                 const r = await res.json();
                 if(r.status === 'success') {
-                    nameInp.value = r.name; mailInp.value = r.email; manualBtn.classList.add('hidden');
+                    nameInp.value = r.name; mailInp.value = r.email; 
                 } else {
                     nameInp.value = '❌ ไม่พบข้อมูล'; mailInp.value = ''; manualBtn.classList.remove('hidden');
                 }
-            } catch (e) { nameInp.value = 'เกิดข้อผิดพลาด'; }
+            } catch (e) { nameInp.value = 'เกิดข้อผิดพลาด'; mailInp.value = ''; manualBtn.classList.remove('hidden'); }
         }
 
         function enableManualManager() {
@@ -431,6 +423,13 @@
             n.classList.remove('readonly-input'); m.classList.remove('readonly-input');
             n.value = ''; m.value = ''; n.focus();
             document.getElementById('manual-add-btn').classList.add('hidden');
+        }
+
+        function lockManagerInputs() {
+            const n = document.getElementById('submit-manager-name');
+            const m = document.getElementById('submit-manager-email');
+            n.readOnly = true; m.readOnly = true;
+            n.classList.add('readonly-input'); m.classList.add('readonly-input');
         }
 
         function toggleOtherInput(type) {
@@ -447,25 +446,45 @@
             const comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
             const verb = document.getElementById(`verb-${type}`).value;
             const res = document.getElementById(`result-${type}`).value;
-            return (!verb || !res) ? null : `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
+            if (!verb && !res) return ''; // ถ้าไม่ได้กรอก ปล่อยว่างไปก่อน (สำหรับ Draft)
+            return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
         }
 
-        async function submitIDP() {
+        // --- ปรับปรุงฟังก์ชัน Submit เพื่อรองรับ Status ---
+        async function submitIDP(statusToSave) {
             const elective = document.querySelector('input[name="elective"]:checked');
             const p1 = getPerf('elective'); const p2 = getPerf('mandatory');
             const mId = document.getElementById('submit-manager-id').value;
             const mName = document.getElementById('submit-manager-name').value;
             const mEmail = document.getElementById('submit-manager-email').value;
 
-            if (!elective || !getActivity('elective') || !p1 || !p2 || !mId || !mName || !document.getElementById('confirm-cb').checked) {
-                return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลให้ครบถ้วนทุกช่อง และกดยืนยันด้านล่าง', 'warning');
+            // กฎการกรอกข้อมูล: ถ้ากด "Confirm" ต้องบังคับให้ครบทุกช่อง
+            if (statusToSave === 'Confirm') {
+                if (!elective || !getActivity('elective') || !getActivity('mandatory') || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
+                    return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลและเลือกกิจกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
+                }
+                if (!document.getElementById('confirm-cb').checked) {
+                    return Swal.fire('ข้อตกลง', 'กรุณาติ๊กช่องรับรองด้านล่างก่อนส่งข้อมูล', 'warning');
+                }
+            } else {
+                // กฎสำหรับ "Draft": แค่บังคับให้เลือกวิชา Goal 01 ก็พอ นอกนั้นเซฟเท่าที่กรอกไว้ได้
+                if (!elective) {
+                    return Swal.fire('แจ้งเตือน', 'คุณต้องเลือกวิชา Goal 01 (Elective) ก่อนทำการบันทึกร่างครับ', 'info');
+                }
             }
 
-            Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            const alertTitle = statusToSave === 'Confirm' ? 'กำลังส่งข้อมูล...' : 'กำลังบันทึกร่าง...';
+            Swal.fire({ title: alertTitle, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            
             const payload = {
                 action: 'submitIDP',
                 data: {
-                    empId: currentEmployee.empId, managerId: mId, managerName: mName, managerEmail: mEmail,
+                    empId: currentEmployee.empId, 
+                    empName: currentEmployee.name, // 🔴 เพิ่มบรรทัดนี้เข้ามาครับ!
+                    managerId: mId, 
+                    managerName: mName,
+                    managerEmail: mEmail,
+                    status: statusToSave,
                     elective: { competency: elective.value, activity: getActivity('elective'), performance: p1 },
                     mandatory: { competency: currentPackage.mandatory.title, activity: getActivity('mandatory'), performance: p2 }
                 }
@@ -474,7 +493,13 @@
             try {
                 const response = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify(payload) });
                 if ((await response.json()).status === 'success') {
-                    Swal.fire('สำเร็จ!', 'บันทึกแผนงานเรียบร้อยแล้ว', 'success').then(() => window.location.reload());
+                    const successMsg = statusToSave === 'Confirm' ? 'บันทึกและยืนยันข้อมูลเรียบร้อยแล้ว' : 'บันทึกแบบร่างสำเร็จ คุณสามารถกลับมาทำต่อได้ตลอดเวลา';
+                    Swal.fire({
+                        title: 'สำเร็จ!', 
+                        text: successMsg, 
+                        icon: 'success',
+                        confirmButtonColor: '#E32526'
+                    }).then(() => window.location.reload());
                 } else { Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error'); }
             } catch (e) { Swal.fire('Error', 'ไม่สามารถบันทึกข้อมูลได้', 'error'); }
         }
