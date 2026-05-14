@@ -100,6 +100,58 @@
             .action-bar { justify-content: center; }
             .action-bar .btn { width: 100%; }
         }
+
+        /* ==================== 🔴 CSS สำหรับการพิมพ์ (Print) แก้หน้าขาว ==================== */
+        @media print {
+            @page { size: A4; margin: 1cm; }
+            html, body {
+                background-color: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            #login-section, .action-bar, .intro-box, .add-manager-btn, .btn, .guideline-box {
+                display: none !important;
+            }
+            #main-app-section {
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 auto !important;
+                max-width: 100% !important;
+            }
+            .corp-card {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                padding: 20px !important;
+                margin-bottom: 20px !important;
+                background-color: white !important;
+                page-break-inside: avoid;
+            }
+            .comp-card:not(.active) { display: none !important; }
+            .comp-card.active {
+                display: flex !important;
+                border: 1px solid #ccc !important;
+                background-color: #F8FAFC !important;
+                padding: 12px !important;
+            }
+            .form-control, .inline-select, .inline-input {
+                border: none !important;
+                border-bottom: 1px dashed #94a3b8 !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+                padding: 4px 0 !important;
+                color: black !important;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+            .auto-gen-box { border: none !important; padding: 0 !important; background: transparent !important; line-height: 1.8; }
+            .mandatory-box { background: #F8FAFC !important; border: 1px solid #ccc !important; border-left: 4px solid var(--aa-red) !important; }
+            .confirmation-box { background: white !important; border: none !important; padding: 10px 0 !important; }
+        }
     </style>
 </head>
 <body>
@@ -107,13 +159,13 @@
     <div id="login-section">
         <div class="login-card">
             <div class="login-header">
-                <img src="https://img2.pic.in.th/Learning-GAPLogo.png" width="160">
-                <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง</h2>
+                <img src="https://img2.pic.in.th/Learning-GAPLogo.png" width="180">
+                <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง ประจำปี 2568</h2>
                 <p>Learning Plan Development 2026</p>
             </div>
             <form onsubmit="processLogin(event)">
                 <label>กรุณากรอกรหัสพนักงาน 7 หลัก (Employee ID)</label>
-                <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ระบุเลขรหัสพนักงาน" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ตัวอย่าง '999999" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <button type="submit" class="btn">เข้าสู่ระบบ</button>
             </form>
         </div>
@@ -122,7 +174,7 @@
     <div id="main-app-section" class="hidden">
         <div class="app-header">
             <div>
-                <h2 style="display:inline-block;">GAP+ : Learning Plan Setup</h2>
+                <h2 style="display:inline-block;">GAP+ : Learning Plan Development</h2>
                 <span id="form-status-badge"></span>
             </div>
             <div class="user-profile">
@@ -133,32 +185,31 @@
 
         <div class="intro-box">
             <p>
-                <b>GAP+</b> คือระบบการวางแผนพัฒนาตนเองประจำปี 2026 
-                ขอให้ท่านพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน โดยแบ่งเป้าหมายออกเป็น 2 ส่วน ดังนี้: (รบกวนพรี่เต๋าช่วยดูหน่อยฮะ)
+                <b>GAP+</b> คือการวางแผนพัฒนาตนเองประจำปี 2026 โดยท่านมีส่วนร่วมในการพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน รวมถึงวิธีการเรียนรู้เพื่อพัฒนาทักษะ และท่านจะเป็นผู้กำหนดพฤติกรรมชี้วัดความสำเร็จของการพัฒนาทักษะของท่าน โดยมี 3 ขั้นตอน ได้แก่ G. A. P. ดังนี้:
             </p>
         </div>
 
         <div class="corp-card">
-            <h3>🎯 Goal 01 - Elective (เลือก 1 อย่าง)</h3>
+            <h3><b>🎯 Goal 01</b>- ทักษะที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)</h3>
             <div class="cards-grid" id="render-electives"></div>
             
             <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
                 <div class="form-group">
-                    <label>⏳ Timeline (ระยะเวลาเรียนรู้)</label>
+                    <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
                     <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (วิธีการเรียนรู้)</label>
+                    <label>📚 A-Activity (โปรดระบุวิธีการเรียนรู้เพื่อที่ท่านจะได้พัฒนะทักษะให้ดีขึ้นอย่างเป็นรูปธรรม)</label>
                     <select class="form-control" id="activity-elective" onchange="toggleOtherInput('elective')">
                         <option value="">-- โปรดเลือกวิธีการ --</option>
                         <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
                         <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
-                        <option value="Other">อื่นๆ (โปรดระบุ)</option>
+                        
                     </select>
-                    <input type="text" class="form-control hidden" id="activity-elective-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                    
                 </div>
                 <div class="form-group">
-                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    <label>📈 P-Performance (โปรดระบุพฤติกรรมที่ท่านคาดว่าจะมีการเปลี่ยนแปลงหลังจากที่ได้เรียนรู้และพัฒนาทักษะของท่านแล้ว - ข้อมูลจะเป็นคำมั่นสัญญาของท่านและจะถูกนำมาเป็นส่วนหนึ่งของการประเมินผลงานปลายปี โปรดเลือกด้วยความตั้งใจนะคะ)</label>
                     <div class="guideline-box">
                         <b>💡 คำแนะนำระดับการนำไปใช้:(รบกวนพรี่เต๋าช่วยดูหน่อยฮะ❤️)</b><br>
                         • <b>ประยุกต์ใช้ (Apply):</b> นำความรู้ไปลงมือทำจริงให้สำเร็จ<br>
@@ -190,21 +241,21 @@
             <div id="render-mandatory"></div>
             <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
                 <div class="form-group">
-                    <label>⏳ Timeline (ระยะเวลาเรียนรู้)</label>
+                    <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
                     <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (วิธีการเรียนรู้)</label>
+                    <label>📚 A-Activity (โปรดระบุวิธีการเรียนรู้เพื่อที่ท่านจะได้พัฒนะทักษะให้ดีขึ้นอย่างเป็นรูปธรรม)</label>
                     <select class="form-control" id="activity-mandatory" onchange="toggleOtherInput('mandatory')">
                         <option value="">-- โปรดเลือกวิธีการ --</option>
                         <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
                         <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
-                        <option value="Other">อื่นๆ (โปรดระบุ)</option>
+                        
                     </select>
-                    <input type="text" class="form-control hidden" id="activity-mandatory-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                    
                 </div>
                 <div class="form-group">
-                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    <label>📈 P-Performance (โปรดระบุพฤติกรรมที่ท่านคาดว่าจะมีการเปลี่ยนแปลงหลังจากที่ได้เรียนรู้และพัฒนาทักษะของท่านแล้ว - ข้อมูลจะเป็นคำมั่นสัญญาของท่านและจะถูกนำมาเป็นส่วนหนึ่งของการประเมินผลงานปลายปี โปรดเลือกด้วยความตั้งใจนะคะ)</label>
                     <div class="guideline-box">
                         <b>💡 คำแนะนำระดับการนำไปใช้:</b><br>
                         • <b>ประยุกต์ใช้ (Apply):</b> นำความรู้ไปลงมือทำจริงให้สำเร็จ<br>
@@ -257,24 +308,27 @@
             <button class="btn btn-draft" onclick="submitIDP('Draft')">
                 <i class="fa-solid fa-floppy-disk" style="margin-right:8px;"></i> บันทึกร่าง (Save Draft)
             </button>
+            <button class="btn btn-draft" style="background-color: #0284C7; color: white;" onclick="window.print()">
+                <i class="fa-solid fa-file-pdf" style="margin-right:8px;"></i> พิมพ์แผน / Save PDF
+            </button>
             <button class="btn" onclick="submitIDP('Confirm')">
                 <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> ยืนยันส่งข้อมูล (Submit)
             </button>
+            
         </div>
     </div>
 
     <script>
-        // 🚨 นำ Web App URL ของคุณมาวางที่นี่
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwpPDJ45Ovnb19GjcsqIvzgSvJonKIzBFQQ8tyWsktDyt6XyZ_S_WWH_Iz0SX7eEdKPJA/exec'; 
 
         let currentEmployee = null;
         let currentPackage = null;
-        let currentSavedData = null; // เก็บข้อมูลที่ถูกดึงมาจากระบบ
+        let currentSavedData = null;
 
         async function processLogin(event) {
             event.preventDefault();
             const id = document.getElementById('login-id').value;
-            Swal.fire({ title: 'กำลังดึงข้อมูล...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            Swal.fire({ title: 'กำลังโหลดแผนพัฒนาส่วนบุคคลของท่าน', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getProfile', empId: id }) });
@@ -282,19 +336,13 @@
                 if (r.status === 'success') {
                     currentEmployee = r.employee; 
                     currentPackage = r.package;
-                    currentSavedData = r.savedData; // เก็บข้อมูล Draft/Confirm
-
+                    currentSavedData = r.savedData;
                     renderUI(); 
                     Swal.close();
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('main-app-section').classList.remove('hidden');
                     window.scrollTo(0,0);
-
-                    // ถ้าระบบพบว่ามีข้อมูลเดิมบันทึกไว้ ให้สั่งยิงฟังก์ชัน Auto-fill ทันที
-                    if(currentSavedData) {
-                        autoFillData();
-                    }
-
+                    if(currentSavedData) autoFillData();
                 } else {
                     Swal.fire({
                         title: 'ไม่พบข้อมูลของคุณ',
@@ -309,7 +357,6 @@
         function renderUI() {
             document.getElementById('display-name').innerText = currentEmployee.name;
             document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; 
-            
             const elContainer = document.getElementById('render-electives');
             elContainer.innerHTML = '';
             currentPackage.electives.forEach((c, idx) => {
@@ -317,7 +364,6 @@
                     elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${c.title}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
                 }
             });
-            
             document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
         }
@@ -330,11 +376,8 @@
             document.getElementById('perf-comp-elective').innerText = title;
         }
 
-        // ==================== ระบบนำข้อมูลเดิมกลับมากรอกอัตโนมัติ (Auto-fill) ====================
         function autoFillData() {
             const statusBadge = document.getElementById('form-status-badge');
-            
-            // 1. จัดการโชว์ป้าย Status ด้านบน
             if(currentSavedData.status === 'Confirm') {
                 statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
                 Swal.fire('รับทราบข้อมูล', 'คุณเคยส่งข้อมูลแผนการเรียนรู้นี้ไปแล้ว<br>หากต้องการแก้ไข สามารถแก้และกดส่งซ้ำได้ครับ', 'info');
@@ -342,77 +385,47 @@
                 statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
                 Swal.fire({ title: 'พบข้อมูลที่บันทึกร่างไว้', text: 'ระบบได้ดึงข้อมูลร่างล่าสุดของคุณมาให้แล้ว', icon: 'info', timer: 2500, showConfirmButton: false });
             }
-
-            // 2. เติมข้อมูล Manager
             document.getElementById('submit-manager-id').value = currentSavedData.managerId || '';
             document.getElementById('submit-manager-name').value = currentSavedData.managerName || '';
             document.getElementById('submit-manager-email').value = currentSavedData.managerEmail || '';
-
-            // 3. เติมข้อมูล Elective (ถ้ามี)
             if (currentSavedData.elective && currentSavedData.elective.competency) {
-                // หาระบุปุ่ม Radio ที่ตรงกับวิชาที่เคยเลือก
                 let idx = currentPackage.electives.findIndex(c => c.title === currentSavedData.elective.competency);
                 if (idx !== -1) selectElective(idx, currentSavedData.elective.competency);
-                
                 fillActivityAndPerf('elective', currentSavedData.elective);
             }
-
-            // 4. เติมข้อมูล Mandatory (ถ้ามี)
             if (currentSavedData.mandatory && currentSavedData.mandatory.competency) {
                 fillActivityAndPerf('mandatory', currentSavedData.mandatory);
             }
-            
-            // 5. ติ๊ก Checkbox ให้ด้วยถ้าเคย Confirm แล้ว
-            if(currentSavedData.status === 'Confirm') {
-                document.getElementById('confirm-cb').checked = true;
-            }
+            if(currentSavedData.status === 'Confirm') document.getElementById('confirm-cb').checked = true;
         }
 
         function fillActivityAndPerf(type, dataObj) {
-            // เซ็ต Dropdown Activity
             if (dataObj.activity) {
                 let actSelect = document.getElementById(`activity-${type}`);
                 let actOther = document.getElementById(`activity-${type}-other`);
                 let isStandardOption = Array.from(actSelect.options).map(o => o.value).includes(dataObj.activity);
-                
-                if (isStandardOption) {
-                    actSelect.value = dataObj.activity;
-                } else {
-                    actSelect.value = 'Other';
-                    actOther.classList.remove('hidden');
-                    actOther.value = dataObj.activity;
-                }
+                if (isStandardOption) actSelect.value = dataObj.activity;
+                else { actSelect.value = 'Other'; actOther.classList.remove('hidden'); actOther.value = dataObj.activity; }
             }
-
-            // ตัดคำประโยค Performance กลับมาเป็น Verb กับ Result
             if (dataObj.performance) {
                 let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?) ในงาน$/);
-                if (match) {
-                    document.getElementById(`verb-${type}`).value = match[1];
-                    document.getElementById(`result-${type}`).value = match[2];
-                }
+                if (match) { document.getElementById(`verb-${type}`).value = match[1]; document.getElementById(`result-${type}`).value = match[2]; }
             }
         }
-        // ===================================================================================
 
         async function fetchManagerData(val) {
             const nameInp = document.getElementById('submit-manager-name');
             const mailInp = document.getElementById('submit-manager-email');
             const manualBtn = document.getElementById('manual-add-btn');
             if (!val || val.length < 5) return;
-            
             lockManagerInputs();
             manualBtn.classList.add('hidden');
             nameInp.value = 'กำลังค้นหา...'; mailInp.value = 'กำลังค้นหา...';
-            
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getManagerData', managerId: val }) });
                 const r = await res.json();
-                if(r.status === 'success') {
-                    nameInp.value = r.name; mailInp.value = r.email; 
-                } else {
-                    nameInp.value = '❌ ไม่พบข้อมูล'; mailInp.value = ''; manualBtn.classList.remove('hidden');
-                }
+                if(r.status === 'success') { nameInp.value = r.name; mailInp.value = r.email; }
+                else { nameInp.value = '❌ ไม่พบข้อมูล'; mailInp.value = ''; manualBtn.classList.remove('hidden'); }
             } catch (e) { nameInp.value = 'เกิดข้อผิดพลาด'; mailInp.value = ''; manualBtn.classList.remove('hidden'); }
         }
 
@@ -446,11 +459,10 @@
             const comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
             const verb = document.getElementById(`verb-${type}`).value;
             const res = document.getElementById(`result-${type}`).value;
-            if (!verb && !res) return ''; // ถ้าไม่ได้กรอก ปล่อยว่างไปก่อน (สำหรับ Draft)
+            if (!verb && !res) return '';
             return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
         }
 
-        // --- ปรับปรุงฟังก์ชัน Submit เพื่อรองรับ Status ---
         async function submitIDP(statusToSave) {
             const elective = document.querySelector('input[name="elective"]:checked');
             const p1 = getPerf('elective'); const p2 = getPerf('mandatory');
@@ -458,7 +470,6 @@
             const mName = document.getElementById('submit-manager-name').value;
             const mEmail = document.getElementById('submit-manager-email').value;
 
-            // กฎการกรอกข้อมูล: ถ้ากด "Confirm" ต้องบังคับให้ครบทุกช่อง
             if (statusToSave === 'Confirm') {
                 if (!elective || !getActivity('elective') || !getActivity('mandatory') || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
                     return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลและเลือกกิจกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
@@ -467,10 +478,7 @@
                     return Swal.fire('ข้อตกลง', 'กรุณาติ๊กช่องรับรองด้านล่างก่อนส่งข้อมูล', 'warning');
                 }
             } else {
-                // กฎสำหรับ "Draft": แค่บังคับให้เลือกวิชา Goal 01 ก็พอ นอกนั้นเซฟเท่าที่กรอกไว้ได้
-                if (!elective) {
-                    return Swal.fire('แจ้งเตือน', 'คุณต้องเลือกวิชา Goal 01 (Elective) ก่อนทำการบันทึกร่างครับ', 'info');
-                }
+                if (!elective) return Swal.fire('แจ้งเตือน', 'คุณต้องเลือกวิชา Goal 01 (Elective) ก่อนทำการบันทึกร่างครับ', 'info');
             }
 
             const alertTitle = statusToSave === 'Confirm' ? 'กำลังส่งข้อมูล...' : 'กำลังบันทึกร่าง...';
@@ -479,12 +487,8 @@
             const payload = {
                 action: 'submitIDP',
                 data: {
-                    empId: currentEmployee.empId, 
-                    empName: currentEmployee.name, // 🔴 เพิ่มบรรทัดนี้เข้ามาครับ!
-                    empEmail: currentEmployee.email,
-                    managerId: mId, 
-                    managerName: mName,
-                    managerEmail: mEmail,
+                    empId: currentEmployee.empId, empName: currentEmployee.name, empEmail: currentEmployee.email,
+                    managerId: mId, managerName: mName, managerEmail: mEmail,
                     status: statusToSave,
                     elective: { competency: elective.value, activity: getActivity('elective'), performance: p1 },
                     mandatory: { competency: currentPackage.mandatory.title, activity: getActivity('mandatory'), performance: p2 }
@@ -493,14 +497,27 @@
 
             try {
                 const response = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify(payload) });
-                if ((await response.json()).status === 'success') {
+                const r = await response.json();
+                if (r.status === 'success') {
                     const successMsg = statusToSave === 'Confirm' ? 'บันทึกและยืนยันข้อมูลเรียบร้อยแล้ว' : 'บันทึกแบบร่างสำเร็จ คุณสามารถกลับมาทำต่อได้ตลอดเวลา';
+                    
                     Swal.fire({
                         title: 'สำเร็จ!', 
                         text: successMsg, 
                         icon: 'success',
-                        confirmButtonColor: '#E32526'
-                    }).then(() => window.location.reload());
+                        showCancelButton: true,
+                        confirmButtonText: 'ตกลง / ปิด',
+                        cancelButtonText: 'พิมพ์แผน / Save PDF',
+                        confirmButtonColor: '#E32526',
+                        cancelButtonColor: '#0284C7'
+                    }).then((result) => {
+                        // 🔴 แก้ไข: หน่วงเวลา 0.5 วิ ให้ Popup ปิดสนิทก่อนเรียกคำสั่งพิมพ์ เพื่อป้องกันหน้าขาว
+                        if (result.isDismissed) {
+                            setTimeout(() => { window.print(); }, 500);
+                        } else {
+                            window.location.reload();
+                        }
+                    });
                 } else { Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error'); }
             } catch (e) { Swal.fire('Error', 'ไม่สามารถบันทึกข้อมูลได้', 'error'); }
         }
