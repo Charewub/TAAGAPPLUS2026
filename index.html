@@ -492,7 +492,7 @@
             const statusBadge = document.getElementById('form-status-badge');
             if(currentSavedData.status === 'Confirm') {
                 statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
-                Swal.fire('รับทราบข้อมูล', 'คุณเคยส่งข้อมูลแผนการเรียนรู้นี้ไปแล้ว<br>หากต้องการแก้ไข สามารถแก้และกดส่งซ้ำได้ครับ', 'info');
+                Swal.fire('โปรดทราบ', 'คุณเคยส่งข้อมูลแผนการเรียนรู้นี้ไปแล้ว<br>หากต้องการแก้ไข สามารถแก้และกดส่งซ้ำได้ครับ', 'info');
             } else {
                 statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
                 Swal.fire({ title: 'พบข้อมูลที่บันทึกร่างไว้', text: 'ระบบได้ดึงข้อมูลร่างล่าสุดของคุณมาให้แล้ว', icon: 'info', timer: 2500, showConfirmButton: false });
