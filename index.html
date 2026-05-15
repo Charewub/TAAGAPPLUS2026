@@ -76,24 +76,34 @@
         .form-group { margin-bottom: 20px; text-align: left; position: relative; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #334155; }
         
-        .guideline-box { background: #F1F5F9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--gap-blue); font-size: 0.9rem; color: #475569; line-height: 1.6; }
+        .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 1.8; font-size: 1.05rem; color: #334155; }
         
-        .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 2.2; font-size: 1.05rem; color: #334155; }
-        .inline-select { padding: 8px 12px; border-radius: 8px; border: 1px solid #CBD5E1; font-size: 1rem; color: var(--aa-red); font-weight: 600; outline: none; background: white; max-width: 100%; cursor: pointer; }
+        /* 🔴 เปลี่ยน Dropdown ในส่วน P-Performance ให้ใหญ่และชัดเจนขึ้น */
+        .verb-select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 2px solid #CBD5E1;
+            font-size: 1.05rem;
+            color: var(--aa-black);
+            font-weight: 600;
+            outline: none;
+            background: white;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            transition: 0.2s;
+        }
+        .verb-select:focus { border-color: var(--aa-red); box-shadow: 0 0 0 3px rgba(227,37,38,0.1); }
 
-        .dynamic-desc-box {
-            background: #F0FDF4; 
-            border-left: 4px solid #16A34A; 
-            padding: 15px; 
-            margin-top: 15px; 
-            margin-bottom: 15px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #166534;
+        .dynamic-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--aa-black);
+            margin-bottom: 10px;
         }
 
-        .input-with-suffix { position: relative; width: 100%; margin-top: 8px; }
+        .input-with-suffix { position: relative; width: 100%; }
         .input-with-suffix .inline-input { 
             width: 100%; 
             padding: 12px 15px 35px 15px; 
@@ -163,7 +173,7 @@
             *, *:before, *:after, html, body { overflow: visible !important; height: auto !important; max-height: none !important; }
             html, body { background-color: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0 !important; padding: 0 !important; }
             body.swal2-shown, body.swal2-height-auto { overflow: visible !important; height: auto !important; }
-            #login-section, .action-bar, .intro-box, .add-manager-btn, .btn, .guideline-box { display: none !important; }
+            #login-section, .action-bar, .intro-box, .add-manager-btn, .btn { display: none !important; }
             #main-app-section { display: block !important; padding: 0 !important; margin: 0 auto !important; max-width: 100% !important; width: 100% !important; }
             .cards-grid { display: block !important; }
             .corp-card { display: block !important; border: 1px solid #ccc !important; box-shadow: none !important; padding: 20px !important; margin-bottom: 20px !important; background-color: white !important; page-break-inside: avoid; }
@@ -218,12 +228,12 @@
 
         <div class="intro-box">
             <p>
-                <b>GAP+</b> คือการวางแผนพัฒนาตนเองประจำปี 2026 โดยท่านมีส่วนร่วมในการพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน รวมถึงวิธีการเรียนรู้เพื่อพัฒนาทักษะ และท่านจะเป็นผู้กำหนดพฤติกรรมชี้วัดความสำเร็จของการพัฒนาทักษะของท่าน โดยมี 3 ขั้นตอน ได้แก่ G. A. P. ดังนี้:
+                <b>GAP+</b> คือการวางแผนพัฒนาตนเองประจำปี 2026 โดยท่านมีส่วนร่วมในการพิจารณาเลือกทักษะที่จำเป็นต่อการปฏิบัติงาน รวมถึงวิธีการ/ช่องทางการเรียนรู้เพื่อพัฒนาทักษะ และท่านจะเป็นผู้กำหนดพฤติกรรมชี้วัดความสำเร็จของการพัฒนาทักษะของท่าน โดยมี 3 ขั้นตอน ได้แก่ G. A. P. ดังนี้:
             </p>
         </div>
 
         <div class="corp-card">
-            <h3><b>🎯 Goal 01</b>- ทักษะที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)</h3>
+            <h3><b>🎯 Goal 01</b>- สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)</h3>
             <div class="cards-grid" id="render-electives"></div>
             
             <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
@@ -232,7 +242,7 @@
                     <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (โปรดระบุวิธีการเรียนรู้เพื่อที่ท่านจะได้พัฒนะทักษะให้ดีขึ้นอย่างเป็นรูปธรรม)</label>
+                    <label>📚 A-Activity (โปรดระบุวิธีการ/ช่องเรียนรู้ที่ท่านวางแผนในการพัฒนาหัวข้อดังกล่าว)</label>
                     <select class="form-control" id="activity-elective" onchange="toggleOtherInput('elective')">
                         <option value="">-- โปรดเลือกวิธีการ --</option>
                         <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
@@ -242,36 +252,29 @@
                     <input type="text" class="form-control hidden" id="activity-elective-other" placeholder="โปรดระบุชื่อกิจกรรม...">
                 </div>
                 <div class="form-group">
-                    <label>📈 P-Performance (โปรดระบุพฤติกรรมที่ท่านคาดว่าจะมีการเปลี่ยนแปลงหลังจากที่ได้เรียนรู้และพัฒนาทักษะของท่านแล้ว - ข้อมูลจะเป็นคำมั่นสัญญาของท่านและจะถูกนำมาเป็นส่วนหนึ่งของการประเมินผลงานปลายปี โปรดเลือกด้วยความตั้งใจนะคะ)</label>
-                    <div class="guideline-box">
-                        <b>💡 คำแนะนำระดับการนำไปใช้:<br>
-                        • <b>ประยุกต์ใช้ (Apply):</b> นำความรู้ไปลงมือทำจริงให้สำเร็จ<br>
-                        • <b>วิเคราะห์ (Analyze):</b> นำไปเจาะลึก แยกแยะ หรือหาสาเหตุ<br>
-                        • <b>ประเมินผล (Evaluate):</b> นำไปตรวจสอบ ประเมิน หรือช่วยตัดสินใจ<br>
-                        • <b>สร้างสรรค์ (Create):</b> นำไปสร้างระบบ แนวทาง หรือนวัตกรรมใหม่
-                    </div>
+                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
                     
                     <div class="auto-gen-box" id="autogen-elective">
                         <div class="performance-input-section">
-                            นำความรู้ <b id="perf-comp-elective" style="color: var(--aa-red);">[...]</b> มา 
-                            <select id="verb-elective" class="inline-select" onchange="updateDynamicText('elective')">
-                                <option value="">-- ระดับ --</option>
-                                <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
-                                <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
-                                <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
-                                <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
+                            <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
+                                เพื่อการประเมินผลลัทธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-elective" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                            </div>
+                            <select id="verb-elective" class="verb-select" onchange="updateDynamicText('elective')">
+                                <option value="">-- (เลือก 1 ข้อ) --</option>
+                                <option value="ยกระดับคุณภาพการทำงาน">ยกระดับคุณภาพการทำงาน</option>
+                                <option value="ใช้เพื่อแก้ปัญหาในการทำงาน">ใช้เพื่อแก้ปัญหาในการทำงาน</option>
+                                <option value="พัฒนาหรือปรับปรุงวิธีการทำงาน">พัฒนาหรือปรับปรุงวิธีการทำงาน</option>
+                                <option value="สร้างหรือพัฒนาสิ่งใหม่">สร้างหรือพัฒนาสิ่งใหม่</option>
+                                <option value="ถ่ายทอดความรู้หรือพัฒนาทีมงาน">ถ่ายทอดความรู้หรือพัฒนาทีมงาน</option>
                             </select>
                             
-                            <div id="desc-box-elective" class="dynamic-desc-box hidden">
+                            <div id="desc-box-elective" class="dynamic-question hidden">
                                 <span id="desc-text-elective"></span>
                             </div>
 
-                            <div style="margin-top: 10px;">
-                                ให้เกิดผลลัพธ์
-                                <div class="input-with-suffix">
-                                    <textarea id="result-elective" class="inline-input" rows="3" placeholder="โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว" oninput="updateDynamicText('elective')"></textarea>
-                                    <span class="suffix"></span>
-                                </div>
+                            <div class="input-with-suffix">
+                                <textarea id="result-elective" class="inline-input" rows="3" placeholder="โปรดระบุรายละเอียด..." oninput="updateDynamicText('elective')"></textarea>
+                                <span class="suffix">ในงาน</span>
                             </div>
                         </div>
 
@@ -293,7 +296,7 @@
                     <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (โปรดระบุวิธีการเรียนรู้เพื่อที่ท่านจะได้พัฒนะทักษะให้ดีขึ้นอย่างเป็นรูปธรรม)</label>
+                    <label>📚 A-Activity (โปรดระบุวิธีการ/ช่องเรียนรู้ที่ท่านวางแผนในการพัฒนาหัวข้อดังกล่าว)</label>
                     <select class="form-control" id="activity-mandatory" onchange="toggleOtherInput('mandatory')">
                         <option value="">-- โปรดเลือกวิธีการ --</option>
                         <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
@@ -303,36 +306,29 @@
                     <input type="text" class="form-control hidden" id="activity-mandatory-other" placeholder="โปรดระบุชื่อกิจกรรม...">
                 </div>
                 <div class="form-group">
-                    <label>📈 P-Performance (โปรดระบุพฤติกรรมที่ท่านคาดว่าจะมีการเปลี่ยนแปลงหลังจากที่ได้เรียนรู้และพัฒนาทักษะของท่านแล้ว - ข้อมูลจะเป็นคำมั่นสัญญาของท่านและจะถูกนำมาเป็นส่วนหนึ่งของการประเมินผลงานปลายปี โปรดเลือกด้วยความตั้งใจนะคะ)</label>
-                    <div class="guideline-box">
-                        <b>💡 คำแนะนำระดับการนำไปใช้:</b><br>
-                        • <b>ประยุกต์ใช้ (Apply):</b> นำความรู้ไปลงมือทำจริงให้สำเร็จ<br>
-                        • <b>วิเคราะห์ (Analyze):</b> นำไปเจาะลึก แยกแยะ หรือหาสาเหตุ<br>
-                        • <b>ประเมินผล (Evaluate):</b> นำไปตรวจสอบ ประเมิน หรือช่วยตัดสินใจ<br>
-                        • <b>สร้างสรรค์ (Create):</b> นำไปสร้างระบบ แนวทาง หรือนวัตกรรมใหม่
-                    </div>
+                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
                     
                     <div class="auto-gen-box" id="autogen-mandatory">
                         <div class="performance-input-section">
-                            นำความรู้ <b id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</b> มา 
-                            <select id="verb-mandatory" class="inline-select" onchange="updateDynamicText('mandatory')">
-                                <option value="">-- ระดับ --</option>
-                                <option value="ประยุกต์ใช้ (Apply)">ประยุกต์ใช้ (Apply)</option>
-                                <option value="วิเคราะห์ (Analyze)">วิเคราะห์ (Analyze)</option>
-                                <option value="ประเมินผล (Evaluate)">ประเมินผล (Evaluate)</option>
-                                <option value="สร้างสรรค์ (Create)">สร้างสรรค์ (Create)</option>
+                            <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
+                                เพื่อการประเมินผลลัทธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                            </div>
+                            <select id="verb-mandatory" class="verb-select" onchange="updateDynamicText('mandatory')">
+                                <option value="">-- (เลือก 1 ข้อ) --</option>
+                                <option value="ยกระดับคุณภาพการทำงาน">ยกระดับคุณภาพการทำงาน</option>
+                                <option value="ใช้เพื่อแก้ปัญหาในการทำงาน">ใช้เพื่อแก้ปัญหาในการทำงาน</option>
+                                <option value="พัฒนาหรือปรับปรุงวิธีการทำงาน">พัฒนาหรือปรับปรุงวิธีการทำงาน</option>
+                                <option value="สร้างหรือพัฒนาสิ่งใหม่">สร้างหรือพัฒนาสิ่งใหม่</option>
+                                <option value="ถ่ายทอดความรู้หรือพัฒนาทีมงาน">ถ่ายทอดความรู้หรือพัฒนาทีมงาน</option>
                             </select>
 
-                            <div id="desc-box-mandatory" class="dynamic-desc-box hidden">
+                            <div id="desc-box-mandatory" class="dynamic-question hidden">
                                 <span id="desc-text-mandatory"></span>
                             </div>
 
-                            <div style="margin-top: 10px;">
-                                ให้เกิดผลลัพธ์
-                                <div class="input-with-suffix">
-                                    <textarea id="result-mandatory" class="inline-input" rows="3" placeholder="โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว" oninput="updateDynamicText('mandatory')"></textarea>
-                                    <span class="suffix"></span>
-                                </div>
+                            <div class="input-with-suffix">
+                                <textarea id="result-mandatory" class="inline-input" rows="3" placeholder="โปรดระบุรายละเอียด..." oninput="updateDynamicText('mandatory')"></textarea>
+                                <span class="suffix">ในงาน</span>
                             </div>
                         </div>
 
@@ -387,8 +383,32 @@
         let currentEmployee = null;
         let currentPackage = null;
         let currentSavedData = null;
-        let guidelineDatabase = {};
 
+        // 🔴 ข้อมูล Guideline (Hardcoded) 5 รูปแบบ ตามดีไซน์ใหม่
+        const performancePrompts = {
+            "ยกระดับคุณภาพการทำงาน": {
+                question: "โปรดอธิบายว่าได้นำไปใช้กับงานด้านใด",
+                placeholder: "เช่น นำไปใช้ในการบริการลูกค้า ทำให้จัดการงานได้ชัดเจนขึ้น"
+            },
+            "ใช้เพื่อแก้ปัญหาในการทำงาน": {
+                question: "โปรดอธิบายว่าปัญหาคืออะไร และนำความรู้ไปช่วยอย่างไร",
+                placeholder: "เช่น นำไปใช้แก้ปัญหาการสื่อสารในทีม ทำให้เข้าใจงานตรงกันมากขึ้น"
+            },
+            "พัฒนาหรือปรับปรุงวิธีการทำงาน": {
+                question: "โปรดอธิบายว่านำไปปรับปรุงงานส่วนใด",
+                placeholder: "เช่น ปรับวิธีการทำรายงาน ทำให้ทำงานได้เร็วขึ้น"
+            },
+            "สร้างหรือพัฒนาสิ่งใหม่": {
+                question: "โปรดอธิบายว่าสร้างหรือพัฒนาสิ่งใด",
+                placeholder: "เช่น สร้าง checklist ใหม่สำหรับใช้ในทีม"
+            },
+            "ถ่ายทอดความรู้หรือพัฒนาทีมงาน": {
+                question: "โปรดอธิบายว่าได้นำความรู้ไปแบ่งปันหรือพัฒนาทีมอย่างไร",
+                placeholder: "เช่น แชร์เทคนิคการทำงานให้ทีมในการประชุมประจำสัปดาห์"
+            }
+        };
+
+        // 🔴 ฟังก์ชันเปลี่ยนข้อความและแสดงผล Commitment Statement
         function updateDynamicText(type) {
             let comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
             
@@ -401,27 +421,25 @@
             const commitmentText = document.getElementById(`commitment-text-${type}`);
             const autoGenBox = document.getElementById(`autogen-${type}`);
 
-            let currentDesc = "";
-
-            if (comp && comp !== '[...]' && verb) {
-                if (guidelineDatabase[comp] && guidelineDatabase[comp][verb]) {
-                    const data = guidelineDatabase[comp][verb];
-                    currentDesc = data.description;
-                    descText.innerText = currentDesc;
-                    descBox.classList.remove('hidden');
-                    if (!inputResult.value) inputResult.placeholder = data.examplePlaceholder;
-                } else {
-                    currentDesc = `จะนำทักษะ ${comp} มา${verb}`;
-                    descBox.classList.add('hidden');
-                    if (!inputResult.value) inputResult.placeholder = "โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว";
+            // 1. ตรวจสอบว่าเลือก Dropdown แล้วหรือยัง
+            if (verb && performancePrompts[verb]) {
+                descText.innerText = performancePrompts[verb].question;
+                descBox.classList.remove('hidden');
+                
+                // สลับ placeholder เฉพาะตอนที่ผู้ใช้ยังไม่ได้พิมพ์ข้อความลงไป
+                if (!inputResult.value) {
+                    inputResult.placeholder = performancePrompts[verb].placeholder;
                 }
             } else {
-                if(descBox) descBox.classList.add('hidden');
-                if(!inputResult.value && inputResult) inputResult.placeholder = "โปรดระบุผลลัพธ์และพฤติกรรมที่ท่านจะเปลี่ยนแปลงหลังจากพัฒนาทักษะแล้ว";
+                descBox.classList.add('hidden');
+                if (!inputResult.value) {
+                    inputResult.placeholder = "โปรดอธิบายรายละเอียด...";
+                }
             }
 
-            if (currentDesc && inputResult.value.trim() !== '') {
-                commitmentText.innerHTML = `<b><span style="color: var(--aa-red);">${comp}</span></b><br><br>"${currentDesc} <br><br><b>เพื่อให้เกิดผลลัพธ์ในงาน คือ:</b> <br><span class='highlight-text'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
+            // 2. ถ้าเลือก Dropdown แล้ว และมีการพิมพ์ข้อความ ให้โชว์ Statement
+            if (verb && inputResult.value.trim() !== '') {
+                commitmentText.innerHTML = `<b><span style="color: var(--aa-red);">${comp}</span></b><br><br>"จะนำทักษะหรือความรู้นี้มา<b>${verb}</b><br><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b> <br><span class='highlight-text'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
                 
                 statementWrapper.classList.remove('hidden');
                 autoGenBox.classList.add('has-statement'); 
@@ -443,7 +461,6 @@
                     currentEmployee = r.employee; 
                     currentPackage = r.package;
                     currentSavedData = r.savedData;
-                    guidelineDatabase = r.guidelineMap || {};
 
                     renderUI(); 
                     Swal.close();
@@ -519,6 +536,8 @@
                 if (isStandardOption) actSelect.value = dataObj.activity;
                 else { actSelect.value = 'Other'; actOther.classList.remove('hidden'); actOther.value = dataObj.activity; }
             }
+            
+            // ใช้ Regex แบบเดิมเป๊ะๆ เพื่อให้ดึงข้อมูลจาก GAS ได้ตามปกติ
             if (dataObj.performance) {
                 let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?) ในงาน$/);
                 if (match) { 
@@ -571,11 +590,14 @@
             return v === 'Other' ? document.getElementById(`activity-${type}-other`).value : v;
         }
 
+        // 🔴 รูปแบบข้อความที่จะ Save ลงฐานข้อมูล (คงแพทเทิร์นเดิมไว้จะได้ไม่พังตอนดึงกลับ)
         function getPerf(type) {
             const comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
             const verb = document.getElementById(`verb-${type}`).value;
             const res = document.getElementById(`result-${type}`).value;
             if (!verb && !res) return '';
+            
+            // แอบซ่อนข้อมูลในแพทเทิร์นเดิม "มา {verb} ให้เกิดผลลัพธ์ {res} ในงาน" เพื่อให้ Regex ดึงค่าได้
             return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
         }
 
