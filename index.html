@@ -42,8 +42,25 @@
         .btn-draft { background: var(--aa-draft); }
         .btn-draft:hover { background: #475569; box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2); }
 
+        /* 🔴 Skeleton Loading Animation */
+        .skeleton-box {
+            position: relative;
+            overflow: hidden;
+            background-color: #E2E8F0;
+            border-radius: 8px;
+        }
+        .skeleton-box::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0) 40%);
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+
         /* Main App Section */
-        #main-app-section { padding: 2rem 1.5rem; max-width: 1000px; margin: 0 auto; }
+        #main-app-section, #skeleton-section { padding: 2rem 1.5rem; max-width: 1000px; margin: 0 auto; }
         .app-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--aa-red); padding-bottom: 15px; margin-bottom: 25px; gap: 15px; }
         .header-left { display: flex; flex-direction: column; gap: 5px; flex: 1; }
         .title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -78,7 +95,6 @@
         
         .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 1.8; font-size: 1.05rem; color: #334155; }
         
-        /* 🔴 เปลี่ยน Dropdown ในส่วน P-Performance ให้ใหญ่และชัดเจนขึ้น */
         .verb-select {
             width: 100%;
             padding: 12px 15px;
@@ -96,12 +112,7 @@
         }
         .verb-select:focus { border-color: var(--aa-red); box-shadow: 0 0 0 3px rgba(227,37,38,0.1); }
 
-        .dynamic-question {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--aa-black);
-            margin-bottom: 10px;
-        }
+        .dynamic-question { font-size: 1.1rem; font-weight: 700; color: var(--aa-black); margin-bottom: 10px; }
 
         .input-with-suffix { position: relative; width: 100%; }
         .input-with-suffix .inline-input { 
@@ -130,21 +141,8 @@
             color: #0369A1;
             transition: 0.3s;
         }
-        .statement-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--gap-blue);
-        }
-        .statement-content {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            font-style: italic;
-            color: #334155;
-        }
+        .statement-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--gap-blue); }
+        .statement-content { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: #334155; }
         .highlight-text { font-weight: 700; color: var(--aa-red); }
 
         .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 10px; }
@@ -206,6 +204,24 @@
                 <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ตัวอย่าง '1000000'" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <button type="submit" class="btn">เข้าสู่ระบบ</button>
             </form>
+        </div>
+    </div>
+
+    <div id="skeleton-section" class="hidden">
+        <div class="app-header">
+            <div class="header-left" style="width: 100%;">
+                <div class="skeleton-box" style="height: 35px; width: 60%; margin-bottom: 10px;"></div>
+                <div class="skeleton-box" style="height: 25px; width: 40%;"></div>
+            </div>
+        </div>
+        <div class="skeleton-box" style="height: 120px; width: 100%; border-radius: 8px; margin-bottom: 30px;"></div>
+        <div class="corp-card" style="padding: 2.5rem;">
+            <div class="skeleton-box" style="height: 28px; width: 50%; margin-bottom: 20px;"></div>
+            <div class="cards-grid">
+                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 10px;"></div>
+                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 10px;"></div>
+                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 10px;"></div>
+            </div>
         </div>
     </div>
 
@@ -301,7 +317,6 @@
                         <option value="">-- โปรดเลือกวิธีการ --</option>
                         <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
                         <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
-                        
                     </select>
                     <input type="text" class="form-control hidden" id="activity-mandatory-other" placeholder="โปรดระบุชื่อกิจกรรม...">
                 </div>
@@ -341,6 +356,62 @@
             </div>
         </div>
 
+        <div class="corp-card hidden" id="goal3-container">
+            <h3 style="color: var(--aa-red);">🎯 Goal 03 - Plus Two (สมรรถนะบังคับตัวที่ 2)</h3>
+            <div class="mandatory-box" style="border-left: 6px solid #F59E0B;">
+                <b class="comp-title" style="font-size:1.15rem;" id="goal3-display-title">🔒 [...]</b>
+                <span class="comp-desc" style="margin-top:5px;" id="goal3-display-desc"></span>
+            </div>
+            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
+                <div class="form-group">
+                    <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
+                    <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
+                </div>
+                <div class="form-group">
+                    <label>📚 A-Activity (โปรดระบุวิธีการ/ช่องเรียนรู้ที่ท่านวางแผนในการพัฒนาหัวข้อดังกล่าว)</label>
+                    <select class="form-control" id="activity-mandatory2" onchange="toggleOtherInput('mandatory2')">
+                        <option value="">-- โปรดเลือกวิธีการ --</option>
+                        <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
+                        <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
+                    </select>
+                    <input type="text" class="form-control hidden" id="activity-mandatory2-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                </div>
+                <div class="form-group">
+                    <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
+                    
+                    <div class="auto-gen-box" id="autogen-mandatory2">
+                        <div class="performance-input-section">
+                            <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
+                                เพื่อการประเมินผลลัทธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory2" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                            </div>
+                            <select id="verb-mandatory2" class="verb-select" onchange="updateDynamicText('mandatory2')">
+                                <option value="">-- (เลือก 1 ข้อ) --</option>
+                                <option value="ยกระดับคุณภาพการทำงาน">ยกระดับคุณภาพการทำงาน</option>
+                                <option value="ใช้เพื่อแก้ปัญหาในการทำงาน">ใช้เพื่อแก้ปัญหาในการทำงาน</option>
+                                <option value="พัฒนาหรือปรับปรุงวิธีการทำงาน">พัฒนาหรือปรับปรุงวิธีการทำงาน</option>
+                                <option value="สร้างหรือพัฒนาสิ่งใหม่">สร้างหรือพัฒนาสิ่งใหม่</option>
+                                <option value="ถ่ายทอดความรู้หรือพัฒนาทีมงาน">ถ่ายทอดความรู้หรือพัฒนาทีมงาน</option>
+                            </select>
+
+                            <div id="desc-box-mandatory2" class="dynamic-question hidden">
+                                <span id="desc-text-mandatory2"></span>
+                            </div>
+
+                            <div class="input-with-suffix">
+                                <textarea id="result-mandatory2" class="inline-input" rows="3" placeholder="โปรดระบุรายละเอียด..." oninput="updateDynamicText('mandatory2')"></textarea>
+                                <span class="suffix">ในงาน</span>
+                            </div>
+                        </div>
+
+                        <div id="statement-wrapper-mandatory2" class="statement-wrapper hidden">
+                            <div class="statement-title"><i class="fa-solid fa-quote-left"></i> GOAL 03 Summary</div>
+                            <div class="statement-content" id="commitment-text-mandatory2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="corp-card" style="background:#FAFAFA;">
             <h3>👤 Manager Information</h3>
             <div class="manager-grid">
@@ -373,7 +444,6 @@
             <button class="btn" onclick="submitIDP('Confirm')">
                 <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> ยืนยันส่งข้อมูล (Submit)
             </button>
-            
         </div>
     </div>
 
@@ -384,63 +454,36 @@
         let currentPackage = null;
         let currentSavedData = null;
 
-        // 🔴 ข้อมูล Guideline (Hardcoded) 5 รูปแบบ ตามดีไซน์ใหม่
+        // ข้อมูล Guideline
         const performancePrompts = {
-            "ยกระดับคุณภาพการทำงาน": {
-                question: "โปรดอธิบายว่าได้นำไปใช้กับงานด้านใด",
-                placeholder: "เช่น นำไปใช้ในการบริการลูกค้า ทำให้จัดการงานได้ชัดเจนขึ้น"
-            },
-            "ใช้เพื่อแก้ปัญหาในการทำงาน": {
-                question: "โปรดอธิบายว่าปัญหาคืออะไร และนำความรู้ไปช่วยอย่างไร",
-                placeholder: "เช่น นำไปใช้แก้ปัญหาการสื่อสารในทีม ทำให้เข้าใจงานตรงกันมากขึ้น"
-            },
-            "พัฒนาหรือปรับปรุงวิธีการทำงาน": {
-                question: "โปรดอธิบายว่านำไปปรับปรุงงานส่วนใด",
-                placeholder: "เช่น ปรับวิธีการทำรายงาน ทำให้ทำงานได้เร็วขึ้น"
-            },
-            "สร้างหรือพัฒนาสิ่งใหม่": {
-                question: "โปรดอธิบายว่าสร้างหรือพัฒนาสิ่งใด",
-                placeholder: "เช่น สร้าง checklist ใหม่สำหรับใช้ในทีม"
-            },
-            "ถ่ายทอดความรู้หรือพัฒนาทีมงาน": {
-                question: "โปรดอธิบายว่าได้นำความรู้ไปแบ่งปันหรือพัฒนาทีมอย่างไร",
-                placeholder: "เช่น แชร์เทคนิคการทำงานให้ทีมในการประชุมประจำสัปดาห์"
-            }
+            "ยกระดับคุณภาพการทำงาน": { question: "โปรดอธิบายว่าได้นำไปใช้กับงานด้านใด", placeholder: "เช่น นำไปใช้ในการบริการลูกค้า ทำให้จัดการงานได้ชัดเจนขึ้น" },
+            "ใช้เพื่อแก้ปัญหาในการทำงาน": { question: "โปรดอธิบายว่าปัญหาคืออะไร และนำความรู้ไปช่วยอย่างไร", placeholder: "เช่น นำไปใช้แก้ปัญหาการสื่อสารในทีม ทำให้เข้าใจงานตรงกันมากขึ้น" },
+            "พัฒนาหรือปรับปรุงวิธีการทำงาน": { question: "โปรดอธิบายว่านำไปปรับปรุงงานส่วนใด", placeholder: "เช่น ปรับวิธีการทำรายงาน ทำให้ทำงานได้เร็วขึ้น" },
+            "สร้างหรือพัฒนาสิ่งใหม่": { question: "โปรดอธิบายว่าสร้างหรือพัฒนาสิ่งใด", placeholder: "เช่น สร้าง checklist ใหม่สำหรับใช้ในทีม" },
+            "ถ่ายทอดความรู้หรือพัฒนาทีมงาน": { question: "โปรดอธิบายว่าได้นำความรู้ไปแบ่งปันหรือพัฒนาทีมอย่างไร", placeholder: "เช่น แชร์เทคนิคการทำงานให้ทีมในการประชุมประจำสัปดาห์" }
         };
 
-        // 🔴 ฟังก์ชันเปลี่ยนข้อความและแสดงผล Commitment Statement
         function updateDynamicText(type) {
-            let comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
-            
+            const comp = document.getElementById(`perf-comp-${type}`).innerText;
             const verb = document.getElementById(`verb-${type}`).value;
             const descBox = document.getElementById(`desc-box-${type}`);
             const descText = document.getElementById(`desc-text-${type}`);
             const inputResult = document.getElementById(`result-${type}`);
-            
             const statementWrapper = document.getElementById(`statement-wrapper-${type}`);
             const commitmentText = document.getElementById(`commitment-text-${type}`);
             const autoGenBox = document.getElementById(`autogen-${type}`);
 
-            // 1. ตรวจสอบว่าเลือก Dropdown แล้วหรือยัง
             if (verb && performancePrompts[verb]) {
                 descText.innerText = performancePrompts[verb].question;
                 descBox.classList.remove('hidden');
-                
-                // สลับ placeholder เฉพาะตอนที่ผู้ใช้ยังไม่ได้พิมพ์ข้อความลงไป
-                if (!inputResult.value) {
-                    inputResult.placeholder = performancePrompts[verb].placeholder;
-                }
+                if (!inputResult.value) inputResult.placeholder = performancePrompts[verb].placeholder;
             } else {
                 descBox.classList.add('hidden');
-                if (!inputResult.value) {
-                    inputResult.placeholder = "โปรดอธิบายรายละเอียด...";
-                }
+                if (!inputResult.value) inputResult.placeholder = "โปรดอธิบายรายละเอียด...";
             }
 
-            // 2. ถ้าเลือก Dropdown แล้ว และมีการพิมพ์ข้อความ ให้โชว์ Statement
             if (verb && inputResult.value.trim() !== '') {
                 commitmentText.innerHTML = `<b><span style="color: var(--aa-red);">${comp}</span></b><br><br>"จะนำทักษะหรือความรู้นี้มา<b>${verb}</b><br><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b> <br><span class='highlight-text'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
-                
                 statementWrapper.classList.remove('hidden');
                 autoGenBox.classList.add('has-statement'); 
             } else {
@@ -452,23 +495,29 @@
         async function processLogin(event) {
             event.preventDefault();
             const id = document.getElementById('login-id').value;
-            Swal.fire({ title: 'กำลังโหลดแผนพัฒนาส่วนบุคคลของท่าน', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            
+            // 🔴 1. ซ่อนหน้า Login และแสดง Skeleton แบบสมูท
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('skeleton-section').classList.remove('hidden');
 
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getProfile', empId: id }) });
                 const r = await res.json();
+                
+                // 🔴 2. ซ่อน Skeleton เมื่อข้อมูลโหลดเสร็จ
+                document.getElementById('skeleton-section').classList.add('hidden');
+
                 if (r.status === 'success') {
                     currentEmployee = r.employee; 
                     currentPackage = r.package;
                     currentSavedData = r.savedData;
 
                     renderUI(); 
-                    Swal.close();
-                    document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('main-app-section').classList.remove('hidden');
-                    window.scrollTo(0,0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     if(currentSavedData) autoFillData();
                 } else {
+                    document.getElementById('login-section').classList.remove('hidden');
                     Swal.fire({
                         title: 'ไม่พบข้อมูลของคุณ',
                         html: `ไม่พบรายชื่อหรือชุดวิชาในระบบ<br><br><b>กรุณาติดต่อ TMC:</b><br><a href="mailto:taa_learning@airasia.com" style="color:var(--aa-red); font-weight:bold;">taa_learning@airasia.com</a>`,
@@ -476,12 +525,18 @@
                         confirmButtonColor: '#E32526'
                     });
                 }
-            } catch (e) { Swal.fire('Error', 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error'); }
+            } catch (e) { 
+                document.getElementById('skeleton-section').classList.add('hidden');
+                document.getElementById('login-section').classList.remove('hidden');
+                Swal.fire('Error', 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error'); 
+            }
         }
 
         function renderUI() {
             document.getElementById('display-name').innerText = currentEmployee.name;
             document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; 
+            
+            // Render Goal 1
             const elContainer = document.getElementById('render-electives');
             elContainer.innerHTML = '';
             currentPackage.electives.forEach((c, idx) => {
@@ -489,10 +544,23 @@
                     elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${c.title}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
                 }
             });
+
+            // Render Goal 2
             document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
-            
             updateDynamicText('mandatory');
+
+            // Render Goal 3 (Plus Two)
+            const goal3Container = document.getElementById('goal3-container');
+            if (currentPackage.mandatory2 && currentPackage.mandatory2.title) {
+                goal3Container.classList.remove('hidden');
+                document.getElementById('goal3-display-title').innerHTML = `🔒 ${currentPackage.mandatory2.title}`;
+                document.getElementById('goal3-display-desc').innerHTML = currentPackage.mandatory2.desc || '';
+                document.getElementById('perf-comp-mandatory2').innerText = currentPackage.mandatory2.title;
+                updateDynamicText('mandatory2');
+            } else {
+                goal3Container.classList.add('hidden');
+            }
         }
 
         function selectElective(idx, title) {
@@ -501,7 +569,6 @@
             document.getElementById(`radio-${idx}`).checked = true;
             document.getElementById('elective-form').classList.remove('hidden');
             document.getElementById('perf-comp-elective').innerText = title;
-            
             updateDynamicText('elective');
         }
 
@@ -512,11 +579,12 @@
                 Swal.fire('โปรดทราบ', 'คุณเคยส่งข้อมูลแผนการเรียนรู้นี้ไปแล้ว<br>หากต้องการแก้ไข สามารถแก้และกดส่งซ้ำได้ครับ', 'info');
             } else {
                 statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
-                Swal.fire({ title: 'พบข้อมูลที่บันทึกร่างไว้', text: 'ระบบได้ดึงข้อมูลร่างล่าสุดของคุณมาให้แล้ว', icon: 'info', timer: 2500, showConfirmButton: false });
+                // นำ Alert ตอนโหลดออก หรือลดเวลาลง เพื่อไม่ให้บังดีไซน์ตอนเข้ามาใหม่
             }
             document.getElementById('submit-manager-id').value = currentSavedData.managerId || '';
             document.getElementById('submit-manager-name').value = currentSavedData.managerName || '';
             document.getElementById('submit-manager-email').value = currentSavedData.managerEmail || '';
+            
             if (currentSavedData.elective && currentSavedData.elective.competency) {
                 let idx = currentPackage.electives.findIndex(c => c.title === currentSavedData.elective.competency);
                 if (idx !== -1) selectElective(idx, currentSavedData.elective.competency);
@@ -525,6 +593,11 @@
             if (currentSavedData.mandatory && currentSavedData.mandatory.competency) {
                 fillActivityAndPerf('mandatory', currentSavedData.mandatory);
             }
+
+            if (currentSavedData.mandatory2 && currentSavedData.mandatory2.competency && currentPackage.mandatory2 && currentPackage.mandatory2.title) {
+                fillActivityAndPerf('mandatory2', currentSavedData.mandatory2);
+            }
+
             if(currentSavedData.status === 'Confirm') document.getElementById('confirm-cb').checked = true;
         }
 
@@ -537,7 +610,6 @@
                 else { actSelect.value = 'Other'; actOther.classList.remove('hidden'); actOther.value = dataObj.activity; }
             }
             
-            // ใช้ Regex แบบเดิมเป๊ะๆ เพื่อให้ดึงข้อมูลจาก GAS ได้ตามปกติ
             if (dataObj.performance) {
                 let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?) ในงาน$/);
                 if (match) { 
@@ -590,20 +662,20 @@
             return v === 'Other' ? document.getElementById(`activity-${type}-other`).value : v;
         }
 
-        // 🔴 รูปแบบข้อความที่จะ Save ลงฐานข้อมูล (คงแพทเทิร์นเดิมไว้จะได้ไม่พังตอนดึงกลับ)
         function getPerf(type) {
-            const comp = type === 'elective' ? document.getElementById('perf-comp-elective').innerText : document.getElementById('perf-comp-mandatory').innerText;
+            const comp = document.getElementById(`perf-comp-${type}`).innerText;
             const verb = document.getElementById(`verb-${type}`).value;
             const res = document.getElementById(`result-${type}`).value;
             if (!verb && !res) return '';
-            
-            // แอบซ่อนข้อมูลในแพทเทิร์นเดิม "มา {verb} ให้เกิดผลลัพธ์ {res} ในงาน" เพื่อให้ Regex ดึงค่าได้
             return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
         }
 
         async function submitIDP(statusToSave) {
             const elective = document.querySelector('input[name="elective"]:checked');
-            const p1 = getPerf('elective'); const p2 = getPerf('mandatory');
+            const p1 = getPerf('elective'); 
+            const p2 = getPerf('mandatory');
+            const p3 = getPerf('mandatory2');
+            const isGoal3Visible = !document.getElementById('goal3-container').classList.contains('hidden');
             const mId = document.getElementById('submit-manager-id').value;
             const mName = document.getElementById('submit-manager-name').value;
             const mEmail = document.getElementById('submit-manager-email').value;
@@ -612,6 +684,13 @@
                 if (!elective || !getActivity('elective') || !getActivity('mandatory') || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
                     return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลและเลือกกิจกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
                 }
+                
+                if (isGoal3Visible) {
+                    if (!getActivity('mandatory2') || !p3) {
+                        return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกกิจกรรมและเป้าหมายของ Goal 03 ให้ครบถ้วน', 'warning');
+                    }
+                }
+
                 if (!document.getElementById('confirm-cb').checked) {
                     return Swal.fire('ข้อตกลง', 'กรุณาติ๊กช่องรับรองด้านล่างก่อนส่งข้อมูล', 'warning');
                 }
@@ -622,6 +701,11 @@
             const alertTitle = statusToSave === 'Confirm' ? 'กำลังส่งข้อมูล...' : 'กำลังบันทึกร่าง...';
             Swal.fire({ title: alertTitle, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
             
+            let mandatory2Data = null;
+            if (isGoal3Visible) {
+                mandatory2Data = { competency: currentPackage.mandatory2.title, activity: getActivity('mandatory2'), performance: p3 };
+            }
+
             const payload = {
                 action: 'submitIDP',
                 data: {
@@ -629,7 +713,8 @@
                     managerId: mId, managerName: mName, managerEmail: mEmail,
                     status: statusToSave,
                     elective: { competency: elective.value, activity: getActivity('elective'), performance: p1 },
-                    mandatory: { competency: currentPackage.mandatory.title, activity: getActivity('mandatory'), performance: p2 }
+                    mandatory: { competency: currentPackage.mandatory.title, activity: getActivity('mandatory'), performance: p2 },
+                    mandatory2: mandatory2Data
                 }
             };
 
@@ -637,7 +722,7 @@
                 const response = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify(payload) });
                 const r = await response.json();
                 if (r.status === 'success') {
-                    const successMsg = statusToSave === 'Confirm' ? 'บันทึกและยืนยันข้อมูลเรียบร้อยแล้ว' : 'บันทึกแบบร่างสำเร็จ คุณสามารถกลับมาทำต่อได้ตลอดเวลา';
+                    const successMsg = statusToSave === 'Confirm' ? 'บันทึกและยืนยันข้อมูลเรียบร้อยแล้ว' : 'บันทึกแบบร่างสำเร็จ คุณสามารถแก้ไขทำต่อได้ทันที';
                     
                     Swal.fire({
                         title: 'สำเร็จ!', 
@@ -649,10 +734,18 @@
                         confirmButtonColor: '#E32526',
                         cancelButtonColor: '#0284C7'
                     }).then((result) => {
-                        if (result.isDismissed) {
+                        // ถ้ากดปุ่ม PDF
+                        if (result.dismiss === Swal.DismissReason.cancel) {
                             setTimeout(() => { window.print(); }, 500);
+                        }
+                        
+                        // 🔴 กรณีเซฟ Draft ให้อยู่หน้าเดิม ไม่ Refresh
+                        if (statusToSave !== 'Confirm') {
+                            document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
                         } else {
-                            window.location.reload();
+                            // กรณีคอนเฟิร์มแล้ว เปลี่ยนป้ายหน้าจอให้เป็น Confirm
+                            document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
                     });
                 } else { Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error'); }
