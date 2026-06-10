@@ -42,7 +42,7 @@
         .btn-draft { background: var(--aa-draft); }
         .btn-draft:hover { background: #475569; box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2); }
 
-        /* 🔴 ปรับปุ่มให้เป็นสีเทาและกดไม่ได้เมื่อสถานะถูกล็อก */
+        /* ปรับปุ่มให้เป็นสีเทาและกดไม่ได้เมื่อสถานะถูกล็อก */
         .btn:disabled {
             background-color: #CBD5E1 !important;
             color: #94A3B8 !important;
@@ -519,6 +519,26 @@
                     currentPackage = r.package;
                     currentSavedData = r.savedData;
 
+                    const backupKey = 'gap_backup_' + currentEmployee.empId;
+                    const localBackup = localStorage.getItem(backupKey);
+                    
+                    if (localBackup) {
+                        if (!currentSavedData || currentSavedData.status !== 'Confirm') {
+                            currentSavedData = JSON.parse(localBackup);
+                            currentSavedData.status = 'Draft'; 
+                            
+                            Swal.fire({
+                                title: 'กู้คืนข้อมูลแบบร่าง',
+                                text: 'ระบบพบข้อมูลที่บันทึกไม่สำเร็จในรอบก่อน และได้กู้คืนลงฟอร์มให้คุณแล้ว',
+                                icon: 'info',
+                                timer: 4000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            localStorage.removeItem(backupKey);
+                        }
+                    }
+
                     renderUI(); 
                     document.getElementById('main-app-section').classList.remove('hidden');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -543,24 +563,28 @@
             document.getElementById('display-name').innerText = currentEmployee.name;
             document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; 
             
-            // Render Goal 1
+            // 🔴 แก้ไขปัญหาโหลดซ้อนทับกันหลายรอบ bằngการใช้ตัวแปรพักข้อมูล
             const elContainer = document.getElementById('render-electives');
-            elContainer.innerHTML = '';
+            let electiveHtml = '';
+            
             currentPackage.electives.forEach((c, idx) => {
                 if(c.title.trim() !== '') {
-                    // 🔴 แปลงเครื่องหมาย ' ป้องกันปัญหา Javascript Error เวลากดคลิก
-                    let safeTitle = c.title.replace(/'/g, "\\'");
+                    // 🔴 ป้องกันตัวอักษรพิเศษทุกรูปแบบที่อาจทำให้คลิกแล้วเกิด Error
+                    let safeTitle = c.title.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, ' ').replace(/\r/g, '');
+                    let valTitle = c.title.replace(/"/g, '&quot;');
                     
-                    elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${safeTitle}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
+                    electiveHtml += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${safeTitle}')">
+                        <input type="radio" name="elective" id="radio-${idx}" value="${valTitle}">
+                        <div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div>
+                    </div>`;
                 }
             });
+            elContainer.innerHTML = electiveHtml;
 
-            // Render Goal 2
             document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
             updateDynamicText('mandatory');
 
-            // Render Goal 3 (Plus Two)
             const goal3Container = document.getElementById('goal3-container');
             if (currentPackage.mandatory2 && currentPackage.mandatory2.title) {
                 goal3Container.classList.remove('hidden');
@@ -577,7 +601,12 @@
             document.querySelectorAll('.comp-card').forEach(c => c.classList.remove('active'));
             document.getElementById(`card-${idx}`).classList.add('active');
             document.getElementById(`radio-${idx}`).checked = true;
-            document.getElementById('elective-form').classList.remove('hidden');
+            
+            // 🔴 สั่งให้แบบฟอร์มกางออกมาแบบชัวร์ๆ ทันทีที่คลิก
+            const electiveForm = document.getElementById('elective-form');
+            electiveForm.classList.remove('hidden');
+            electiveForm.style.display = 'block';
+            
             document.getElementById('perf-comp-elective').innerText = title;
             updateDynamicText('elective');
         }
@@ -587,9 +616,8 @@
             
             if(currentSavedData.status === 'Confirm') {
                 statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
-                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูลได้อีก โปรดติดต่อ taa_learning@airasia.com ', 'info');
+                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูลได้อีก', 'info');
                 
-                // ล็อกปุ่มให้เป็นสีเทา กดไม่ได้
                 document.getElementById('btn-draft').disabled = true;
                 document.getElementById('btn-confirm').disabled = true;
             } else {
@@ -752,10 +780,16 @@
                 }
             };
 
+            const backupKey = 'gap_backup_' + currentEmployee.empId;
+            localStorage.setItem(backupKey, JSON.stringify(payload.data));
+
             try {
                 const response = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify(payload) });
                 const r = await response.json();
+                
                 if (r.status === 'success') {
+                    localStorage.removeItem(backupKey);
+
                     const successMsg = statusToSave === 'Confirm' ? 'บันทึกและยืนยันข้อมูลเรียบร้อยแล้ว' : 'บันทึกแบบร่างสำเร็จ คุณสามารถแก้ไขทำต่อได้ทันที';
                     
                     Swal.fire({
@@ -777,7 +811,6 @@
                         } else {
                             document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
                             
-                            // ล็อกปุ่มให้กลายเป็นสีเทากดไม่ได้ ทันทีที่ส่งสำเร็จ
                             document.getElementById('btn-draft').disabled = true;
                             document.getElementById('btn-confirm').disabled = true;
 
@@ -785,7 +818,7 @@
                         }
                     });
                 } else { Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error'); }
-            } catch (e) { Swal.fire('Error', 'ไม่สามารถบันทึกข้อมูลได้', 'error'); }
+            } catch (e) { Swal.fire('Error', 'ไม่สามารถบันทึกข้อมูลได้ ข้อมูลถูกพักไว้ในเครื่องแล้ว', 'error'); }
         }
     </script>
 </body>
