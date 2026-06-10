@@ -42,7 +42,16 @@
         .btn-draft { background: var(--aa-draft); }
         .btn-draft:hover { background: #475569; box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2); }
 
-        /* 🔴 Skeleton Loading Animation */
+        /* 🔴 ปรับปุ่มให้เป็นสีเทาและกดไม่ได้เมื่อสถานะถูกล็อก */
+        .btn:disabled {
+            background-color: #CBD5E1 !important;
+            color: #94A3B8 !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+            pointer-events: none !important;
+        }
+
+        /* Skeleton Loading Animation */
         .skeleton-box {
             position: relative;
             overflow: hidden;
@@ -435,13 +444,13 @@
         </div>
 
         <div class="action-bar">
-            <button class="btn btn-draft" onclick="submitIDP('Draft')">
+            <button id="btn-draft" class="btn btn-draft" onclick="submitIDP('Draft')">
                 <i class="fa-solid fa-floppy-disk" style="margin-right:8px;"></i> บันทึกร่าง (Save Draft)
             </button>
             <button class="btn btn-draft" style="background-color: #0284C7; color: white;" onclick="window.print()">
                 <i class="fa-solid fa-file-pdf" style="margin-right:8px;"></i> บันทึกไฟล์เป็น PDF (Save as PDF)
             </button>
-            <button class="btn" onclick="submitIDP('Confirm')">
+            <button id="btn-confirm" class="btn" onclick="submitIDP('Confirm')">
                 <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> ยืนยันส่งข้อมูล (Submit)
             </button>
         </div>
@@ -496,7 +505,6 @@
             event.preventDefault();
             const id = document.getElementById('login-id').value;
             
-            // 🔴 1. ซ่อนหน้า Login และแสดง Skeleton แบบสมูท
             document.getElementById('login-section').classList.add('hidden');
             document.getElementById('skeleton-section').classList.remove('hidden');
 
@@ -504,7 +512,6 @@
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getProfile', empId: id }) });
                 const r = await res.json();
                 
-                // 🔴 2. ซ่อน Skeleton เมื่อข้อมูลโหลดเสร็จ
                 document.getElementById('skeleton-section').classList.add('hidden');
 
                 if (r.status === 'success') {
@@ -574,13 +581,19 @@
 
         function autoFillData() {
             const statusBadge = document.getElementById('form-status-badge');
+            
+            // 🔴 แจ้งเตือนและล็อกปุ่มหากข้อมูลเคยถูก Confirm ไปแล้ว
             if(currentSavedData.status === 'Confirm') {
                 statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
-                Swal.fire('โปรดทราบ', 'คุณเคยส่งข้อมูลแผนการเรียนรู้นี้ไปแล้ว<br>หากต้องการแก้ไข สามารถแก้และกดส่งซ้ำได้ครับ', 'info');
+                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูลได้อีก', 'info');
+                
+                // ล็อกปุ่มให้เป็นสีเทา กดไม่ได้
+                document.getElementById('btn-draft').disabled = true;
+                document.getElementById('btn-confirm').disabled = true;
             } else {
                 statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
-                // นำ Alert ตอนโหลดออก หรือลดเวลาลง เพื่อไม่ให้บังดีไซน์ตอนเข้ามาใหม่
             }
+            
             document.getElementById('submit-manager-id').value = currentSavedData.managerId || '';
             document.getElementById('submit-manager-name').value = currentSavedData.managerName || '';
             document.getElementById('submit-manager-email').value = currentSavedData.managerEmail || '';
@@ -670,7 +683,7 @@
             return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
         }
 
-        async function submitIDP(statusToSave) {
+        function submitIDP(statusToSave) {
             const elective = document.querySelector('input[name="elective"]:checked');
             const p1 = getPerf('elective'); 
             const p2 = getPerf('mandatory');
@@ -680,6 +693,7 @@
             const mName = document.getElementById('submit-manager-name').value;
             const mEmail = document.getElementById('submit-manager-email').value;
 
+            // ตรวจสอบความถูกต้องของข้อมูลเบื้องต้น
             if (statusToSave === 'Confirm') {
                 if (!elective || !getActivity('elective') || !getActivity('mandatory') || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
                     return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลและเลือกกิจกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
@@ -694,11 +708,34 @@
                 if (!document.getElementById('confirm-cb').checked) {
                     return Swal.fire('ข้อตกลง', 'กรุณาติ๊กช่องรับรองด้านล่างก่อนส่งข้อมูล', 'warning');
                 }
-            } else {
-                if (!elective) return Swal.fire('แจ้งเตือน', 'คุณต้องเลือกวิชา Goal 01 (Elective) ก่อนทำการบันทึกร่างครับ', 'info');
-            }
 
-            const alertTitle = statusToSave === 'Confirm' ? 'กำลังส่งข้อมูล...' : 'กำลังบันทึกร่าง...';
+                // 🔴 เด้งกล่องยืนยันถ้าผู้ใช้กด Confirm
+                Swal.fire({
+                    title: 'ยืนยันการส่งแผนพัฒนาตนเอง?',
+                    html: "หากกดยืนยันแล้ว <b style='color:#E32526;'>ท่านจะไม่สามารถกลับมาแก้ไขข้อมูลได้อีก</b><br>และระบบจะส่งอีเมลไปยังหัวหน้างานของท่านทันที",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#E32526',
+                    cancelButtonColor: '#64748B',
+                    confirmButtonText: 'ใช่, ยืนยันการส่ง',
+                    cancelButtonText: 'กลับไปแก้ไข'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // ถ้ากดตกลง ค่อยเรียกฟังก์ชันส่งข้อมูลไปหลังบ้าน
+                        executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail);
+                    }
+                });
+
+            } else {
+                // สำหรับ Save Draft ข้ามกล่องยืนยันไปเลย
+                if (!elective) return Swal.fire('แจ้งเตือน', 'คุณต้องเลือกวิชา Goal 01 (Elective) ก่อนทำการบันทึกร่างครับ', 'info');
+                executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail);
+            }
+        }
+
+        // 🔴 ฟังก์ชันแยกสำหรับยิงข้อมูลไปหา GAS
+        async function executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail) {
+            const alertTitle = statusToSave === 'Confirm' ? 'กำลังส่งข้อมูลและอีเมล...' : 'กำลังบันทึกร่าง...';
             Swal.fire({ title: alertTitle, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
             
             let mandatory2Data = null;
@@ -734,17 +771,19 @@
                         confirmButtonColor: '#E32526',
                         cancelButtonColor: '#0284C7'
                     }).then((result) => {
-                        // ถ้ากดปุ่ม PDF
                         if (result.dismiss === Swal.DismissReason.cancel) {
                             setTimeout(() => { window.print(); }, 500);
                         }
                         
-                        // 🔴 กรณีเซฟ Draft ให้อยู่หน้าเดิม ไม่ Refresh
                         if (statusToSave !== 'Confirm') {
                             document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
                         } else {
-                            // กรณีคอนเฟิร์มแล้ว เปลี่ยนป้ายหน้าจอให้เป็น Confirm
                             document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
+                            
+                            // 🔴 ล็อกปุ่มให้กลายเป็นสีเทากดไม่ได้ ทันทีที่ส่งสำเร็จ
+                            document.getElementById('btn-draft').disabled = true;
+                            document.getElementById('btn-confirm').disabled = true;
+
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
                     });
