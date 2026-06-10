@@ -101,54 +101,26 @@
         .form-group { margin-bottom: 20px; text-align: left; position: relative; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #334155; }
         
+        .activity-info-container { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 15px; margin-bottom: 10px; }
+        .activity-item { display: flex; align-items: flex-start; gap: 12px; background: white; padding: 12px 15px; border-radius: 6px; border: 1px solid #CBD5E1; margin-bottom: 8px; color: #334155; font-size: 1.05rem; }
+        .activity-item:last-child { margin-bottom: 0; }
+        .activity-item.elearn i { color: var(--gap-blue); font-size: 1.2rem; margin-top: 2px; }
+        .activity-item.academy i { color: var(--aa-red); font-size: 1.2rem; margin-top: 2px; }
+
         .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 1.8; font-size: 1.05rem; color: #334155; }
         
-        .verb-select {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 2px solid #CBD5E1;
-            font-size: 1.05rem;
-            color: var(--aa-black);
-            font-weight: 600;
-            outline: none;
-            background: white;
-            cursor: pointer;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            transition: 0.2s;
-        }
+        .verb-select { width: 100%; padding: 12px 15px; border-radius: 8px; border: 2px solid #CBD5E1; font-size: 1.05rem; color: var(--aa-black); font-weight: 600; outline: none; background: white; cursor: pointer; margin-top: 10px; margin-bottom: 20px; transition: 0.2s; }
         .verb-select:focus { border-color: var(--aa-red); box-shadow: 0 0 0 3px rgba(227,37,38,0.1); }
 
         .dynamic-question { font-size: 1.1rem; font-weight: 700; color: var(--aa-black); margin-bottom: 10px; }
 
         .input-with-suffix { position: relative; width: 100%; }
         .input-with-suffix .inline-input { 
-            width: 100%; 
-            padding: 12px 15px 35px 15px; 
-            border-radius: 8px; 
-            border: 1px solid #CBD5E1; 
-            font-family: 'Sarabun', sans-serif; 
-            font-size: 1.05rem; 
-            outline: none; 
-            box-sizing: border-box;
-            resize: vertical; 
-            min-height: 90px; 
-            line-height: 1.5;
+            width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: 'Sarabun', sans-serif; font-size: 1.05rem; outline: none; box-sizing: border-box; resize: vertical; min-height: 90px; line-height: 1.5;
         }
         .input-with-suffix .inline-input:focus { border-color: var(--aa-red); }
-        .input-with-suffix .suffix { position: absolute; right: 15px; bottom: 12px; color: #64748B; font-weight: 600; pointer-events: none; }
 
-        .statement-wrapper {
-            background: #F0F9FF; 
-            border: 1px solid #BAE6FD; 
-            border-left: 4px solid var(--gap-blue); 
-            padding: 20px; 
-            margin-top: 20px; 
-            border-radius: 8px; 
-            color: #0369A1;
-            transition: 0.3s;
-        }
+        .statement-wrapper { background: #F0F9FF; border: 1px solid #BAE6FD; border-left: 4px solid var(--gap-blue); padding: 20px; margin-top: 20px; border-radius: 8px; color: #0369A1; transition: 0.3s; }
         .statement-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--gap-blue); }
         .statement-content { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: #334155; }
         .highlight-text { font-weight: 700; color: var(--aa-red); }
@@ -188,9 +160,9 @@
             .mandatory-box { background: #F8FAFC !important; border: 1px solid #ccc !important; border-left: 4px solid var(--aa-red) !important; display: block !important;}
             .confirmation-box { background: white !important; border: none !important; padding: 10px 0 !important; display: block !important;}
             .auto-gen-box { border: none !important; padding: 0 !important; background: transparent !important; display: block !important; }
-            
             .has-statement .performance-input-section { display: none !important; }
-            
+            .activity-info-container { border: 1px solid #ccc !important; background: transparent !important; margin-bottom: 5px !important; }
+            .print-hide { display: none !important; }
             .statement-wrapper { display: block !important; background: transparent !important; border: none !important; border-left: 4px solid var(--gap-blue) !important; padding: 10px 15px !important; margin-top: 0 !important; }
             .statement-content { font-style: normal !important; color: black !important; font-size: 11pt !important; }
             .statement-title { color: black !important; }
@@ -203,7 +175,7 @@
     <div id="login-section">
         <div class="login-card">
             <div class="login-header">
-                <img src="https://img2.pic.in.th/Learning-GAPLogo-1.png" width="180">
+                <img src="https://img1.pic.in.th/images/Learning-GAPLogo-2.png" width="180">
                 <h2>แผนการเรียนรู้เพื่อพัฒนาตนเอง ประจำปี 2569</h2>
                 <p>Learning Plan Development 2026</p>
             </div>
@@ -246,7 +218,7 @@
                 </div>
             </div>
             <div class="header-logo">
-                <img src="https://img2.pic.in.th/Learning-GAPLogo-1.png" alt="GAP Logo">
+                <img src="https://img1.pic.in.th/images/Learning-GAPLogo-2.png" alt="GAP Logo">
             </div>
         </div>
 
@@ -258,24 +230,22 @@
 
         <div class="corp-card">
             <h3 style="color: var(--aa-black);">
-                <span style="color: #EE3325;"><b>🎯 Goal 01</b></span> - สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)
+                <span style="color: #EE3325;"><b>🎯 Goal 01 (Selective)</b></span> - สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)
             </h3>
             <div class="cards-grid" id="render-electives"></div>
             
             <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
                 <div class="form-group">
                     <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
-                    <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
+                    <select class="form-control" disabled><option>1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (โปรดระบุวิธีการ/ช่องเรียนรู้ที่ท่านวางแผนในการพัฒนาหัวข้อดังกล่าว)</label>
-                    <select class="form-control" id="activity-elective" onchange="toggleOtherInput('elective')">
-                        <option value="">-- โปรดเลือกวิธีการ --</option>
-                        <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
-                        <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
-                        
-                    </select>
-                    <input type="text" class="form-control hidden" id="activity-elective-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                    <label>📚 A-Activity (ช่องทางการเรียนรู้และพัฒนา)</label>
+                    <div id="activity-elective-container" class="activity-info-container"></div>
+                    <div class="print-hide" style="font-size: 0.95rem; color: #64748B; font-style: italic; line-height: 1.4; margin-bottom: 20px;">
+                        <i class="fa-solid fa-circle-info" style="color: #0284C7; margin-right: 4px;"></i>
+                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ (ทั้งหลักสูตร eLearning และ Academy) ตามที่ท่านเลือกไว้ ไปยังอีเมลของท่านอีกครั้ง ภายหลังสิ้นสุดกระบวนการจัดทำแผน GAP+ ในภาพรวม
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
@@ -300,7 +270,6 @@
 
                             <div class="input-with-suffix">
                                 <textarea id="result-elective" class="inline-input" rows="3" placeholder="โปรดระบุรายละเอียด..." oninput="updateDynamicText('elective')"></textarea>
-                                <span class="suffix">ในงาน</span>
                             </div>
                         </div>
 
@@ -315,22 +284,21 @@
 
         <div class="corp-card">
             <h3 style="color: var(--aa-black);">
-                <span style="color: #18AF4B;"><b>🎯 Goal 02</b></span> - Plus One (สมรรถนะบังคับ)
+                <span style="color: #18AF4B;"><b>🎯 Goal 02</b></span> - (Plus One_01)
             </h3>
             <div id="render-mandatory"></div>
             <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
                 <div class="form-group">
                     <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
-                    <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
+                    <select class="form-control" disabled><option>1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (โปรดระบุวิธีการ/ช่องเรียนรู้ที่ท่านวางแผนในการพัฒนาหัวข้อดังกล่าว)</label>
-                    <select class="form-control" id="activity-mandatory" onchange="toggleOtherInput('mandatory')">
-                        <option value="">-- โปรดเลือกวิธีการ --</option>
-                        <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
-                        <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
-                    </select>
-                    <input type="text" class="form-control hidden" id="activity-mandatory-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                    <label>📚 A-Activity (ช่องทางการเรียนรู้และพัฒนา)</label>
+                    <div id="activity-mandatory-container" class="activity-info-container"></div>
+                    <div class="print-hide" style="font-size: 0.95rem; color: #64748B; font-style: italic; line-height: 1.4; margin-bottom: 20px;">
+                        <i class="fa-solid fa-circle-info" style="color: #0284C7; margin-right: 4px;"></i>
+                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ (ทั้งหลักสูตร eLearning และ Academy) ตามที่ท่านเลือกไว้ ไปยังอีเมลของท่านอีกครั้ง ภายหลังสิ้นสุดกระบวนการจัดทำแผน GAP+ ในภาพรวม
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
@@ -355,7 +323,6 @@
 
                             <div class="input-with-suffix">
                                 <textarea id="result-mandatory" class="inline-input" rows="3" placeholder="โปรดระบุรายละเอียด..." oninput="updateDynamicText('mandatory')"></textarea>
-                                <span class="suffix">ในงาน</span>
                             </div>
                         </div>
 
@@ -370,7 +337,7 @@
 
         <div class="corp-card hidden" id="goal3-container">
             <h3 style="color: var(--aa-black);">
-                <span style="color: #99CC33;"><b>🎯 Goal 03</b></span> - Plus Two (สมรรถนะบังคับตัวที่ 2)
+                <span style="color: #99CC33;"><b>🎯 Goal 03</b></span> - (Plus One_02)
             </h3>
             <div class="mandatory-box" style="border-left: 6px solid #99CC33;">
                 <b class="comp-title" style="font-size:1.15rem;" id="goal3-display-title">🔒 [...]</b>
@@ -379,16 +346,15 @@
             <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
                 <div class="form-group">
                     <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
-                    <select class="form-control" disabled><option>1 มิถุนายน 2026 - 30 พฤศจิกายน 2026</option></select>
+                    <select class="form-control" disabled><option>1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</option></select>
                 </div>
                 <div class="form-group">
-                    <label>📚 A-Activity (โปรดระบุวิธีการ/ช่องเรียนรู้ที่ท่านวางแผนในการพัฒนาหัวข้อดังกล่าว)</label>
-                    <select class="form-control" id="activity-mandatory2" onchange="toggleOtherInput('mandatory2')">
-                        <option value="">-- โปรดเลือกวิธีการ --</option>
-                        <option value="เรียนรู้ด้วยตนเอง">เรียนรู้ด้วยตนเอง (Self-Learning)</option>
-                        <option value="ส่วนกลาง / Academy">ส่วนกลาง / Academy</option>
-                    </select>
-                    <input type="text" class="form-control hidden" id="activity-mandatory2-other" placeholder="โปรดระบุชื่อกิจกรรม...">
+                    <label>📚 A-Activity (ช่องทางการเรียนรู้และพัฒนา)</label>
+                    <div id="activity-mandatory2-container" class="activity-info-container"></div>
+                    <div class="print-hide" style="font-size: 0.95rem; color: #64748B; font-style: italic; line-height: 1.4; margin-bottom: 20px;">
+                        <i class="fa-solid fa-circle-info" style="color: #0284C7; margin-right: 4px;"></i>
+                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ (ทั้งหลักสูตร eLearning และ Academy) ตามที่ท่านเลือกไว้ ไปยังอีเมลของท่านอีกครั้ง ภายหลังสิ้นสุดกระบวนการจัดทำแผน GAP+ ในภาพรวม
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>📈 P-Performance (เป้าหมายพฤติกรรม)</label>
@@ -413,7 +379,6 @@
 
                             <div class="input-with-suffix">
                                 <textarea id="result-mandatory2" class="inline-input" rows="3" placeholder="โปรดระบุรายละเอียด..." oninput="updateDynamicText('mandatory2')"></textarea>
-                                <span class="suffix">ในงาน</span>
                             </div>
                         </div>
 
@@ -468,7 +433,6 @@
         let currentPackage = null;
         let currentSavedData = null;
 
-        // ข้อมูล Guideline
         const performancePrompts = {
             "ยกระดับคุณภาพการทำงาน": { question: "โปรดอธิบายว่าได้นำไปใช้กับงานด้านใด", placeholder: "เช่น นำไปใช้ในการบริการลูกค้า ทำให้จัดการงานได้ชัดเจนขึ้น" },
             "ใช้เพื่อแก้ปัญหาในการทำงาน": { question: "โปรดอธิบายว่าปัญหาคืออะไร และนำความรู้ไปช่วยอย่างไร", placeholder: "เช่น นำไปใช้แก้ปัญหาการสื่อสารในทีม ทำให้เข้าใจงานตรงกันมากขึ้น" },
@@ -476,6 +440,48 @@
             "สร้างหรือพัฒนาสิ่งใหม่": { question: "โปรดอธิบายว่าสร้างหรือพัฒนาสิ่งใด", placeholder: "เช่น สร้าง checklist ใหม่สำหรับใช้ในทีม" },
             "ถ่ายทอดความรู้หรือพัฒนาทีมงาน": { question: "โปรดอธิบายว่าได้นำความรู้ไปแบ่งปันหรือพัฒนาทีมอย่างไร", placeholder: "เช่น แชร์เทคนิคการทำงานให้ทีมในการประชุมประจำสัปดาห์" }
         };
+
+        function renderActivityBoxes(type, compObj) {
+            const container = document.getElementById(`activity-${type}-container`);
+            if (!container) return;
+            
+            let html = '';
+            let allActivities = []; 
+            
+            if (compObj && compObj.courses && compObj.courses.length > 0) {
+                compObj.courses.forEach(course => {
+                    if (course.subject && course.subject.toString().trim() !== "") {
+                        let sub = course.subject.toString().trim();
+                        let inst = course.institute ? course.institute.toString().trim() : "TMC";
+                        
+                        let displayText = `หลักสูตร eLearning แนะนำ: <b>${sub}</b> โดย <b>${inst}</b>`;
+                        let saveText = `หลักสูตร eLearning แนะนำ: ${sub} โดย ${inst}`;
+                        
+                        html += `<div class="activity-item elearn"><i class="fa-solid fa-laptop-code"></i> <span>${displayText}</span></div>`;
+                        allActivities.push(saveText);
+                    }
+                });
+            } else {
+                let text = "หลักสูตร eLearning แนะนำ (กรุณาเลือกวิชาอื่นด้านบนก่อน)";
+                if (type !== 'elective') text = "ยังไม่มีข้อมูลหลักสูตร eLearning แนะนำสำหรับวิชานี้";
+                html += `<div class="activity-item" style="color: #64748B;"><i class="fa-solid fa-circle-info" style="color: #CBD5E1;"></i> <span>${text}</span></div>`;
+            }
+            
+            let acadDisplayText = "หลักสูตรที่ดำเนินการสอนโดย Academy ซึ่งทาง TMC จะมีการประชาสัมพันธ์อีกครั้ง";
+            let acadSaveText = acadDisplayText;
+
+            if (compObj && compObj.academy && compObj.academy.toString().trim() !== "") {
+                let acadSub = compObj.academy.toString().trim();
+                acadDisplayText = `<b>${acadSub}</b> จัดการสอนโดย Academy`;
+                acadSaveText = `${acadSub} จัดการสอนโดย Academy`;
+            }
+
+            html += `<div class="activity-item academy"><i class="fa-solid fa-chalkboard-user"></i> <span>${acadDisplayText}</span></div>`;
+            allActivities.push(acadSaveText);
+            
+            container.innerHTML = html;
+            container.setAttribute('data-activities', allActivities.join(' / '));
+        }
 
         function updateDynamicText(type) {
             const comp = document.getElementById(`perf-comp-${type}`).innerText;
@@ -487,7 +493,6 @@
             const commitmentText = document.getElementById(`commitment-text-${type}`);
             const autoGenBox = document.getElementById(`autogen-${type}`);
 
-            // ให้คำอธิบายและไฮไลต์แยกสีตามแต่ละ Goal อย่างเหมาะสม
             let highlightColor = "var(--aa-red)";
             if(type === 'elective') highlightColor = "#EE3325";
             if(type === 'mandatory') highlightColor = "#18AF4B";
@@ -592,6 +597,8 @@
 
             document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box" style="border-left: 6px solid #18AF4B;"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
+            
+            renderActivityBoxes('mandatory', currentPackage.mandatory);
             updateDynamicText('mandatory');
 
             const goal3Container = document.getElementById('goal3-container');
@@ -600,6 +607,8 @@
                 document.getElementById('goal3-display-title').innerHTML = `🔒 ${currentPackage.mandatory2.title}`;
                 document.getElementById('goal3-display-desc').innerHTML = currentPackage.mandatory2.desc || '';
                 document.getElementById('perf-comp-mandatory2').innerText = currentPackage.mandatory2.title;
+                
+                renderActivityBoxes('mandatory2', currentPackage.mandatory2);
                 updateDynamicText('mandatory2');
             } else {
                 goal3Container.classList.add('hidden');
@@ -616,6 +625,11 @@
             electiveForm.style.display = 'block';
             
             document.getElementById('perf-comp-elective').innerText = title;
+            
+            if (currentPackage && currentPackage.electives && currentPackage.electives[idx]) {
+                renderActivityBoxes('elective', currentPackage.electives[idx]);
+            }
+            
             updateDynamicText('elective');
         }
 
@@ -639,30 +653,14 @@
             if (currentSavedData.elective && currentSavedData.elective.competency) {
                 let idx = currentPackage.electives.findIndex(c => c.title === currentSavedData.elective.competency);
                 if (idx !== -1) selectElective(idx, currentSavedData.elective.competency);
-                fillActivityAndPerf('elective', currentSavedData.elective);
-            }
-            if (currentSavedData.mandatory && currentSavedData.mandatory.competency) {
-                fillActivityAndPerf('mandatory', currentSavedData.mandatory);
-            }
-
-            if (currentSavedData.mandatory2 && currentSavedData.mandatory2.competency && currentPackage.mandatory2 && currentPackage.mandatory2.title) {
-                fillActivityAndPerf('mandatory2', currentSavedData.mandatory2);
             }
 
             if(currentSavedData.status === 'Confirm') document.getElementById('confirm-cb').checked = true;
         }
 
         function fillActivityAndPerf(type, dataObj) {
-            if (dataObj.activity) {
-                let actSelect = document.getElementById(`activity-${type}`);
-                let actOther = document.getElementById(`activity-${type}-other`);
-                let isStandardOption = Array.from(actSelect.options).map(o => o.value).includes(dataObj.activity);
-                if (isStandardOption) actSelect.value = dataObj.activity;
-                else { actSelect.value = 'Other'; actOther.classList.remove('hidden'); actOther.value = dataObj.activity; }
-            }
-            
             if (dataObj.performance) {
-                let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?) ในงาน$/);
+                let match = dataObj.performance.match(/มา (.*?) ให้เกิดผลลัพธ์ (.*?)(?: ในงาน)?$/);
                 if (match) { 
                     document.getElementById(`verb-${type}`).value = match[1]; 
                     document.getElementById(`result-${type}`).value = match[2]; 
@@ -703,14 +701,9 @@
             n.classList.add('readonly-input'); m.classList.add('readonly-input');
         }
 
-        function toggleOtherInput(type) {
-            const v = document.getElementById(`activity-${type}`).value;
-            document.getElementById(`activity-${type}-other`).classList.toggle('hidden', v !== 'Other');
-        }
-
         function getActivity(type) {
-            const v = document.getElementById(`activity-${type}`).value;
-            return v === 'Other' ? document.getElementById(`activity-${type}-other`).value : v;
+            const container = document.getElementById(`activity-${type}-container`);
+            return container ? container.getAttribute('data-activities') : '';
         }
 
         function getPerf(type) {
@@ -718,7 +711,7 @@
             const verb = document.getElementById(`verb-${type}`).value;
             const res = document.getElementById(`result-${type}`).value;
             if (!verb && !res) return '';
-            return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res} ในงาน`;
+            return `นำความรู้ ${comp} มา ${verb} ให้เกิดผลลัพธ์ ${res}`;
         }
 
         function submitIDP(statusToSave) {
@@ -732,13 +725,13 @@
             const mEmail = document.getElementById('submit-manager-email').value;
 
             if (statusToSave === 'Confirm') {
-                if (!elective || !getActivity('elective') || !getActivity('mandatory') || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
-                    return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลและเลือกกิจกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
+                if (!elective || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
+                    return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลเป้าหมายพฤติกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
                 }
                 
                 if (isGoal3Visible) {
-                    if (!getActivity('mandatory2') || !p3) {
-                        return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกกิจกรรมและเป้าหมายของ Goal 03 ให้ครบถ้วน', 'warning');
+                    if (!p3) {
+                        return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกเป้าหมายพฤติกรรมของ Goal 03 ให้ครบถ้วน', 'warning');
                     }
                 }
 
