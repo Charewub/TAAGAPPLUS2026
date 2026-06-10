@@ -282,7 +282,7 @@
                     <div class="auto-gen-box" id="autogen-elective">
                         <div class="performance-input-section">
                             <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
-                                เพื่อการประเมินผลลัทธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-elective" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-elective" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-elective" class="verb-select" onchange="updateDynamicText('elective')">
                                 <option value="">-- (เลือก 1 ข้อ) --</option>
@@ -335,7 +335,7 @@
                     <div class="auto-gen-box" id="autogen-mandatory">
                         <div class="performance-input-section">
                             <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
-                                เพื่อการประเมินผลลัทธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-mandatory" class="verb-select" onchange="updateDynamicText('mandatory')">
                                 <option value="">-- (เลือก 1 ข้อ) --</option>
@@ -391,7 +391,7 @@
                     <div class="auto-gen-box" id="autogen-mandatory2">
                         <div class="performance-input-section">
                             <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
-                                เพื่อการประเมินผลลัทธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory2" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory2" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-mandatory2" class="verb-select" onchange="updateDynamicText('mandatory2')">
                                 <option value="">-- (เลือก 1 ข้อ) --</option>
@@ -447,7 +447,7 @@
             <button id="btn-draft" class="btn btn-draft" onclick="submitIDP('Draft')">
                 <i class="fa-solid fa-floppy-disk" style="margin-right:8px;"></i> บันทึกร่าง (Save Draft)
             </button>
-            <button class="btn btn-draft" style="background-color: #0284C7; color: white;" onclick="window.print()">
+            <button id="btn-pdf" class="btn btn-draft" style="background-color: #0284C7; color: white;" onclick="window.print()">
                 <i class="fa-solid fa-file-pdf" style="margin-right:8px;"></i> บันทึกไฟล์เป็น PDF (Save as PDF)
             </button>
             <button id="btn-confirm" class="btn" onclick="submitIDP('Confirm')">
@@ -548,7 +548,10 @@
             elContainer.innerHTML = '';
             currentPackage.electives.forEach((c, idx) => {
                 if(c.title.trim() !== '') {
-                    elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${c.title}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
+                    // 🔴 แปลงเครื่องหมาย ' ป้องกันปัญหา Javascript Error เวลากดคลิก
+                    let safeTitle = c.title.replace(/'/g, "\\'");
+                    
+                    elContainer.innerHTML += `<div class="comp-card" id="card-${idx}" onclick="selectElective(${idx}, '${safeTitle}')"><input type="radio" name="elective" id="radio-${idx}" value="${c.title}"><div><b class="comp-title">${c.title}</b><span class="comp-desc">${c.desc}</span></div></div>`;
                 }
             });
 
@@ -582,7 +585,6 @@
         function autoFillData() {
             const statusBadge = document.getElementById('form-status-badge');
             
-            // 🔴 แจ้งเตือนและล็อกปุ่มหากข้อมูลเคยถูก Confirm ไปแล้ว
             if(currentSavedData.status === 'Confirm') {
                 statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
                 Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูลได้อีก', 'info');
@@ -693,7 +695,6 @@
             const mName = document.getElementById('submit-manager-name').value;
             const mEmail = document.getElementById('submit-manager-email').value;
 
-            // ตรวจสอบความถูกต้องของข้อมูลเบื้องต้น
             if (statusToSave === 'Confirm') {
                 if (!elective || !getActivity('elective') || !getActivity('mandatory') || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
                     return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลและเลือกกิจกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
@@ -709,7 +710,6 @@
                     return Swal.fire('ข้อตกลง', 'กรุณาติ๊กช่องรับรองด้านล่างก่อนส่งข้อมูล', 'warning');
                 }
 
-                // 🔴 เด้งกล่องยืนยันถ้าผู้ใช้กด Confirm
                 Swal.fire({
                     title: 'ยืนยันการส่งแผนพัฒนาตนเอง?',
                     html: "หากกดยืนยันแล้ว <b style='color:#E32526;'>ท่านจะไม่สามารถกลับมาแก้ไขข้อมูลได้อีก</b><br>และระบบจะส่งอีเมลไปยังหัวหน้างานของท่านทันที",
@@ -721,19 +721,16 @@
                     cancelButtonText: 'กลับไปแก้ไข'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // ถ้ากดตกลง ค่อยเรียกฟังก์ชันส่งข้อมูลไปหลังบ้าน
                         executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail);
                     }
                 });
 
             } else {
-                // สำหรับ Save Draft ข้ามกล่องยืนยันไปเลย
                 if (!elective) return Swal.fire('แจ้งเตือน', 'คุณต้องเลือกวิชา Goal 01 (Elective) ก่อนทำการบันทึกร่างครับ', 'info');
                 executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail);
             }
         }
 
-        // 🔴 ฟังก์ชันแยกสำหรับยิงข้อมูลไปหา GAS
         async function executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail) {
             const alertTitle = statusToSave === 'Confirm' ? 'กำลังส่งข้อมูลและอีเมล...' : 'กำลังบันทึกร่าง...';
             Swal.fire({ title: alertTitle, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
@@ -780,7 +777,7 @@
                         } else {
                             document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
                             
-                            // 🔴 ล็อกปุ่มให้กลายเป็นสีเทากดไม่ได้ ทันทีที่ส่งสำเร็จ
+                            // ล็อกปุ่มให้กลายเป็นสีเทากดไม่ได้ ทันทีที่ส่งสำเร็จ
                             document.getElementById('btn-draft').disabled = true;
                             document.getElementById('btn-confirm').disabled = true;
 
