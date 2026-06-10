@@ -42,7 +42,6 @@
         .btn-draft { background: var(--aa-draft); }
         .btn-draft:hover { background: #475569; box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2); }
 
-        /* ปรับปุ่มให้เป็นสีเทาและกดไม่ได้เมื่อสถานะถูกล็อก */
         .btn:disabled {
             background-color: #CBD5E1 !important;
             color: #94A3B8 !important;
@@ -87,7 +86,7 @@
         .badge-confirm { background: #DCFCE7; color: #14532D; border: 1px solid #BBF7D0; }
 
         .corp-card { background: white; padding: 2.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--aa-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .corp-card h3 { margin-bottom: 18px; color: var(--aa-black); font-size: 1.3rem; border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; font-weight: 700; }
+        .corp-card h3 { margin-bottom: 18px; font-size: 1.3rem; border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; font-weight: 700; }
         
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 20px; }
         .comp-card { border: 2px solid var(--aa-border); padding: 1.5rem; border-radius: 10px; cursor: pointer; background: #F8FAFC; display: flex; align-items: flex-start; gap: 12px; text-align: left; transition: 0.2s; }
@@ -258,7 +257,9 @@
         </div>
 
         <div class="corp-card">
-            <h3><b>🎯 Goal 01</b>- สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)</h3>
+            <h3 style="color: var(--aa-black);">
+                <span style="color: #EE3325;"><b>🎯 Goal 01</b></span> - สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)
+            </h3>
             <div class="cards-grid" id="render-electives"></div>
             
             <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
@@ -282,7 +283,7 @@
                     <div class="auto-gen-box" id="autogen-elective">
                         <div class="performance-input-section">
                             <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
-                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-elective" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-elective" style="color: #EE3325;">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-elective" class="verb-select" onchange="updateDynamicText('elective')">
                                 <option value="">-- (เลือก 1 ข้อ) --</option>
@@ -313,7 +314,9 @@
         </div>
 
         <div class="corp-card">
-            <h3>🎯 Goal 02 - Plus One (สมรรถนะบังคับ)</h3>
+            <h3 style="color: var(--aa-black);">
+                <span style="color: #18AF4B;"><b>🎯 Goal 02</b></span> - Plus One (สมรรถนะบังคับ)
+            </h3>
             <div id="render-mandatory"></div>
             <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
                 <div class="form-group">
@@ -335,7 +338,7 @@
                     <div class="auto-gen-box" id="autogen-mandatory">
                         <div class="performance-input-section">
                             <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
-                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory" style="color: #18AF4B;">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-mandatory" class="verb-select" onchange="updateDynamicText('mandatory')">
                                 <option value="">-- (เลือก 1 ข้อ) --</option>
@@ -366,8 +369,10 @@
         </div>
 
         <div class="corp-card hidden" id="goal3-container">
-            <h3 style="color: var(--aa-red);">🎯 Goal 03 - Plus Two (สมรรถนะบังคับตัวที่ 2)</h3>
-            <div class="mandatory-box" style="border-left: 6px solid #F59E0B;">
+            <h3 style="color: var(--aa-black);">
+                <span style="color: #99CC33;"><b>🎯 Goal 03</b></span> - Plus Two (สมรรถนะบังคับตัวที่ 2)
+            </h3>
+            <div class="mandatory-box" style="border-left: 6px solid #99CC33;">
                 <b class="comp-title" style="font-size:1.15rem;" id="goal3-display-title">🔒 [...]</b>
                 <span class="comp-desc" style="margin-top:5px;" id="goal3-display-desc"></span>
             </div>
@@ -391,7 +396,7 @@
                     <div class="auto-gen-box" id="autogen-mandatory2">
                         <div class="performance-input-section">
                             <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
-                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory2" style="color: var(--aa-red);">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
+                                เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory2" style="color: #99CC33;">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-mandatory2" class="verb-select" onchange="updateDynamicText('mandatory2')">
                                 <option value="">-- (เลือก 1 ข้อ) --</option>
@@ -482,6 +487,12 @@
             const commitmentText = document.getElementById(`commitment-text-${type}`);
             const autoGenBox = document.getElementById(`autogen-${type}`);
 
+            // ให้คำอธิบายและไฮไลต์แยกสีตามแต่ละ Goal อย่างเหมาะสม
+            let highlightColor = "var(--aa-red)";
+            if(type === 'elective') highlightColor = "#EE3325";
+            if(type === 'mandatory') highlightColor = "#18AF4B";
+            if(type === 'mandatory2') highlightColor = "#99CC33";
+
             if (verb && performancePrompts[verb]) {
                 descText.innerText = performancePrompts[verb].question;
                 descBox.classList.remove('hidden');
@@ -492,7 +503,7 @@
             }
 
             if (verb && inputResult.value.trim() !== '') {
-                commitmentText.innerHTML = `<b><span style="color: var(--aa-red);">${comp}</span></b><br><br>"จะนำทักษะหรือความรู้นี้มา<b>${verb}</b><br><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b> <br><span class='highlight-text'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
+                commitmentText.innerHTML = `<b><span style="color: ${highlightColor};">${comp}</span></b><br><br>"จะนำทักษะหรือความรู้นี้มา<b>${verb}</b><br><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b> <br><span class='highlight-text' style='color: ${highlightColor};'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
                 statementWrapper.classList.remove('hidden');
                 autoGenBox.classList.add('has-statement'); 
             } else {
@@ -563,13 +574,11 @@
             document.getElementById('display-name').innerText = currentEmployee.name;
             document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; 
             
-            // 🔴 แก้ไขปัญหาโหลดซ้อนทับกันหลายรอบ bằngการใช้ตัวแปรพักข้อมูล
             const elContainer = document.getElementById('render-electives');
             let electiveHtml = '';
             
             currentPackage.electives.forEach((c, idx) => {
                 if(c.title.trim() !== '') {
-                    // 🔴 ป้องกันตัวอักษรพิเศษทุกรูปแบบที่อาจทำให้คลิกแล้วเกิด Error
                     let safeTitle = c.title.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, ' ').replace(/\r/g, '');
                     let valTitle = c.title.replace(/"/g, '&quot;');
                     
@@ -581,7 +590,7 @@
             });
             elContainer.innerHTML = electiveHtml;
 
-            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
+            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box" style="border-left: 6px solid #18AF4B;"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
             updateDynamicText('mandatory');
 
@@ -602,7 +611,6 @@
             document.getElementById(`card-${idx}`).classList.add('active');
             document.getElementById(`radio-${idx}`).checked = true;
             
-            // 🔴 สั่งให้แบบฟอร์มกางออกมาแบบชัวร์ๆ ทันทีที่คลิก
             const electiveForm = document.getElementById('elective-form');
             electiveForm.classList.remove('hidden');
             electiveForm.style.display = 'block';
