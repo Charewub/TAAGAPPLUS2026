@@ -638,7 +638,7 @@
             
             if(currentSavedData.status === 'Confirm') {
                 statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
-                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูลได้อีก', 'info');
+                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูล หากมีการเปลี่ยนแปลงโปรดแจ้ง TMC ที่ taa_learning@airasia.com ', 'info');
                 
                 document.getElementById('btn-draft').disabled = true;
                 document.getElementById('btn-confirm').disabled = true;
