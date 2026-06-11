@@ -5,168 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAP+ Learning Plan</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
             --aa-red: #E32526;
-            --aa-dark-red: #C81E1E;
-            --aa-black: #111111;
-            --aa-light-gray: #F4F5F7;
+            --aa-dark-red: #B91C1C;
+            --aa-black: #1E293B;
+            --aa-light-gray: #F1F5F9;
             --aa-border: #E2E8F0;
             --gap-blue: #0284C7;
             --gap-light-blue: #F0F9FF;
             --aa-draft: #64748B;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Sarabun', sans-serif; }
-        body { background-color: var(--aa-light-gray); color: #333; }
+        body { background-color: var(--aa-light-gray); color: var(--text-main); font-size: 16px; -webkit-font-smoothing: antialiased; }
         .hidden { display: none !important; }
 
-        /* Login Section */
-        #login-section { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .login-card { background: white; padding: 3.5rem 2rem; border-radius: 12px; width: 100%; max-width: 450px; border-top: 6px solid var(--aa-red); box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; }
-        .login-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
-        .login-header img { margin-bottom: 20px; }
-        .login-card h2 { color: var(--aa-black); font-size: 1.5rem; margin-bottom: 5px; }
-        .login-card p { color: #64748B; font-size: 1rem; margin-bottom: 25px; }
-        
-        .login-card label { font-weight: 600; font-size: 1rem; margin-bottom: 10px; display: block; }
-        .form-control { width: 100%; padding: 14px; border: 1px solid #CBD5E1; border-radius: 8px; margin-bottom: 20px; font-size: 1.1rem; outline: none; transition: 0.2s; }
-        .form-control:focus { border-color: var(--aa-red); box-shadow: 0 0 0 4px rgba(227,37,38,0.1); }
-        .form-control:disabled { background-color: #F8FAFC; color: #475569; cursor: not-allowed; }
-        
-        .btn { background: var(--aa-red); color: white; border: none; padding: 14px 24px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 700; font-size: 1.1rem; transition: 0.2s; }
-        .btn:hover { background: var(--aa-dark-red); box-shadow: 0 4px 12px rgba(227, 37, 38, 0.2); }
-        .btn-draft { background: var(--aa-draft); }
-        .btn-draft:hover { background: #475569; box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2); }
+        /* ==================== 1. UI สำหรับหน้าจอปกติ (Corporate Look) ==================== */
+        @media screen {
+            #print-report-container { display: none !important; } /* ซ่อนตัวพิมพ์ในหน้าจอปกติเด็ดขาด */
 
-        .btn:disabled {
-            background-color: #CBD5E1 !important;
-            color: #94A3B8 !important;
-            cursor: not-allowed !important;
-            box-shadow: none !important;
-            pointer-events: none !important;
+            #login-section { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+            .login-card { background: white; padding: 3rem 2.5rem; border-radius: var(--radius-lg); width: 100%; max-width: 420px; border-top: 4px solid var(--aa-red); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); text-align: center; }
+            .login-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 25px; }
+            .login-header img { margin-bottom: 15px; }
+            .login-card h2 { color: var(--aa-black); font-size: 1.25rem; font-weight: 700; margin-bottom: 5px; }
+            .login-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
+            
+            .login-card label { font-weight: 600; font-size: 0.95rem; color: var(--text-main); margin-bottom: 8px; display: block; text-align: left; }
+            .form-control { width: 100%; padding: 12px 14px; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 1rem; color: var(--aa-black); outline: none; transition: all 0.2s; background: #fff; }
+            .form-control:focus { border-color: var(--aa-red); box-shadow: 0 0 0 1px var(--aa-red); }
+            .form-control:disabled { background-color: #F8FAFC; color: #94A3B8; cursor: not-allowed; border-color: #E2E8F0; }
+            
+            .btn { background: var(--aa-red); color: white; border: none; padding: 12px 24px; border-radius: var(--radius-sm); cursor: pointer; width: 100%; font-weight: 600; font-size: 1rem; transition: background-color 0.2s, box-shadow 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+            .btn:hover { background: var(--aa-dark-red); }
+            .btn-draft { background: white; color: var(--text-main); border: 1px solid #CBD5E1; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+            .btn-draft:hover { background: #F8FAFC; border-color: #94A3B8; }
+            .btn:disabled { background-color: #E2E8F0 !important; color: #94A3B8 !important; border-color: #E2E8F0 !important; cursor: not-allowed !important; box-shadow: none !important; pointer-events: none !important; }
+
+            .skeleton-box { position: relative; overflow: hidden; background-color: #E2E8F0; border-radius: var(--radius-sm); }
+            .skeleton-box::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform: translateX(-100%); background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0) 40%); animation: shimmer 1.5s infinite; }
+            @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+            #main-app-section, #skeleton-section { padding: 2rem 1.5rem; max-width: 1040px; margin: 0 auto; }
+            .app-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--aa-border); padding-bottom: 20px; margin-bottom: 25px; gap: 15px; }
+            .header-left { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+            .title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+            .app-header h2 { font-size: 1.5rem; color: var(--aa-black); font-weight: 700; margin: 0; letter-spacing: -0.3px; }
+            .user-profile { text-align: left; background: white; border: 1px solid var(--aa-border); padding: 8px 16px; border-radius: var(--radius-sm); display: inline-block; width: fit-content; margin-top: 5px; }
+            .user-profile b { font-size: 1.05rem; color: var(--aa-black); font-weight: 600; }
+            .user-profile span { color: var(--text-muted); font-size: 0.95rem; margin-left: 8px; padding-left: 8px; border-left: 1px solid var(--aa-border); }
+            .header-logo { flex-shrink: 0; }
+            .header-logo img { width: 120px; display: block; }
+
+            .intro-box { background: white; border: 1px solid var(--aa-border); border-left: 4px solid var(--gap-blue); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); margin-bottom: 25px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+            .intro-box p { font-size: 0.95rem; line-height: 1.6; color: var(--text-main); }
+            
+            .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2px; text-transform: uppercase; }
+            .badge-draft { background: #F8FAFC; color: #475569; border: 1px solid #CBD5E1; }
+            .badge-confirm { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+
+            .corp-card { background: white; padding: 2rem 2.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--aa-border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+            .corp-card h3 { margin-bottom: 20px; font-size: 1.15rem; border-bottom: 1px solid var(--aa-border); padding-bottom: 12px; font-weight: 600; letter-spacing: -0.2px; color: var(--aa-black); }
+            
+            .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
+            
+            .comp-card { border: 1px solid #CBD5E1; padding: 1.25rem; border-radius: var(--radius-sm); cursor: pointer; background: white; display: flex; align-items: flex-start; gap: 12px; text-align: left; transition: all 0.2s ease; position: relative; }
+            .comp-card:hover { border-color: #94A3B8; background-color: #F8FAFC; }
+            .comp-card.active { border-color: var(--aa-red); background: white; box-shadow: inset 4px 0 0 0 var(--aa-red), 0 2px 4px rgba(0,0,0,0.02); }
+            .comp-card input[type="radio"] { margin-top: 4px; accent-color: var(--aa-red); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer; }
+            .comp-title { font-weight: 600; color: var(--aa-black); display: block; margin-bottom: 6px; font-size: 1rem; }
+            .comp-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; display: block; }
+            
+            .mandatory-box { background: white; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--aa-border); box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+
+            .form-group { margin-bottom: 24px; text-align: left; position: relative; }
+            .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--aa-black); font-size: 0.95rem; }
+            
+            .activity-info-container { background: #F8FAFC; border: 1px solid var(--aa-border); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 8px; }
+            .activity-item { display: flex; align-items: flex-start; gap: 12px; background: white; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--aa-border); margin-bottom: 8px; color: var(--text-main); font-size: 0.95rem; box-shadow: 0 1px 2px rgba(0,0,0,0.01); }
+            .activity-item:last-child { margin-bottom: 0; }
+            .activity-item.elearn i { color: var(--gap-blue); font-size: 1.1rem; margin-top: 2px; width: 20px; text-align: center; }
+            .activity-item.academy i { color: var(--aa-red); font-size: 1.1rem; margin-top: 2px; width: 20px; text-align: center; }
+
+            .auto-gen-box { background: white; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--aa-border); line-height: 1.6; font-size: 0.95rem; color: var(--text-main); box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+            
+            .verb-select { width: 100%; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid #CBD5E1; font-size: 0.95rem; color: var(--aa-black); font-weight: 500; outline: none; background: white; cursor: pointer; margin-top: 8px; margin-bottom: 20px; transition: border-color 0.2s; }
+            .verb-select:focus { border-color: var(--aa-red); box-shadow: 0 0 0 1px var(--aa-red); }
+
+            .dynamic-question { font-size: 0.95rem; font-weight: 600; color: var(--aa-black); margin-bottom: 8px; }
+
+            .input-with-suffix { position: relative; width: 100%; }
+            .input-with-suffix .inline-input { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid #CBD5E1; font-family: 'Sarabun', sans-serif; font-size: 0.95rem; outline: none; box-sizing: border-box; resize: vertical; min-height: 80px; line-height: 1.5; color: var(--text-main); background: #fff; transition: all 0.2s; }
+            .input-with-suffix .inline-input:focus { border-color: var(--aa-red); box-shadow: 0 0 0 1px var(--aa-red); }
+
+            .statement-wrapper { background: #F8FAFC; border: 1px solid var(--aa-border); border-left: 4px solid var(--gap-blue); padding: 1.25rem; margin-top: 20px; border-radius: var(--radius-sm); color: var(--text-main); transition: 0.3s; }
+            .statement-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--aa-black); letter-spacing: 0.5px; text-transform: uppercase; }
+            .statement-content { font-size: 0.95rem; line-height: 1.6; color: var(--text-main); background: white; padding: 12px; border: 1px solid var(--aa-border); border-radius: var(--radius-sm); }
+            .highlight-text { font-weight: 600; color: var(--aa-black); }
+
+            .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 10px; }
+            .readonly-input { background-color: #F8FAFC; color: var(--text-muted); border-color: #E2E8F0; font-weight: 500; }
+            .add-manager-btn { position: absolute; right: 0; top: 0; background: white; color: var(--aa-red); border: 1px solid var(--aa-border); border-radius: var(--radius-sm); padding: 2px 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+            .add-manager-btn:hover { border-color: var(--aa-red); background: #FEF2F2; }
+
+            .confirmation-box { background-color: #F8FAFC; border: 1px solid var(--aa-border); padding: 1.25rem; border-radius: var(--radius-sm); display: flex; align-items: flex-start; gap: 12px; margin-top: 25px; box-shadow: 0 1px 2px rgba(0,0,0,0.01); }
+            .confirmation-box input { width: 18px; height: 18px; accent-color: var(--aa-red); flex-shrink: 0; cursor: pointer; margin-top: 2px; }
+            .confirmation-box label { font-weight: 600; color: var(--aa-black); cursor: pointer; font-size: 0.95rem; line-height: 1.5; }
+
+            .action-bar { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; margin-bottom: 60px; flex-wrap: wrap; }
+            .action-bar .btn { width: auto; padding: 10px 20px; font-size: 0.95rem; }
+
+            @media (max-width: 768px) {
+                .app-header { flex-direction: column-reverse; align-items: flex-start; }
+                .header-logo { align-self: flex-start; margin-bottom: 10px; }
+                .user-profile { margin-top: 10px; }
+                .manager-grid { grid-template-columns: 1fr; gap: 10px; }
+                .add-manager-btn { position: relative; display: inline-block; margin-top: 8px; }
+                .action-bar { justify-content: center; background: white; padding: 15px; border-top: 1px solid var(--aa-border); position: sticky; bottom: 0; z-index: 100; margin-bottom: 0; box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.05); border-radius: var(--radius-md) var(--radius-md) 0 0; }
+                .action-bar .btn { width: 100%; }
+                #main-app-section { padding-bottom: 80px; }
+                .corp-card { padding: 1.5rem; }
+            }
         }
 
-        /* Skeleton Loading Animation */
-        .skeleton-box {
-            position: relative;
-            overflow: hidden;
-            background-color: #E2E8F0;
-            border-radius: 8px;
-        }
-        .skeleton-box::after {
-            content: "";
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            transform: translateX(-100%);
-            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0) 40%);
-            animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer { 100% { transform: translateX(100%); } }
-
-        /* Main App Section */
-        #main-app-section, #skeleton-section { padding: 2rem 1.5rem; max-width: 1000px; margin: 0 auto; }
-        .app-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--aa-red); padding-bottom: 15px; margin-bottom: 25px; gap: 15px; }
-        .header-left { display: flex; flex-direction: column; gap: 5px; flex: 1; }
-        .title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .app-header h2 { font-size: 1.7rem; color: var(--aa-black); font-weight: 700; margin: 0; }
-        .user-profile { text-align: left; }
-        .user-profile b { font-size: 1.3rem; color: var(--aa-black); }
-        .user-profile span { color: #64748B; font-size: 1rem; margin-left: 8px; padding-left: 8px; border-left: 2px solid #CBD5E1; }
-        .header-logo { flex-shrink: 0; }
-        .header-logo img { width: 130px; display: block; }
-
-        .intro-box { background: var(--gap-light-blue); border-left: 4px solid var(--gap-blue); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
-        .intro-box p { font-size: 1rem; line-height: 1.6; color: #334155; }
-        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; vertical-align: middle; }
-        .badge-draft { background: #FEF08A; color: #0F172A; border: 1px solid #FDE047; }
-        .badge-confirm { background: #DCFCE7; color: #14532D; border: 1px solid #BBF7D0; }
-
-        .corp-card { background: white; padding: 2.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--aa-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .corp-card h3 { margin-bottom: 18px; font-size: 1.3rem; border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; font-weight: 700; }
-        
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 20px; }
-        .comp-card { border: 2px solid var(--aa-border); padding: 1.5rem; border-radius: 10px; cursor: pointer; background: #F8FAFC; display: flex; align-items: flex-start; gap: 12px; text-align: left; transition: 0.2s; }
-        .comp-card:hover { border-color: #CBD5E1; }
-        .comp-card.active { border-color: var(--aa-red); background: #FEF2F2; }
-        .comp-card input[type="radio"] { margin-top: 5px; accent-color: var(--aa-red); width: 20px; height: 20px; flex-shrink: 0; }
-        .comp-title { font-weight: 700; color: var(--aa-black); display: block; margin-bottom: 6px; font-size: 1.1rem; }
-        .comp-desc { font-size: 0.95rem; color: #475569; line-height: 1.5; display: block; }
-        
-        .mandatory-box { background: #F8FAFC; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--aa-border); border-left: 6px solid var(--aa-red); }
-
-        .form-group { margin-bottom: 20px; text-align: left; position: relative; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #334155; }
-        
-        .activity-info-container { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 15px; margin-bottom: 10px; }
-        .activity-item { display: flex; align-items: flex-start; gap: 12px; background: white; padding: 12px 15px; border-radius: 6px; border: 1px solid #CBD5E1; margin-bottom: 8px; color: #334155; font-size: 1.05rem; }
-        .activity-item:last-child { margin-bottom: 0; }
-        .activity-item.elearn i { color: var(--gap-blue); font-size: 1.2rem; margin-top: 2px; }
-        .activity-item.academy i { color: var(--aa-red); font-size: 1.2rem; margin-top: 2px; }
-
-        .auto-gen-box { background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px dashed #CBD5E1; line-height: 1.8; font-size: 1.05rem; color: #334155; }
-        
-        .verb-select { width: 100%; padding: 12px 15px; border-radius: 8px; border: 2px solid #CBD5E1; font-size: 1.05rem; color: var(--aa-black); font-weight: 600; outline: none; background: white; cursor: pointer; margin-top: 10px; margin-bottom: 20px; transition: 0.2s; }
-        .verb-select:focus { border-color: var(--aa-red); box-shadow: 0 0 0 3px rgba(227,37,38,0.1); }
-
-        .dynamic-question { font-size: 1.1rem; font-weight: 700; color: var(--aa-black); margin-bottom: 10px; }
-
-        .input-with-suffix { position: relative; width: 100%; }
-        .input-with-suffix .inline-input { 
-            width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: 'Sarabun', sans-serif; font-size: 1.05rem; outline: none; box-sizing: border-box; resize: vertical; min-height: 90px; line-height: 1.5;
-        }
-        .input-with-suffix .inline-input:focus { border-color: var(--aa-red); }
-
-        .statement-wrapper { background: #F0F9FF; border: 1px solid #BAE6FD; border-left: 4px solid var(--gap-blue); padding: 20px; margin-top: 20px; border-radius: 8px; color: #0369A1; transition: 0.3s; }
-        .statement-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--gap-blue); }
-        .statement-content { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: #334155; }
-        .highlight-text { font-weight: 700; color: var(--aa-red); }
-
-        .manager-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 10px; }
-        .readonly-input { background-color: #F1F5F9; color: #475569; border-color: #CBD5E1; font-weight: 600; }
-        .add-manager-btn { position: absolute; right: 0; top: 0; background: #FEF2F2; color: var(--aa-red); border: 1px solid #FCA5A5; border-radius: 4px; padding: 3px 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .add-manager-btn:hover { background: var(--aa-red); color: white; }
-
-        .confirmation-box { background-color: #FEF2F2; border: 1px solid #FCA5A5; padding: 1.5rem; border-radius: 8px; display: flex; align-items: flex-start; gap: 15px; margin-top: 20px; }
-        .confirmation-box input { width: 22px; height: 22px; accent-color: var(--aa-red); flex-shrink: 0; cursor: pointer; }
-
-        .action-bar { display: flex; justify-content: flex-end; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
-        .action-bar .btn { width: auto; padding: 15px 30px; }
-
-        @media (max-width: 768px) {
-            .app-header { flex-direction: column-reverse; align-items: flex-start; }
-            .header-logo { align-self: flex-start; margin-bottom: 15px; }
-            .manager-grid { grid-template-columns: 1fr; gap: 10px; }
-            .add-manager-btn { position: relative; display: inline-block; margin-top: 8px; }
-            .action-bar { justify-content: center; }
-            .action-bar .btn { width: 100%; }
-        }
-
-        /* ==================== CSS สำหรับการพิมพ์ ==================== */
+        /* ==================== 2. สไตล์สำหรับหน้า Print (Mockup V8 เป๊ะๆ) ==================== */
         @media print {
-            @page { size: A4; margin: 1cm; }
-            *, *:before, *:after, html, body { overflow: visible !important; height: auto !important; max-height: none !important; }
-            html, body { background-color: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0 !important; padding: 0 !important; }
-            body.swal2-shown, body.swal2-height-auto { overflow: visible !important; height: auto !important; }
-            #login-section, .action-bar, .intro-box, .add-manager-btn, .btn { display: none !important; }
-            #main-app-section { display: block !important; padding: 0 !important; margin: 0 auto !important; max-width: 100% !important; width: 100% !important; }
-            .cards-grid { display: block !important; }
-            .corp-card { display: block !important; border: 1px solid #ccc !important; box-shadow: none !important; padding: 20px !important; margin-bottom: 20px !important; background-color: white !important; page-break-inside: avoid; }
-            .comp-card:not(.active) { display: none !important; }
-            .comp-card.active { display: flex !important; border: 1px solid #ccc !important; background-color: #F8FAFC !important; padding: 12px !important; margin-bottom: 15px !important; }
-            .mandatory-box { background: #F8FAFC !important; border: 1px solid #ccc !important; border-left: 4px solid var(--aa-red) !important; display: block !important;}
-            .confirmation-box { background: white !important; border: none !important; padding: 10px 0 !important; display: block !important;}
-            .auto-gen-box { border: none !important; padding: 0 !important; background: transparent !important; display: block !important; }
-            .has-statement .performance-input-section { display: none !important; }
-            .activity-info-container { border: 1px solid #ccc !important; background: transparent !important; margin-bottom: 5px !important; }
-            .print-hide { display: none !important; }
-            .statement-wrapper { display: block !important; background: transparent !important; border: none !important; border-left: 4px solid var(--gap-blue) !important; padding: 10px 15px !important; margin-top: 0 !important; }
-            .statement-content { font-style: normal !important; color: black !important; font-size: 11pt !important; }
-            .statement-title { color: black !important; }
-            .highlight-text { color: black !important; font-weight: bold !important; text-decoration: underline !important; }
+            @page { size: A4; margin: 0 !important; }
+            body { padding: 0 !important; background-color: white !important; color: #111 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            
+            /* ซ่อนหน้าเว็บปกติทั้งหมด */
+            #login-section, #skeleton-section, #main-app-section { display: none !important; }
+            
+            /* เปิดเฉพาะ Template ปริ้นท์ */
+            #print-report-container { display: flex !important; justify-content: center; background: white; }
+
+            /* Copy โครงสร้างจาก Mockup V8 มาใส่ตรงนี้ */
+            .a4-page {
+                width: 210mm; height: 296mm; max-height: 296mm; overflow: hidden;
+                padding: 10mm 15mm; box-sizing: border-box; display: block;
+            }
+
+            .pr-header { 
+                display: flex; justify-content: space-between; align-items: flex-end; 
+                border-bottom: 2px solid #1E293B; padding-bottom: 6px; margin-bottom: 12px; 
+            }
+            .pr-logo img { width: 110px; }
+            .pr-info { text-align: right; }
+            .pr-info h2 { font-size: 11.5pt; color: #1E293B; margin: 0 0 2px 0; font-weight: 700; }
+            .pr-user { margin: 0; }
+            .pr-user b { font-size: 9.5pt; color: #1E293B; }
+            .pr-user span { font-size: 8.5pt; color: #64748B; border-left: 1px solid #CBD5E1; margin-left: 6px; padding-left: 6px; }
+
+            .pr-card { margin-bottom: 12px; }
+            .pr-card h3 { font-size: 10.5pt; border-bottom: 1px dashed #E2E8F0; padding-bottom: 3px; margin-bottom: 4px; font-weight: 700; }
+
+            .text-goal1 { color: #E32526 !important; } .text-goal2 { color: #18AF4B !important; } .text-goal3 { color: #99CC33 !important; }
+            .border-goal1 { border-left: 4px solid #E32526 !important; } .border-goal2 { border-left: 4px solid #18AF4B !important; } .border-goal3 { border-left: 4px solid #99CC33 !important; }
+
+            .pr-row { display: flex; align-items: flex-start; margin-bottom: 2px; font-size: 9pt; line-height: 1.35; }
+            .pr-label { width: 110px; flex-shrink: 0; font-weight: 600; color: #1E293B; }
+            .pr-value { flex-grow: 1; color: #334155; }
+            
+            .pr-list { margin: 0; padding-left: 16px; }
+            .pr-list li { margin-bottom: 1px; }
+
+            .pr-statement { border: 1px solid #E2E8F0; padding: 6px 10px; margin-top: 4px; border-radius: 4px; font-size: 9pt; line-height: 1.35; color: #334155; background-color: #F8FAFC; }
+            .pr-statement b { color: #1E293B; }
+            .highlight-text { font-weight: 600; color: #0F172A; }
+
+            .pr-signature { display: flex; justify-content: space-around; padding-top: 15px; border-top: 1px solid #CBD5E1; margin-top: 45px; }
+            .pr-sig-box { text-align: center; width: 45%; }
+            .pr-sig-box p { margin: 3px 0; font-size: 9.5pt; color: #1E293B; }
+            .pr-sig-space { height: 35px; border-bottom: 1px dotted #94A3B8; margin: 0 30px 4px 30px; }
         }
     </style>
 </head>
@@ -182,7 +201,7 @@
             <form onsubmit="processLogin(event)">
                 <label>กรุณากรอกรหัสพนักงาน 7 หลัก (Employee ID)</label>
                 <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" style="text-align: center; letter-spacing: 2px;" id="login-id" placeholder="ตัวอย่าง '1000000'" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                <button type="submit" class="btn">เข้าสู่ระบบ</button>
+                <button type="submit" class="btn">เข้าสู่ระบบ (Login)</button>
             </form>
         </div>
     </div>
@@ -194,13 +213,13 @@
                 <div class="skeleton-box" style="height: 25px; width: 40%;"></div>
             </div>
         </div>
-        <div class="skeleton-box" style="height: 120px; width: 100%; border-radius: 8px; margin-bottom: 30px;"></div>
-        <div class="corp-card" style="padding: 2.5rem;">
+        <div class="skeleton-box" style="height: 120px; width: 100%; border-radius: 6px; margin-bottom: 30px;"></div>
+        <div class="corp-card">
             <div class="skeleton-box" style="height: 28px; width: 50%; margin-bottom: 20px;"></div>
             <div class="cards-grid">
-                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 10px;"></div>
-                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 10px;"></div>
-                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 10px;"></div>
+                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 6px;"></div>
+                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 6px;"></div>
+                <div class="skeleton-box" style="height: 140px; width: 100%; border-radius: 6px;"></div>
             </div>
         </div>
     </div>
@@ -229,12 +248,12 @@
         </div>
 
         <div class="corp-card">
-            <h3 style="color: var(--aa-black);">
-                <span style="color: #EE3325;"><b>🎯 Goal 01 (Selective)</b></span> - สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)
+            <h3 style="color: var(--aa-red);">
+                <span><b>🎯 Goal 01 (Selective)</b></span> - สมรรถนะ (ความรู้,ทักษะ,ทัศนคติ)ที่มีความจำเป็นในแผนกของท่าน (โปรดเลือกเพียง 1 ทักษะที่ท่านรู้สึกว่าท่านขาด หรือรู้สึกว่ามีประโยชน์ หรือเล็งเห็นความจำเป็นอย่างยิ่งในการทำงาน)
             </h3>
             <div class="cards-grid" id="render-electives"></div>
             
-            <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
+            <div id="elective-form" class="hidden" style="margin-top: 25px; border-top: 1px solid #E2E8F0; padding-top: 25px;">
                 <div class="form-group">
                     <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
                     <select class="form-control" disabled><option>1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</option></select>
@@ -242,7 +261,7 @@
                 <div class="form-group">
                     <label>📚 A-Activity (ช่องทางการเรียนรู้และพัฒนา)</label>
                     <div id="activity-elective-container" class="activity-info-container"></div>
-                    <div class="print-hide" style="font-size: 0.95rem; color: #64748B; font-style: italic; line-height: 1.4; margin-bottom: 20px;">
+                    <div style="font-size: 0.9rem; color: #64748B; font-style: normal; line-height: 1.5; margin-top: 8px; margin-bottom: 20px;">
                         <i class="fa-solid fa-circle-info" style="color: #0284C7; margin-right: 4px;"></i>
                         ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ (ทั้งหลักสูตร eLearning และ Academy) ตามที่ท่านเลือกไว้ ไปยังอีเมลของท่านอีกครั้ง ภายหลังสิ้นสุดกระบวนการจัดทำแผน GAP+ ในภาพรวม
                     </div>
@@ -252,11 +271,11 @@
                     
                     <div class="auto-gen-box" id="autogen-elective">
                         <div class="performance-input-section">
-                            <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
+                            <div style="font-size: 1rem; color: var(--text-main); margin-bottom: 5px; font-weight: 500;">
                                 เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-elective" style="color: #EE3325;">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-elective" class="verb-select" onchange="updateDynamicText('elective')">
-                                <option value="">-- (เลือก 1 ข้อ) --</option>
+                                <option value="">-- (โปรดระบุ) --</option>
                                 <option value="ยกระดับคุณภาพการทำงาน">ยกระดับคุณภาพการทำงาน</option>
                                 <option value="ใช้เพื่อแก้ปัญหาในการทำงาน">ใช้เพื่อแก้ปัญหาในการทำงาน</option>
                                 <option value="พัฒนาหรือปรับปรุงวิธีการทำงาน">พัฒนาหรือปรับปรุงวิธีการทำงาน</option>
@@ -273,8 +292,8 @@
                             </div>
                         </div>
 
-                        <div id="statement-wrapper-elective" class="statement-wrapper hidden">
-                            <div class="statement-title"><i class="fa-solid fa-quote-left"></i> GOAL 01 Summary</div>
+                        <div id="statement-wrapper-elective" class="statement-wrapper hidden" style="border-left-color: #E32526;">
+                            <div class="statement-title" style="color: #E32526;"><i class="fa-solid fa-file-contract"></i> GOAL 01 Summary</div>
                             <div class="statement-content" id="commitment-text-elective"></div>
                         </div>
                     </div>
@@ -283,11 +302,12 @@
         </div>
 
         <div class="corp-card">
-            <h3 style="color: var(--aa-black);">
-                <span style="color: #18AF4B;"><b>🎯 Goal 02</b></span> - (Plus One_01)
+            <h3 style="color: #18AF4B;">
+                <span><b>🎯 Goal 02</b></span> - (Plus One_01)
             </h3>
             <div id="render-mandatory"></div>
-            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
+            
+            <div style="margin-top: 25px; border-top: 1px solid #E2E8F0; padding-top: 25px;">
                 <div class="form-group">
                     <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
                     <select class="form-control" disabled><option>1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</option></select>
@@ -295,9 +315,9 @@
                 <div class="form-group">
                     <label>📚 A-Activity (ช่องทางการเรียนรู้และพัฒนา)</label>
                     <div id="activity-mandatory-container" class="activity-info-container"></div>
-                    <div class="print-hide" style="font-size: 0.95rem; color: #64748B; font-style: italic; line-height: 1.4; margin-bottom: 20px;">
+                    <div style="font-size: 0.9rem; color: #64748B; font-style: normal; line-height: 1.5; margin-top: 8px; margin-bottom: 20px;">
                         <i class="fa-solid fa-circle-info" style="color: #0284C7; margin-right: 4px;"></i>
-                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ (ทั้งหลักสูตร eLearning และ Academy) ตามที่ท่านเลือกไว้ ไปยังอีเมลของท่านอีกครั้ง ภายหลังสิ้นสุดกระบวนการจัดทำแผน GAP+ ในภาพรวม
+                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ ไปยังอีเมลของท่านอีกครั้ง
                     </div>
                 </div>
                 <div class="form-group">
@@ -305,11 +325,11 @@
                     
                     <div class="auto-gen-box" id="autogen-mandatory">
                         <div class="performance-input-section">
-                            <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
+                            <div style="font-size: 1rem; color: var(--text-main); margin-bottom: 5px; font-weight: 500;">
                                 เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory" style="color: #18AF4B;">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-mandatory" class="verb-select" onchange="updateDynamicText('mandatory')">
-                                <option value="">-- (เลือก 1 ข้อ) --</option>
+                                <option value="">-- (โปรดระบุ) --</option>
                                 <option value="ยกระดับคุณภาพการทำงาน">ยกระดับคุณภาพการทำงาน</option>
                                 <option value="ใช้เพื่อแก้ปัญหาในการทำงาน">ใช้เพื่อแก้ปัญหาในการทำงาน</option>
                                 <option value="พัฒนาหรือปรับปรุงวิธีการทำงาน">พัฒนาหรือปรับปรุงวิธีการทำงาน</option>
@@ -326,8 +346,8 @@
                             </div>
                         </div>
 
-                        <div id="statement-wrapper-mandatory" class="statement-wrapper hidden">
-                            <div class="statement-title"><i class="fa-solid fa-quote-left"></i> GOAL 02 Summary</div>
+                        <div id="statement-wrapper-mandatory" class="statement-wrapper hidden" style="border-left-color: #18AF4B;">
+                            <div class="statement-title" style="color: #18AF4B;"><i class="fa-solid fa-file-contract"></i> GOAL 02 Summary</div>
                             <div class="statement-content" id="commitment-text-mandatory"></div>
                         </div>
                     </div>
@@ -336,14 +356,15 @@
         </div>
 
         <div class="corp-card hidden" id="goal3-container">
-            <h3 style="color: var(--aa-black);">
-                <span style="color: #99CC33;"><b>🎯 Goal 03</b></span> - (Plus One_02)
+            <h3 style="color: #99CC33;">
+                <span><b>🎯 Goal 03</b></span> - (Plus One_02)
             </h3>
-            <div class="mandatory-box" style="border-left: 6px solid #99CC33;">
-                <b class="comp-title" style="font-size:1.15rem;" id="goal3-display-title">🔒 [...]</b>
+            <div class="mandatory-box" style="border-left: 4px solid #99CC33;">
+                <b class="comp-title" style="font-size:1.05rem;" id="goal3-display-title">🔒 [...]</b>
                 <span class="comp-desc" style="margin-top:5px;" id="goal3-display-desc"></span>
             </div>
-            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px;">
+            
+            <div style="margin-top: 25px; border-top: 1px solid #E2E8F0; padding-top: 25px;">
                 <div class="form-group">
                     <label>⏳ Timeline (ระยะเวลาเรียนรู้และพัฒนาทักษะ)</label>
                     <select class="form-control" disabled><option>1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</option></select>
@@ -351,9 +372,9 @@
                 <div class="form-group">
                     <label>📚 A-Activity (ช่องทางการเรียนรู้และพัฒนา)</label>
                     <div id="activity-mandatory2-container" class="activity-info-container"></div>
-                    <div class="print-hide" style="font-size: 0.95rem; color: #64748B; font-style: italic; line-height: 1.4; margin-bottom: 20px;">
+                    <div style="font-size: 0.9rem; color: #64748B; font-style: normal; line-height: 1.5; margin-top: 8px; margin-bottom: 20px;">
                         <i class="fa-solid fa-circle-info" style="color: #0284C7; margin-right: 4px;"></i>
-                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ (ทั้งหลักสูตร eLearning และ Academy) ตามที่ท่านเลือกไว้ ไปยังอีเมลของท่านอีกครั้ง ภายหลังสิ้นสุดกระบวนการจัดทำแผน GAP+ ในภาพรวม
+                        ทางทีมงาน TMC จะดำเนินการรวบรวมข้อมูลและจัดส่งรายละเอียดช่องทางการเรียนรู้ ไปยังอีเมลของท่านอีกครั้ง
                     </div>
                 </div>
                 <div class="form-group">
@@ -361,11 +382,11 @@
                     
                     <div class="auto-gen-box" id="autogen-mandatory2">
                         <div class="performance-input-section">
-                            <div style="font-size: 1.1rem; color: #334155; margin-bottom: 5px;">
+                            <div style="font-size: 1rem; color: var(--text-main); margin-bottom: 5px; font-weight: 500;">
                                 เพื่อการประเมินผลลัพธ์ทางการเรียนรู้ คุณจะนำสมรรถนะด้าน <b><span id="perf-comp-mandatory2" style="color: #99CC33;">[...]</span></b> ไปใช้ในด้านใดอย่างเป็นรูปธรรม (เลือก 1 ข้อ)
                             </div>
                             <select id="verb-mandatory2" class="verb-select" onchange="updateDynamicText('mandatory2')">
-                                <option value="">-- (เลือก 1 ข้อ) --</option>
+                                <option value="">-- (โปรดระบุ) --</option>
                                 <option value="ยกระดับคุณภาพการทำงาน">ยกระดับคุณภาพการทำงาน</option>
                                 <option value="ใช้เพื่อแก้ปัญหาในการทำงาน">ใช้เพื่อแก้ปัญหาในการทำงาน</option>
                                 <option value="พัฒนาหรือปรับปรุงวิธีการทำงาน">พัฒนาหรือปรับปรุงวิธีการทำงาน</option>
@@ -382,8 +403,8 @@
                             </div>
                         </div>
 
-                        <div id="statement-wrapper-mandatory2" class="statement-wrapper hidden">
-                            <div class="statement-title"><i class="fa-solid fa-quote-left"></i> GOAL 03 Summary</div>
+                        <div id="statement-wrapper-mandatory2" class="statement-wrapper hidden" style="border-left-color: #99CC33;">
+                            <div class="statement-title" style="color: #99CC33;"><i class="fa-solid fa-file-contract"></i> GOAL 03 Summary</div>
                             <div class="statement-content" id="commitment-text-mandatory2"></div>
                         </div>
                     </div>
@@ -391,16 +412,16 @@
             </div>
         </div>
 
-        <div class="corp-card" style="background:#FAFAFA;">
-            <h3>👤 Manager Information</h3>
+        <div class="corp-card" style="background:#F8FAFC; border: 1px solid #E2E8F0;">
+            <h3>👤 Manager Information (ข้อมูลหัวหน้างาน)</h3>
             <div class="manager-grid">
                 <div class="form-group">
                     <label>Manager ID</label>
-                    <input type="text" inputmode="numeric" pattern="[0-9]*"class="form-control" id="submit-manager-id" placeholder="รหัสพนักงาน 7 หลัก" onblur="fetchManagerData(this.value)">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="submit-manager-id" placeholder="รหัสพนักงาน 7 หลัก" onblur="fetchManagerData(this.value)">
                 </div>
                 <div class="form-group">
-                    <label>Manager Name <button id="manual-add-btn" class="add-manager-btn hidden" onclick="enableManualManager()">➕ เพิ่มเอง</button></label>
-                    <input type="text" class="form-control readonly-input" id="submit-manager-name" placeholder="ค้นหาชื่ออัตโนมัติ" readonly>
+                    <label>Manager Name <button id="manual-add-btn" class="add-manager-btn hidden" onclick="enableManualManager()">➕ ระบุเอง</button></label>
+                    <input type="text" class="form-control readonly-input" id="submit-manager-name" placeholder="ค้นหาอัตโนมัติ" readonly>
                 </div>
                 <div class="form-group">
                     <label>Manager Email</label>
@@ -409,20 +430,78 @@
             </div>
             <div class="confirmation-box">
                 <input type="checkbox" id="confirm-cb">
-                <label for="confirm-cb" style="font-weight:600; color:var(--aa-red); cursor:pointer;">รับรองว่าข้อมูลตามแผนข้างต้นได้ร่วมปรึกษาและตกลงร่วมกันกับหัวหน้างานแล้ว</label>
+                <label for="confirm-cb" style="color:var(--aa-dark-red);">ข้าพเจ้ารับรองว่าข้อมูลในแผนการพัฒนานี้ ได้ผ่านการปรึกษาและตกลงร่วมกับหัวหน้างานเรียบร้อยแล้ว</label>
             </div>
         </div>
 
         <div class="action-bar">
             <button id="btn-draft" class="btn btn-draft" onclick="submitIDP('Draft')">
-                <i class="fa-solid fa-floppy-disk" style="margin-right:8px;"></i> บันทึกร่าง (Save Draft)
+                <i class="fa-regular fa-floppy-disk" style="margin-right:6px;"></i> บันทึกร่าง (Save Draft)
             </button>
-            <button id="btn-pdf" class="btn btn-draft" style="background-color: #0284C7; color: white;" onclick="window.print()">
-                <i class="fa-solid fa-file-pdf" style="margin-right:8px;"></i> บันทึกไฟล์เป็น PDF (Save as PDF)
+            <button id="btn-pdf" class="btn btn-draft" style="background-color: white; border: 1px solid var(--gap-blue); color: var(--gap-blue);" onclick="window.print()">
+                <i class="fa-regular fa-file-pdf" style="margin-right:6px;"></i> พิมพ์ / PDF
             </button>
             <button id="btn-confirm" class="btn" onclick="submitIDP('Confirm')">
-                <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> ยืนยันส่งข้อมูล (Submit)
+                <i class="fa-regular fa-paper-plane" style="margin-right:6px;"></i> ยืนยันส่งข้อมูล (Submit)
             </button>
+        </div>
+    </div>
+
+    <div id="print-report-container">
+        <div class="a4-page">
+            
+            <div class="pr-header">
+                <div class="pr-logo"><img src="https://img1.pic.in.th/images/Learning-GAPLogo-2.png" alt="GAP Logo"></div>
+                <div class="pr-info">
+                    <h2>GAP+ : Learning Plan Development</h2>
+                    <div class="pr-user">
+                        <b id="pr-emp-name">Employee Name</b>
+                        <span id="pr-emp-id-pos">ID: 0000000 | Position</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pr-card">
+                <h3 class="text-goal1">Goal 01 (Selective) - สมรรถนะที่มีความจำเป็นในแผนก</h3>
+                <div class="pr-row"><div class="pr-label">หัวข้อสมรรถนะ:</div><div class="pr-value"><b id="pr-g1-comp"></b></div></div>
+                <div class="pr-row"><div class="pr-label">ระยะเวลาเรียนรู้:</div><div class="pr-value">1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</div></div>
+                <div class="pr-row"><div class="pr-label">ช่องทางการพัฒนา:</div><div class="pr-value" id="pr-g1-act"></div></div>
+                <div class="pr-statement border-goal1 hidden" id="pr-g1-stmt-wrapper">
+                    <span id="pr-g1-stmt"></span>
+                </div>
+            </div>
+
+            <div class="pr-card">
+                <h3 class="text-goal2">Goal 02 - (Plus One_01)</h3>
+                <div class="pr-row"><div class="pr-label">หัวข้อสมรรถนะ:</div><div class="pr-value"><b id="pr-g2-comp"></b></div></div>
+                <div class="pr-row"><div class="pr-label">ระยะเวลาเรียนรู้:</div><div class="pr-value">1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</div></div>
+                <div class="pr-row"><div class="pr-label">ช่องทางการพัฒนา:</div><div class="pr-value" id="pr-g2-act"></div></div>
+                <div class="pr-statement border-goal2 hidden" id="pr-g2-stmt-wrapper">
+                    <span id="pr-g2-stmt"></span>
+                </div>
+            </div>
+
+            <div class="pr-card hidden" id="pr-g3-container">
+                <h3 class="text-goal3">Goal 03 - (Plus One_02)</h3>
+                <div class="pr-row"><div class="pr-label">หัวข้อสมรรถนะ:</div><div class="pr-value"><b id="pr-g3-comp"></b></div></div>
+                <div class="pr-row"><div class="pr-label">ระยะเวลาเรียนรู้:</div><div class="pr-value">1 กรกฎาคม 2026 - 30 พฤศจิกายน 2026</div></div>
+                <div class="pr-row"><div class="pr-label">ช่องทางการพัฒนา:</div><div class="pr-value" id="pr-g3-act"></div></div>
+                <div class="pr-statement border-goal3 hidden" id="pr-g3-stmt-wrapper">
+                    <span id="pr-g3-stmt"></span>
+                </div>
+            </div>
+
+            <div class="pr-signature">
+                <div class="pr-sig-box">
+                    <p>Employee Signature</p><div class="pr-sig-space"></div>
+                    <p>( <b id="pr-sig-emp-name">Employee Name</b> )</p><p>Date: ...... / ...... / 2026</p>
+                </div>
+                <div class="pr-sig-box">
+                    <p>Manager Signature</p><div class="pr-sig-space"></div>
+                    <p>( <b id="pr-sig-mgr-name">Manager Name</b> )</p><p>Date: ...... / ...... / 2026</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -457,7 +536,7 @@
                         let displayText = `หลักสูตร eLearning แนะนำ: <b>${sub}</b> โดย <b>${inst}</b>`;
                         let saveText = `หลักสูตร eLearning แนะนำ: ${sub} โดย ${inst}`;
                         
-                        html += `<div class="activity-item elearn"><i class="fa-solid fa-laptop-code"></i> <span>${displayText}</span></div>`;
+                        html += `<div class="activity-item elearn"><i class="fa-solid fa-laptop"></i> <span>${displayText}</span></div>`;
                         allActivities.push(saveText);
                     }
                 });
@@ -481,6 +560,15 @@
             
             container.innerHTML = html;
             container.setAttribute('data-activities', allActivities.join(' / '));
+
+            // โยนข้อมูลช่องทางการพัฒนา ไปใส่ในหน้า Print
+            let printHtml = '<ul class="pr-list">';
+            allActivities.forEach(act => { printHtml += `<li>${act}</li>`; });
+            printHtml += '</ul>';
+
+            if(type === 'elective') document.getElementById('pr-g1-act').innerHTML = printHtml;
+            if(type === 'mandatory') document.getElementById('pr-g2-act').innerHTML = printHtml;
+            if(type === 'mandatory2') document.getElementById('pr-g3-act').innerHTML = printHtml;
         }
 
         function updateDynamicText(type) {
@@ -493,11 +581,8 @@
             const commitmentText = document.getElementById(`commitment-text-${type}`);
             const autoGenBox = document.getElementById(`autogen-${type}`);
 
-            let highlightColor = "var(--aa-red)";
-            if(type === 'elective') highlightColor = "#EE3325";
-            if(type === 'mandatory') highlightColor = "#18AF4B";
-            if(type === 'mandatory2') highlightColor = "#99CC33";
-
+            let highlightColor = "var(--aa-black)"; 
+            
             if (verb && performancePrompts[verb]) {
                 descText.innerText = performancePrompts[verb].question;
                 descBox.classList.remove('hidden');
@@ -507,13 +592,34 @@
                 if (!inputResult.value) inputResult.placeholder = "โปรดอธิบายรายละเอียด...";
             }
 
+            // จัดการข้อมูลเพื่อไปแสดงที่หน้า UI หลัก
             if (verb && inputResult.value.trim() !== '') {
-                commitmentText.innerHTML = `<b><span style="color: ${highlightColor};">${comp}</span></b><br><br>"จะนำทักษะหรือความรู้นี้มา<b>${verb}</b><br><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b> <br><span class='highlight-text' style='color: ${highlightColor};'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
+                commitmentText.innerHTML = `<b><span style="color: ${highlightColor};">${comp}</span></b><br><br>"จะนำทักษะหรือความรู้นี้มา <b>${verb}</b><br><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b> <br><span class='highlight-text' style='color: ${highlightColor};'>${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
                 statementWrapper.classList.remove('hidden');
                 autoGenBox.classList.add('has-statement'); 
             } else {
                 statementWrapper.classList.add('hidden');
                 autoGenBox.classList.remove('has-statement');
+            }
+
+            // โยนข้อความสรุปไปแสดงที่หน้า Print ให้หน้าตาเหมือน Mockup
+            let prStmtHtml = `<b>${comp}</b><br>"จะนำทักษะหรือความรู้นี้มา <b>${verb}</b><br><b>โดยมีรายละเอียดหรือผลลัพธ์ที่คาดหวัง คือ:</b><br><span class="highlight-text">${inputResult.value.replace(/\n/g, '<br>')}</span>"`;
+            let isComplete = verb && inputResult.value.trim() !== '';
+
+            if (type === 'elective') {
+                document.getElementById('pr-g1-stmt').innerHTML = prStmtHtml;
+                if(isComplete) document.getElementById('pr-g1-stmt-wrapper').classList.remove('hidden');
+                else document.getElementById('pr-g1-stmt-wrapper').classList.add('hidden');
+            }
+            if (type === 'mandatory') {
+                document.getElementById('pr-g2-stmt').innerHTML = prStmtHtml;
+                if(isComplete) document.getElementById('pr-g2-stmt-wrapper').classList.remove('hidden');
+                else document.getElementById('pr-g2-stmt-wrapper').classList.add('hidden');
+            }
+            if (type === 'mandatory2') {
+                document.getElementById('pr-g3-stmt').innerHTML = prStmtHtml;
+                if(isComplete) document.getElementById('pr-g3-stmt-wrapper').classList.remove('hidden');
+                else document.getElementById('pr-g3-stmt-wrapper').classList.add('hidden');
             }
         }
 
@@ -579,6 +685,11 @@
             document.getElementById('display-name').innerText = currentEmployee.name;
             document.getElementById('display-job').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`; 
             
+            // โยนข้อมูลพนักงานไปที่หน้า Print
+            document.getElementById('pr-emp-name').innerText = currentEmployee.name;
+            document.getElementById('pr-emp-id-pos').innerText = `ID: ${currentEmployee.empId} | ${currentEmployee.position}`;
+            document.getElementById('pr-sig-emp-name').innerText = currentEmployee.name;
+            
             const elContainer = document.getElementById('render-electives');
             let electiveHtml = '';
             
@@ -595,23 +706,30 @@
             });
             elContainer.innerHTML = electiveHtml;
 
-            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box" style="border-left: 6px solid #18AF4B;"><b class="comp-title" style="font-size:1.15rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
+            document.getElementById('render-mandatory').innerHTML = `<div class="mandatory-box" style="border-left: 4px solid #18AF4B;"><b class="comp-title" style="font-size:1.05rem;">🔒 ${currentPackage.mandatory.title}</b><span class="comp-desc" style="margin-top:5px;">${currentPackage.mandatory.desc}</span></div>`;
             document.getElementById('perf-comp-mandatory').innerText = currentPackage.mandatory.title;
+            document.getElementById('pr-g2-comp').innerText = currentPackage.mandatory.title; // ส่งไป Print
             
             renderActivityBoxes('mandatory', currentPackage.mandatory);
             updateDynamicText('mandatory');
 
             const goal3Container = document.getElementById('goal3-container');
+            const prGoal3Container = document.getElementById('pr-g3-container');
+
             if (currentPackage.mandatory2 && currentPackage.mandatory2.title) {
                 goal3Container.classList.remove('hidden');
+                prGoal3Container.classList.remove('hidden'); // โชว์ Goal 3 ใน Print
+                
                 document.getElementById('goal3-display-title').innerHTML = `🔒 ${currentPackage.mandatory2.title}`;
                 document.getElementById('goal3-display-desc').innerHTML = currentPackage.mandatory2.desc || '';
                 document.getElementById('perf-comp-mandatory2').innerText = currentPackage.mandatory2.title;
+                document.getElementById('pr-g3-comp').innerText = currentPackage.mandatory2.title; // ส่งไป Print
                 
                 renderActivityBoxes('mandatory2', currentPackage.mandatory2);
                 updateDynamicText('mandatory2');
             } else {
                 goal3Container.classList.add('hidden');
+                prGoal3Container.classList.add('hidden');
             }
         }
 
@@ -625,11 +743,11 @@
             electiveForm.style.display = 'block';
             
             document.getElementById('perf-comp-elective').innerText = title;
+            document.getElementById('pr-g1-comp').innerText = title; // ส่งไป Print
             
             if (currentPackage && currentPackage.electives && currentPackage.electives[idx]) {
                 renderActivityBoxes('elective', currentPackage.electives[idx]);
             }
-            
             updateDynamicText('elective');
         }
 
@@ -637,18 +755,18 @@
             const statusBadge = document.getElementById('form-status-badge');
             
             if(currentSavedData.status === 'Confirm') {
-                statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
-                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูล หากมีการเปลี่ยนแปลงโปรดแจ้ง TMC ที่ taa_learning@airasia.com ', 'info');
-                
+                statusBadge.innerHTML = '<span class="status-badge badge-confirm"><i class="fa-regular fa-circle-check"></i> Submitted</span>';
+                Swal.fire('โปรดทราบ', 'ท่านได้ยืนยันการส่งแผนการเรียนรู้นี้ไปแล้ว ระบบไม่อนุญาตให้แก้ไขข้อมูล', 'info');
                 document.getElementById('btn-draft').disabled = true;
                 document.getElementById('btn-confirm').disabled = true;
             } else {
-                statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
+                statusBadge.innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> Draft</span>';
             }
             
             document.getElementById('submit-manager-id').value = currentSavedData.managerId || '';
             document.getElementById('submit-manager-name').value = currentSavedData.managerName || '';
             document.getElementById('submit-manager-email').value = currentSavedData.managerEmail || '';
+            document.getElementById('pr-sig-mgr-name').innerText = currentSavedData.managerName || 'Manager Name'; // ส่งไป Print
             
             if (currentSavedData.elective && currentSavedData.elective.competency) {
                 let idx = currentPackage.electives.findIndex(c => c.title === currentSavedData.elective.competency);
@@ -680,9 +798,23 @@
             try {
                 const res = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getManagerData', managerId: val }) });
                 const r = await res.json();
-                if(r.status === 'success') { nameInp.value = r.name; mailInp.value = r.email; }
-                else { nameInp.value = '❌ ไม่พบข้อมูล'; mailInp.value = ''; manualBtn.classList.remove('hidden'); }
-            } catch (e) { nameInp.value = 'เกิดข้อผิดพลาด'; mailInp.value = ''; manualBtn.classList.remove('hidden'); }
+                if(r.status === 'success') { 
+                    nameInp.value = r.name; 
+                    mailInp.value = r.email; 
+                    document.getElementById('pr-sig-mgr-name').innerText = r.name; // ส่งไป Print
+                }
+                else { 
+                    nameInp.value = '❌ ไม่พบข้อมูล'; 
+                    mailInp.value = ''; 
+                    manualBtn.classList.remove('hidden'); 
+                    document.getElementById('pr-sig-mgr-name').innerText = 'Manager Name';
+                }
+            } catch (e) { 
+                nameInp.value = 'เกิดข้อผิดพลาด'; 
+                mailInp.value = ''; 
+                manualBtn.classList.remove('hidden'); 
+                document.getElementById('pr-sig-mgr-name').innerText = 'Manager Name';
+            }
         }
 
         function enableManualManager() {
@@ -692,6 +824,8 @@
             n.classList.remove('readonly-input'); m.classList.remove('readonly-input');
             n.value = ''; m.value = ''; n.focus();
             document.getElementById('manual-add-btn').classList.add('hidden');
+
+            n.oninput = function() { document.getElementById('pr-sig-mgr-name').innerText = this.value || 'Manager Name'; };
         }
 
         function lockManagerInputs() {
@@ -728,15 +862,11 @@
                 if (!elective || !p1 || !p2 || !mId || !mName || !mEmail || mName.includes('❌')) {
                     return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลเป้าหมายพฤติกรรมให้ครบถ้วนทุกช่องก่อนกดยืนยันส่ง', 'warning');
                 }
-                
-                if (isGoal3Visible) {
-                    if (!p3) {
-                        return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกเป้าหมายพฤติกรรมของ Goal 03 ให้ครบถ้วน', 'warning');
-                    }
+                if (isGoal3Visible && !p3) {
+                    return Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกเป้าหมายพฤติกรรมของ Goal 03 ให้ครบถ้วน', 'warning');
                 }
-
                 if (!document.getElementById('confirm-cb').checked) {
-                    return Swal.fire('ข้อตกลง', 'กรุณาติ๊กช่องรับรองด้านล่างก่อนส่งข้อมูล', 'warning');
+                    return Swal.fire('ข้อตกลง', 'กรุณาติ๊กรับรองข้อมูลร่วมกับหัวหน้างานด้านล่างก่อนส่งข้อมูล', 'warning');
                 }
 
                 Swal.fire({
@@ -747,11 +877,9 @@
                     confirmButtonColor: '#E32526',
                     cancelButtonColor: '#64748B',
                     confirmButtonText: 'ใช่, ยืนยันการส่ง',
-                    cancelButtonText: 'กลับไปแก้ไข'
+                    cancelButtonText: 'กลับไปตรวจสอบ'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail);
-                    }
+                    if (result.isConfirmed) executeSubmit(statusToSave, elective, p1, p2, p3, isGoal3Visible, mId, mName, mEmail);
                 });
 
             } else {
@@ -765,9 +893,7 @@
             Swal.fire({ title: alertTitle, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
             
             let mandatory2Data = null;
-            if (isGoal3Visible) {
-                mandatory2Data = { competency: currentPackage.mandatory2.title, activity: getActivity('mandatory2'), performance: p3 };
-            }
+            if (isGoal3Visible) mandatory2Data = { competency: currentPackage.mandatory2.title, activity: getActivity('mandatory2'), performance: p3 };
 
             const payload = {
                 action: 'submitIDP',
@@ -799,7 +925,7 @@
                         icon: 'success',
                         showCancelButton: true,
                         confirmButtonText: 'ตกลง / ปิด',
-                        cancelButtonText: 'บันทึกไฟล์เป็น PDF (Save as PDF)',
+                        cancelButtonText: 'พิมพ์ / PDF',
                         confirmButtonColor: '#E32526',
                         cancelButtonColor: '#0284C7'
                     }).then((result) => {
@@ -808,13 +934,11 @@
                         }
                         
                         if (statusToSave !== 'Confirm') {
-                            document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> แบบร่าง (Draft)</span>';
+                            document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-draft"><i class="fa-solid fa-pen"></i> Draft</span>';
                         } else {
-                            document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-confirm"><i class="fa-solid fa-check-circle"></i> ข้อมูลของคุณถูกส่งแล้ว (Confirmed)</span>';
-                            
+                            document.getElementById('form-status-badge').innerHTML = '<span class="status-badge badge-confirm"><i class="fa-regular fa-circle-check"></i> Submitted</span>';
                             document.getElementById('btn-draft').disabled = true;
                             document.getElementById('btn-confirm').disabled = true;
-
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
                     });
